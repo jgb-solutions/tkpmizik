@@ -40,9 +40,9 @@ return [
     ],
 
     'twitter' => [
-        'client_id' => env('twitter_ID'),
-        'client_secret' => env('twitter_SECRET'),
-        'redirect' => env('twitter_URL'),
+        'client_id' => env('TWITTER_ID'),
+        'client_secret' => env('TWITTER_SECRET'),
+        'redirect' => env('TWITTER_URL'),
     ],
 
     'facebook' => [
