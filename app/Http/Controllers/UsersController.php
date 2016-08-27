@@ -617,7 +617,7 @@ class UsersController extends Controller
 		return $this->handleProviderCallback('facebook');
 	}
 
-	public function TwitterRedirect()
+	public function twitterRedirect()
 	{
 		return Socialite::driver('twitter')->redirect();
 	}

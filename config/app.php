@@ -218,8 +218,8 @@ return [
 		// 'TNTSearch'	=> TeamTNT\TNTSearch\Facades\TNTSearch::class,
 		'TKPM'	=> App\TKPM\TKPM::class,
 		'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-		'Whatsapi' => 'Xaamin\Whatsapi\Facades\Laravel\Whatsapi',
-	   'WhatsapiTool' => 'Xaamin\Whatsapi\Facades\Laravel\Registration',
+		// 'Whatsapi' => 'Xaamin\Whatsapi\Facades\Laravel\Whatsapi',
+	   // 'WhatsapiTool' => 'Xaamin\Whatsapi\Facades\Laravel\Registration',
 	]
 
 ];
