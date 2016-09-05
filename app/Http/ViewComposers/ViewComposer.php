@@ -3,13 +3,13 @@
 namespace App\Http\ViewComposers;
 
 
-use Cache;
 Use Auth;
+use Cache;
 use App\Models\User;
 use App\Models\Music;
 use App\Models\Video;
-use Illuminate\View\View;
 use App\Models\Category;
+use Illuminate\View\View;
 
 class ViewComposer
 {

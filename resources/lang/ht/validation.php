@@ -93,9 +93,53 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+         'name'	=> [
+            'required'  => 'Non an obligatwa. Fòk ou mete li.',
+            'min'       => 'Fòk non an pa pi piti pase 6 karaktè. Ajoute plis pase 6.'
+        	],
+        'artist'	=> [
+            'required'  => 'Non atis la obligatwa. Fòk ou mete li.'
         ],
+        'email'	=> [
+            'required'  => 'Imel la obligatwa. Fòk ou mete li.',
+            'email'     => 'Imel ou antre pa bon. Fòk ou mete yon bon imel.',
+            'different' => 'Ou pa dwe antre menm bagay pou w non ou kòm imel. Fòk ou mete yon lòt imel oubyen chanje non ou.',
+            'unique'        => 'Imel sa a itilize deja. Si se pou ou li ye, tanpri konekte ou. Sinon chwazi yon lòt imel.'
+        ],
+        'password'      => [
+            'required'  => 'Modpas la obligatwa. Fòk ou mete li.',
+            'same'      => 'Dezyèm modpas ou mete a pa menm ak premye a. Fòk tou 2 menm.',
+            'min'       => 'Fòk modpas la pa pi piti pase 6 karaktè. Ajoute plis pase 6.'
+        ],
+        'image'         => [
+            'required'  => 'Fòk ou chwazi yon imaj pou asosye ak mizik la.',
+            'image'     => 'Imaj ou chwazi a pa bon. Fòk ou chwazi yon bon imaj.'
+        ],
+        'telephone'     => [
+            'numeric'   => 'Fòk nimewo telefòn ou antre a gen chif sèlman. Li pa dwe gen espas oubyen lòt karaktè.'
+        ],
+        'music'         => [
+            'required'  => 'Fòk ou chwazi yon fichye MP3.',
+            'mimes'     => 'Fòk fòma mizik la MP3. Tanpri chwazi yon bon fòma. Sa ka rive tou mizik ou a gen yon gwo imaj ladan l ki anpeche sit la aksepte li. Nan ka sa a retire imaj la epi aprè eseye ankò.',
+            'size'      => 'Fòk mizik la pa depase 100 MB.'
+        ],
+        'slug'          => [
+            'required'  => 'Slug la obligatwa. Fòk ou mete li.'
+        ],
+
+        'code'          => [
+            'required'  => 'Fòk ou antre yon kòd sou mizik la.',
+            'min'       => 'Kòd ou antre a pa ase bon. Fòk li pa pi piti pase 8 karaktè.'
+        ],
+        'url'           => [
+            'required'      => 'Fòk ou antre yon lyen. Li obligatwa.',
+            'url'           => 'Fòk ou antre yon bon lyen. Sa ou mete a pa bon.',
+            'min'           => 'Lyen videyo YouTube ou a sanble pa bon. Tanpri ranje li epi eseye ankò.'
+        ],
+        'username'      => [
+            'alpha_num'     => 'Non itilizatè a ka gen lèt ak chif sèlman',
+            'unique'        => 'Non itilizatè sa a itilize deja. Chwazi yon lòt',
+        ]
     ],
 
     /*

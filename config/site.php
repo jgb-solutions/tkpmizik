@@ -18,57 +18,8 @@ return [
 	'fb_admin'			=> 'jeveuxblogger',
 	'fb_id'				=> '794106764051904',
 
-	'validate'			=> [
-		'name'			=> [
-			'required' 	=> 'Non an obligatwa. Fòk ou mete li.',
-			'min'		=> 'Fòk non an pa pi piti pase 6 karaktè. Ajoute plis pase 6.'
-		],
-		'artist'			=> [
-			'required' 	=> 'Non atis la obligatwa. Fòk ou mete li.'
-		],
-		'email'			=> [
-			'required'	=> 'Imel la obligatwa. Fòk ou mete li.',
-			'email'		=> 'Imel ou antre pa bon. Fòk ou mete yon bon imel.',
-			'different'	=> 'Ou pa dwe antre menm bagay pou w non ou kòm imel. Fòk ou mete yon lòt imel oubyen chanje non ou.',
-			'unique'		=> 'Imel sa a itilize deja. Si se pou ou li ye, tanpri konekte ou. Sinon chwazi yon lòt imel.'
-		],
-		'password'		=> [
-			'required'	=> 'Modpas la obligatwa. Fòk ou mete li.',
-			'same'		=> 'Dezyèm modpas ou mete a pa menm ak premye a. Fòk tou 2 menm.',
-			'min'		=> 'Fòk modpas la pa pi piti pase 6 karaktè. Ajoute plis pase 6.'
-		],
-		'image'			=> [
-			'required' 	=> 'Fòk ou chwazi yon imaj pou asosye ak mizik la.',
-			'image'		=> 'Imaj ou chwazi a pa bon. Fòk ou chwazi yon bon imaj.'
-		],
-		'telephone'		=> [
-			'numeric'	=> 'Fòk nimewo telefòn ou antre a gen chif sèlman. Li pa dwe gen espas oubyen lòt karaktè.'
-		],
-		'music'			=> [
-			'required'	=> 'Fòk ou chwazi yon fichye MP3.',
-			'mimes'		=> 'Fòk fòma mizik la MP3. Tanpri chwazi yon bon fòma. Sa ka rive tou mizik ou a gen yon gwo imaj ladan l ki anpeche sit la aksepte li. Nan ka sa a retire imaj la epi aprè eseye ankò.',
-			'size'		=> 'Fòk mizik la pa depase 100 MB.'
-		],
-		'slug'			=> [
-			'required' 	=> 'Slug la obligatwa. Fòk ou mete li.'
-		],
-
-		'code'			=> [
-			'required'	=> 'Fòk ou antre yon kòd sou mizik la.',
-			'min'		=> 'Kòd ou antre a pa ase bon. Fòk li pa pi piti pase 8 karaktè.'
-		],
-		'url'			=> [
-			'required'		=> 'Fòk ou antre yon lyen. Li obligatwa.',
-			'url'			=> 'Fòk ou antre yon bon lyen. Sa ou mete a pa bon.',
-			'min'			=> 'Fòk lyen an pa pi piti pase 11 karaktè. Ajoute plis pase 11.'
-		],
-		'username'		=> [
-			'alpha_num'		=> 'Non itilizatè a ka gen lèt ak chif sèlman',
-			'unique'		=> 'Non itilizatè sa a itilize deja. Chwazi yon lòt',
-		]
-	],
-
 	'message'			=> [
+		'youtube-failed'=> 'Fòk ou rantre yon bon lyen YouTube. Sa w rantre a pa bon.',
 		'konekte'		=>	'Fòk ou konekte pou w aksede ak paj ou vle a.',
 		'admin'			=> 	'Ou pa otorize pou w aksede ak paj ou vle a.',
 		'kod-mizik'		=> 	'Fòk ou antre yon kòd sou mizik peye a pou w ka vann li. Konsa moun ki pa gen kòd la pap ka telechaje li.',
@@ -95,7 +46,7 @@ return [
 			'fail' => 'Nou regrèt, men nou pa reyisi chanje modpas ou a.'
 		],
 		'mustBeAdmin' => 'Ou pa gen dwa pou w wè paj sa a paske ou pa yon administratè.',
-		'mustBeMusicOwner' => 'Ou pa gen dwa pou w f&egrave; modifye mizik la paske ou pa m&egrave;t li.',
-		'mustBeVideoOwner' => 'Ou pa gen dwa pou w f&egrave; modifye videyo a paske ou pa m&egrave;t li.'
+		'mustBeMusicOwner' => 'Ou pa gen dwa pou w modifye mizik la paske ou pa m&egrave;t li.',
+		'mustBeVideoOwner' => 'Ou pa gen dwa pou w modifye videyo a paske ou pa m&egrave;t li.'
 	]
 ];

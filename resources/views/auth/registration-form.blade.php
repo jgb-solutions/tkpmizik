@@ -1,5 +1,3 @@
-@include('inc.alert')
-@include('inc.errors')
 <form action="{{ route('post.register')}}" method='post' role="form">
 	{{ csrf_field() }}
 	<div class="input-group">

@@ -9,8 +9,8 @@ use Cache;
 use Image;
 use getID3;
 use Storage;
-use getid3_writetags;
 use App\Models\Vote;
+use getid3_writetags;
 
 class TKPM
 {
@@ -82,25 +82,25 @@ class TKPM
 
 	public static function size($size, $round = 2)
 	{
-	    	$sizes = [' B', ' KB', ' MB'];
+    	$sizes = [' B', ' KB', ' MB'];
 
-	    	$total = count($sizes) - 1 ;
+    	$total = count($sizes) - 1 ;
 
-	    	for ($i = 0; $size > 1024 && $i < $total; $i++) {
-	       	$size /= 1024;
-	    	}
+    	for ($i = 0; $size > 1024 && $i < $total; $i++) {
+       	$size /= 1024;
+    	}
 
-	    	return round($size, $round) . $sizes[$i];
+    	return round($size, $round) . $sizes[$i];
 	}
 
 	public static function tag($music, $image_name = null, $type)
 	{
 		$mp3_handler = new getID3;
-	   	$mp3_handler->setOption(['encoding'=> 'UTF-8']);
+   	$mp3_handler->setOption(['encoding'=> 'UTF-8']);
 
-	    	$mp3_writter = new getid3_writetags;
+    	$mp3_writter = new getid3_writetags;
 
-	    	$mp3_writter->filename          = storage_path('app/public/musics/' . $music->mp3name);
+    	$mp3_writter->filename          = storage_path('app/public/musics/' . $music->mp3name);
 	  	$mp3_writter->tagformats        = ['id3v2.3'];
 	  	$mp3_writter->overwrite_tags    = true;
 	  	$mp3_writter->tag_encoding      = 'UTF-8';

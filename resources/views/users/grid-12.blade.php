@@ -1,7 +1,7 @@
 @foreach ( $users as $user )
 
 <div class="col-sm-12">
-	<a href="/user/{{ $user->id }}">
+	<a href="{{ $user->url }}">
 		<div class="row box-shadow">
 			<div class="col-sm-4 col-xs-4">
 				<div class="row">

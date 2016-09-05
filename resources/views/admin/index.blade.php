@@ -41,6 +41,7 @@
 				</a>
 			</p>
 
+		{{-- Videos --}}
 			<br>
 
 			<div class="row bg-black btrr bbrr white">
@@ -59,6 +60,28 @@
 			<p class="text-center">
 				<a href="{{ route('video.upload') }}" class="btn btn-danger btn-lg">
 					<i class="fa fa-video-camera"></i> Mete Videyo
+				</a>
+			</p>
+
+		{{-- Playlists --}}
+			<br>
+
+			<div class="row bg-black btrr bbrr white">
+				<h3 class="text-center">
+					<a
+						href="{{route('admin.playlists')}}">
+						<i class="fa fa-list"></i>
+						Lis Mizik ({{ $playlists_count }})
+					</a>
+				</h3>
+			</div>
+			<br>
+
+			@include('admin.modules.playlists')
+
+			<p class="text-center">
+				<a href="{{ route('playlists.create') }}" class="btn btn-danger btn-lg">
+					<i class="fa fa-list"></i> Kreye Lis Mizik
 				</a>
 			</p>
 

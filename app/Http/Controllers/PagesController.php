@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Cache;
 use App\Models\Music;
 use App\Models\Video;
-use App\Http\Controllers\Controller;
 
 class PagesController extends Controller
 {
@@ -74,12 +73,5 @@ class PagesController extends Controller
 						->paginate(20);
 
 		return view('pages.discover.video', compact('videos'));
-	}
-
-	public function playLists()
-	{
-		// $musics = Music::latest()->published()->take(8)->get();
-
-		// return view('pages.discover', compact('musics'));
 	}
 }

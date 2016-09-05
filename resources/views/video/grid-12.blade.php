@@ -1,9 +1,7 @@
 @foreach ( $videos as $video )
 
 <div class="col-sm-12">
-	<a href="{{ route('video.show', [
-    		'id' => $video->id,
-    		'name' => $video->slug ]) }}">
+	<a href="{{ $video->url }}">
 
 		<div class="row box-shadow btlr btrr bbrr bblr">
 			<div class="col-sm-4 col-xs-4">

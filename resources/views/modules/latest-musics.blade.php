@@ -7,7 +7,7 @@
 		<ul class="list-unstyled">
 			@foreach( $musics as $music )
 				<strong>
-					<a class="list-group-item" href="{{ route('music.show', ['id' => $music->id, 'slug' => $music->slug]) }}">
+					<a class="list-group-item" href="{{ $music->url }}">
 						<i class="fa fa-music"></i> {{ $music->name }}
 					</a>
 				</strong>

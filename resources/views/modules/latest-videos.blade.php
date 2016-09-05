@@ -7,7 +7,7 @@
 		<ul class="list-unstyled">
 			@foreach($videos as $video)
 				<strong>
-					<a class="list-group-item" href="{{ route('video.show', ['id' => $video->id, 'slug' => $video->slug]) }}">
+					<a class="list-group-item" href="{{ $video->url }}">
 						<i class="fa fa-video-camera"></i> {{ $video->name }}
 					</a>
 				</strong>

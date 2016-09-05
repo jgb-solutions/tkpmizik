@@ -13,9 +13,7 @@
 			@foreach ($featuredVideos as $video)
 				<div class="col-sm-3 col-xs-6">
 					<div class="thumbnail noPadding4 maxHeight228">
-						<a href="{{ route('video.show', [
-						    		'id' => $video->id,
-						    		'slug' => $video->slug ]) }}">
+						<a href="{{ $video->url }}">
 						  	<img
 								class="img-reponsive full-width lazy"
 								alt="{{ $video->name }}"
@@ -23,9 +21,7 @@
 						</a>
 					  	<div class="text-center">
 					    	<h5>
-					    		<a href="{{ route('video.show', [
-						    		'id' => $video->id,
-						    		'slug' => $video->slug ]) }}"
+					    		<a href="{{ $video->url }}"
 						    		class="black">
 						    		{{ $video->name }}
 						    	</a>

@@ -9,17 +9,17 @@ use TKPM;
 use Cache;
 use Image;
 use Storage;
-use Validator;
 use Socialite;
 use App\Models\Vote;
 use App\Models\User;
 use App\Models\Music;
 use App\Models\Video;
-use App\Http\Requests;
 use App\Models\Category;
 use App\Models\MusicSold;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 
 class UsersController extends Controller
 {
@@ -57,13 +57,16 @@ class UsersController extends Controller
 	public function postLogin(Request $request)
 	{
 		if (Auth::attempt($request->only('email', 'password'))) {
-			if (Auth::user()->admin)
+			$user = Auth::user();
+
+			if ($user->admin) {
 				return redirect()->intended(route('admin.index'))
-					->withMessage('Byenvini ankò, ' . TKPM::firstName(Auth::user()->name) . '!')
+					->withMessage('Byenvini ankò, ' . $user->firstName . '!')
 					->withStatus('info');
+			}
 
 			return redirect()->intended(route('user.index'))
-				->withMessage('Byenvini ankò, ' . TKPM::firstName(Auth::user()->name) . '!')
+				->withMessage('Byenvini ankò, ' . $user->firstName . '!')
 				->withStatus('info');
 		} else {
 			return redirect(route('login'))
@@ -80,70 +83,27 @@ class UsersController extends Controller
 		return redirect('/');
 	}
 
-	public function store(Request $request)
+	public function store(StoreUserRequest $request)
 	{
-		$rules = [
-			'name'	=> 'required',
-			'email'	=> 'required|email|different:name|unique:users',
-			'password'	=> 'required|same:password_confirm|min:6',
-			'telephone'	=> 'numeric'
+		$user = User::create([
+			'name' 		=> $request->get('name'),
+			'password' 	=> $request->get('password'),
+			'email' 		=> $request->get('email'),
+			'telephone' => $request->get('telephone')
+		]);
+
+		Auth::login($user);
+
+		$data = [
+			'user' => $user,
+			'subject' => 'Byenvini sou ' . config('site.name')
 		];
 
-		$messages = [
-			'name.required' 	=> config('site.validate.name.required'),
-			// 'name.min'		=> config('site.validate.name.min'),
-			'email.required' 	=> config('site.validate.email.required'),
-			'email.email' 	=> config('site.validate.email.email'),
-			'email.different' 	=> config('site.validate.email.different'),
-			'email.unique' 	=> config('site.validate.email.unique'),
-			'password.required' => config('site.validate.password.required'),
-			'password.min' 	=> config('site.validate.password.min')		,
-			'password.same' 	=> config('site.validate.password.same'),
-			'telephone.numeric' => config('site.validate.telephone.numeric')
-		];
+		TKPM::sendMail('emails.user.welcome', $data, 'user');
 
-		$validator = Validator::make( $request->all(), $rules, $messages );
-
-		if ($validator->fails())
-		{
-			return redirect( route('register') )
-				->withErrors($validator)
-				->withInput();
-		}
-
-		$name 		= $request->get('name');
-		$email 		= $request->get('email');
-		$password 	= $request->get('password');
-		$telephone 	= $request->get('telephone');
-
-		$user = new User;
-
-		$user->name 		= $name;
-		$user->password 	= Hash::make($password);
-		$user->email 	= $email;
-		$user->telephone 	= $telephone;
-		$user->save();
-
-		if ( Auth::login($user) ) {
-			// Send a welcome email to the new user registered
-			$data = [
-				'user' => $user,
-				'subject' => 'Byenvini sou ' . config('site.name')
-			];
-
-			TKPM::sendMail('emails.user.welcome', $data, 'user');
-
-			// Welcoming the user for the first time in our app
-			$message = 'Byenvini, ' . TKPM::firstName(Auth::user()->name) . '! <small>Ajoute yon <a href="/user/edit">foto pwofil</a></small>';
-
-			return redirect(route('user.index') )
-				->withMessage($message)
-				->withStatus('info');
-		} else {
-			return redirect(route('register'))
-				->withError('Nou pa reyisi kreye kont ou a. Tanpri eseye ankò.')
-				->withInput();
-		}
+		return redirect(route('user.index'))
+			->withMessage('Byenvini, ' . $user->firstName)
+			->withStatus('info');
 
 	}
 
@@ -174,7 +134,6 @@ class UsersController extends Controller
 				'musicdownloadcount' 	=> $user->musics()->sum('download'),
 				'videodownloadcount' 	=> $user->videos()->sum('download'),
 				'bought_count' 		=> $user->bought()->count(),
-				'first_name' 		=> ucwords( TKPM::firstName($user->name) ),
 				'title'				=> 'Pwofil Ou',
 				'user'				=> $user,
 				'author'				=> $user->username ? '@' . $user->username . ' &mdash;' : $user->name . ' &mdash; '
@@ -276,39 +235,9 @@ class UsersController extends Controller
 		return view('user.profile-edit', compact('title', 'user'));
 	}
 
-	public function update(Request $request, $id = null)
+	public function update(UpdateUserRequest $request, $id = null)
 	{
 		$user = $id ? User::findOrFail($id) : Auth::user();
-
-		$rules = [
-			'name' 		=> 'required',
-			'username'	=> "alpha_num|unique:users,username,{$user->id}",
-			'email' 	=> 'required|email|different:name',
-			'password' 	=> 'min:6|same:password_confirm',
-			'image'		=> 'image',
-			'telephone'	=> 'numeric'
-		];
-
-		$messages = [
-			'name.required' 	=> config('site.validate.name.required'),
-			// 'name.min'			=> config('site.validate.name.min'),
-			'email.required' 	=> config('site.validate.email.required'),
-			'email.email' 		=> config('site.validate.email.email'),
-			'email.different' 	=> config('site.validate.email.different'),
-			'password.min' 		=> config('site.validate.password.min'),
-			'password.same' 	=> config('site.validate.password.same'),
-			'image.image'		=> config('site.validate.image.image'),
-			'telephone.numeric'	=> config('site.validate.telephone.numeric'),
-			'username.alpha_num'=> config('site.validate.username.alpha_num'),
-			'username.unique'	=> config('site.validate.username.unique')
-		];
-
-		$validator = Validator::make( $request->all(), $rules, $messages );
-
-		if ($validator->fails()) {
-			return back()
-				->withErrors($validator);
-		}
 
 		$name 		= $request->get('name');
 		$email 		= $request->get('email');
@@ -321,7 +250,7 @@ class UsersController extends Controller
 			$img_ext = $image->getClientOriginalExtension();
 			$img_name 	= Str::random(8) . time() . '.' . $img_ext;
 
-			$content = file_get_contents( $request->file('image')->getRealPath() );
+			$content = file_get_contents($request->file('image')->getRealPath());
 
 			$img_success = Storage::disk('images')->put($img_name, $content);
 
@@ -338,8 +267,6 @@ class UsersController extends Controller
 				}
 			}
 		}
-
-		// $user = ( User::find($id) ) ?: User::find( Auth::user()->id );
 
 		if ( !empty($name) ) {
 			$user->name = $name;

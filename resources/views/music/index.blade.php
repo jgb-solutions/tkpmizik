@@ -7,7 +7,6 @@
 @section('content')
 
 <div class="col-sm-8">
-
 	@if (count($musics))
 		<div class="row bg-black btrr bbrr">
 			<h2 class="text-center">

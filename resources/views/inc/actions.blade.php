@@ -15,25 +15,29 @@
 					class="btn btn-danger btn-lg">
 					<i class="fa fa-trash-o"></i>
 				<span>Efase</span>
-				</button>
+				</button>.get
 			</form>
 		</div>
 		<hr class="visible-xs">
 	@endif
 @endif
-<div class="btn-group btn-group-lg">
-  	<a
-  		class="btn btn-success"
-  		href="{{ route($route.'.get', $obj->id)}}"
-  		target="_blank">
-  		<i class="fa fa-download"></i>
-  		<span>Telechaje</span>
-  	</a>
-</div>
 
-
-@if (Auth::check())
+@if ($route !== 'playlist')
 	<div class="btn-group btn-group-lg">
-		{!! TKPM::vote($class, $obj->id, $obj->vote_up, $obj->vote_down) !!}
+	  	<a
+	  		class="btn btn-success"
+	  		href="{{ route($route.'.get', $obj->id)}}"
+	  		target="_blank">
+	  		<i class="fa fa-download"></i>
+	  		<span>Telechaje</span>
+	  	</a>
 	</div>
+@endif
+
+@if($route !== 'playlist')
+	@if (Auth::check())
+		<div class="btn-group btn-group-lg">
+			{!! TKPM::vote($class, $obj->id, $obj->vote_up, $obj->vote_down) !!}
+		</div>
+	@endif
 @endif

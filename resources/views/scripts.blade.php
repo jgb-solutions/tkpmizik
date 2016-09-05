@@ -1,4 +1,4 @@
-<script src="{{ TKPM::asset('js/app.js') }}"></script>
+<script src="{{ TKPM::asset(elixir('js/app.js')) }}"></script>
 
 @unless ( App::isLocal() )
 

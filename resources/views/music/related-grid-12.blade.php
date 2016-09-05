@@ -1,5 +1,5 @@
 <div class="col-sm-12">
-	<a href="{{ route('music.show', ['id'=>$rel->id, 'slug'=>$rel->slug]) }}">
+	<a href="{{ $rel->url }}">
 		<div class="row box-shadow btlr btrr bbrr bblr">
 			<div class="col-sm-4 col-xs-4">
 				<div class="row">

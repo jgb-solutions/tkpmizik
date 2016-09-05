@@ -4,6 +4,7 @@ namespace App\Models;
 // use Illuminate\Database\Eloquent\Model;
 
 // use TNTSearch;
+use TKPM;
 use App\Traits\MP34Trait;
 
 class Music extends Model
@@ -11,6 +12,7 @@ class Music extends Model
 	use MP34Trait;
 
 	protected $table = 'mp3s';
+	protected $appends = ['url', 'title', 'mp3', 'poster'];
 
 	protected $fillable = [
 		'name', 'mp3name', 'image', 'user_id', 'description', 'category_id', 'size', 'slug'
@@ -29,6 +31,26 @@ class Music extends Model
 	public function scopeByPlay($query)
 	{
 		$query->orderBy('play', 'desc');
+	}
+
+	public function getUrlAttribute()
+	{
+		return route('music.show', ['id' => $this->id,'name' => $this->slug ]);
+	}
+
+	public function getMp3Attribute()
+	{
+		return route('music.play', ['id' => $this->id]);
+	}
+
+	public function getPosterAttribute()
+	{
+		return $this->imageUrl;
+	}
+
+	public function getImageUrlAttribute()
+	{
+		return url(TKPM::asset($this->image, 'show'));
 	}
 
 	// // TNTSearch

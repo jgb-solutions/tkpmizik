@@ -35,10 +35,6 @@
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 	<![endif]-->
 
-	{{-- 	@if (! App::isLocal() )
-		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		@endif --}}
-
 	@include('scripts')
 </head>
 <body ng-app="app">

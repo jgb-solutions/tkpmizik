@@ -11,10 +11,16 @@ class Video extends Model
 	use MP34Trait;
 
 	protected $table = 'mp4s';
+	protected $appends = ['url'];
 
 	protected $fillable = [
 		'name', 'youtube_id', 'image', 'user_id', 'description', 'category_id', 'slug'
 	];
+
+	public function getUrlAttribute()
+	{
+		return route('video.show', ['id' => $this->id,'name' => $this->slug]);
+	}
 
 
 	// // TNTSearch

@@ -1,9 +1,7 @@
 @foreach ( $musics as $music )
 
 <div class="col-sm-12">
-	<a href="{{ route('music.show', [
-	    		'id' => $music->id,
-	    		'name' => $music->slug ]) }}">
+	<a href="{{ $music->url }}">
 		<div class="row box-shadow btlr btrr bbrr bblr">
 			<div class="col-sm-4 col-xs-4">
 				<div class="row">

@@ -1,7 +1,5 @@
 <div class="col-sm-12">
-	<a href="{{ route('video.show', [
-		'id' => $rel->id,
-		'slug'=>$rel->slug]) }}">
+	<a href="{{ $rel->url }}">
 		<div class="row box-shadow btlr btrr bbrr bblr">
 			<div class="col-sm-4 col-xs-4">
 				<div class="row">
@@ -13,7 +11,7 @@
 			</div>
 			<div class="col-sm-8 col-xs-8 right">
 				<h4 class="mTop6">
-					@if ( $rel->price == 'paid')
+					@if ($rel->paid)
 					<i class="fa fa-money"></i>
 					@endif
 					{{ $rel->name }}

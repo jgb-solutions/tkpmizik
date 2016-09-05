@@ -11,25 +11,24 @@
 
 		<div class="row">
 			@foreach ($lastMonthTopMusics as $music )
-			<div class="col-sm-3 col-xs-6">
+				<div class="col-sm-3 col-xs-6">
 					<div class="thumbnail noPadding4 maxHeight228">
-						<a href="{{ route('music.show', ['id' => $music->id,'name' => $music->slug ]) }}">
+						<a href="{{ $music->url }}">
 						  	<img
 								class="img-reponsive full-width lazy"
 								alt="{{ $music->name }}"
 								data-original="{{ TKPM::asset($music->image, 'thumbs') }}">
 						</a>
-					  	<div class="text-center">
-						    	<h5>
-						    		<a href="{{ route('music.show', ['id' => $music->id,'name' => $music->slug ]) }}" class="black">
-						    			{{ $music->name }}
-						    		</a>
-						    	</h5>
-					  	</div>
+						<div class="text-center">
+						  	<h5>
+						  		<a href="{{ $music->url }}" class="black">
+									{{ $music->name }}
+							   </a>
+							</h5>
+						</div>
 					</div>
 				</div>
 			@endforeach
 		</div>
 	@endif
-	{{-- <br/> --}}
 </div>

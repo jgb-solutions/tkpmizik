@@ -1,6 +1,6 @@
 @foreach ($results as $type)
 <div class="col-sm-12">
-	<a href="{{ route($type->type . '.show', ['id' => $type->id, 'slug' =>$type->slug])}}">
+	<a href="{{ $type->url }}">
 		<div class="row box-shadow btlr btrr bbrr bblr">
 			<div class="col-sm-4 col-xs-4">
 				<div class="row">

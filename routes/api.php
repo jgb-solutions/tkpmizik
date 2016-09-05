@@ -1,5 +1,3 @@
 <?php
 
-Route::get('hello', function() {
-    return 'worl';
-});
+Route::post('ajax', 'AJAXController@postIndex');

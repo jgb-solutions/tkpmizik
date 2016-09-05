@@ -11,7 +11,7 @@
 			<strong>
 				<a
 					class="list-group-item"
-					href="{{ TKPM::profileLink($user->username, $user->id) }}">
+					href="{{ $user->url }}">
 					<i class="fa fa-user"></i> {{ $user->name }}
 				</a>
 			</strong>

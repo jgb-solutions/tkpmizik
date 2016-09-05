@@ -13,8 +13,10 @@
     	<button type="submit" class="btn btn-primary btn-lg">
             <i class="fa fa-sign-in"></i> Koneksyon
         </button>
-</form><!-- /form -->
+</form>
+
 <br>
+
 <p>
 	<i class="fa fa-key"></i>
 	Ou bliye modpas ou?

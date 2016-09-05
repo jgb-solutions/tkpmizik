@@ -5,19 +5,21 @@ use Str;
 use App;
 use Mail;
 use Auth;
-use Cache;
 use TKPM;
-use Validator;
+use Cache;
 use App\Models\User;
 use App\Models\Vote;
 use App\Models\Video;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-// use Snowfire\Beautymail\Beautymail;
+use App\Http\Requests\StoreVideoRequest;
+use App\Http\Requests\UpdateVideoRequest;
 
 class VideoController extends Controller
 {
+	protected $user;
+
 	public function __construct()
 	{
 		$this->middleware('auth')->except([
@@ -25,6 +27,10 @@ class VideoController extends Controller
 			'show',
 			'getvideo'
 		]);
+
+		$this->middleware('videoOwner')->only(['edit', 'update']);
+
+		$this->user = Auth::user();
 	}
 
 	public function index()
@@ -48,33 +54,8 @@ class VideoController extends Controller
 		return view('video.upload', $data);
 	}
 
-	public function store(Request $request)
+	public function store(StoreVideoRequest $request)
 	{
-		$rules = [
-			'name' 	=> 'required',
-			'artist' 	=> 'required',
-			'url' 	=> 'required|url|min:11',
-		];
-
-		$messages = [
-			'name.required' 	=> config('site.validate.name.required'),
-			'artist.required' 	=> config('site.validate.artist.required'),
-			// 'name.min'			=> config('site.validate.name.min'),
-			'url.required'		=> config('site.validate.url.required'),
-			'url.url'			=> config('site.validate.url.url'),
-			'url.url'			=> config('site.validate.url.url'),
-			'url.min'			=> config('site.validate.url.min'),
-			'email.required' 	=> config('site.validate.email.required')
-		];
-
-		$validator = Validator::make($request->all(), $rules, $messages);
-
-		if ($validator->fails()) {
-			return back()
-				->withErrors($validator)
-				->withInput();
-		}
-
 		$name = $request->get('name');
 		$artist = $request->get('artist');
 
@@ -86,7 +67,9 @@ class VideoController extends Controller
 	    		$image_url 	=	"http://img.youtube.com/vi/$id/hqdefault.jpg";
 		} else {
 			return back()
-				->withMessage(config('site.message.youtube-failed'));
+				->withInput()
+				->withMessage(config('site.message.youtube-failed'))
+				->withStatus('warning');
 		}
 
 		$storedvideo = Video::whereName($request->get('name'))->first();
@@ -107,7 +90,7 @@ class VideoController extends Controller
 			return redirect(route('video.show', ['id'=>$storedvideo->id, 'slug'=>$storedvideo->slug]));
 		}
 
-		$user_id = Auth::user()->id;
+		$user_id = $this->user->id;
 
 		// Insert the infos in the database
 		$video = new video;
@@ -168,55 +151,28 @@ class VideoController extends Controller
 		return view('video.show', $data);
 	}
 
-	public function edit($id)
+	public function edit(Video $video)
 	{
-		$video = Video::findOrFail($id);
-
 		$cats = Category::remember('999', 'allCategories')->byName()->get();
 
-		$user = Auth::user();
+		$user = $this->user;
 
-		if ($user->owns($video) || $user->iadmin) {
-			$data = [
-			    'video' => $video,
-			    'title' => "Modifye $video->name",
-			    'cats' => $cats
-			];
+		$data = [
+		    'video' => $video,
+		    'title' => "Modifye $video->name",
+		    'cats' => $cats
+		];
 
-			return view('video.edit', $data);
-		}
-
-		return redirect('/')
-			->withMessage(config('site.message.mustBeVideoOwner'))
-			->withStatus('warning');
+		return view('video.edit', $data);
 	}
 
-	public function update($id, Request $request)
+	public function update(Video $video, UpdateVideoRequest $request)
 	{
-		$rules = [
-			// 'name' 	=> 'min:6',
-			'image'	=> 'image'
-		];
-
-		$messages = [
-			// 'name.min'		=> config('site.validate.name.min'),
-			'image.image'	=> config('site.validate.image.image')
-		];
-
-		$validator = Validator::make($request->all(), $rules, $messages);
-
-		if ($validator->fails()) {
-			return back()
-				->withErrors($validator);
-		}
-
 		$name = $request->get('name');
 		$artist = $request->get('artist');
 		$slug = Str::slug($name);
 		$description = $request->get('description');
 		$category = $request->get('cat');
-
-		$video = Video::find( $id );
 
 		if (! empty($name)) {
 			$video->name = ucwords($name);

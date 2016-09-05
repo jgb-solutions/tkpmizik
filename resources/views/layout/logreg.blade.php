@@ -27,7 +27,7 @@
     @include('inc.seo')
 
     @include('styles')
-
+    @include('scripts')
 </head>
 <body>
     <div class="container">

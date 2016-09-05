@@ -8,7 +8,7 @@
 	@if (count($musics) )
 		@foreach($musics as $music)
 		<strong>
-			<a class="list-group-item" href="{{ route('music.show', ['id' => $music->id, 'slug' => $music->slug]) }}">
+			<a class="list-group-item" href="{{ $music->url }}">
 				<span class="badge">
 					{{ $music->play }}
 					<i class="fa fa-play"></i>

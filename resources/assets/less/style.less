@@ -1,3 +1,5 @@
+@import url('bootstrap/bootstrap.less');
+
 @body-bg-color: #03a9f4; //#337ab7
 
 body {
@@ -5,7 +7,7 @@ body {
 }
 
 #wrapper {
-	max-width: 800px;
+	max-width: 810px;
 	box-shadow: 0px 0px 5px #000;
 	border-radius: 6px;
 	background-color: #fff;
@@ -83,9 +85,6 @@ a.navbar-brand {
   	margin: auto;
 }
 
-#sidebar {
-}
-
 #sidebar>h3,
 #sidebar>h4 {
 	text-decoration: underline;
@@ -93,12 +92,6 @@ a.navbar-brand {
 
 .noPadding4 {
 	padding: 0;
-}
-
-@media screen and ( max-width: 484px ) {
-	.hidden-484 {
-		display: none;
-	}
 }
 
 #vote-btn > button:focus {
@@ -239,4 +232,55 @@ img.logo-mizik {
 	.bbrr {
 		border-bottom-right-radius: 6px;
 	}
+}
+
+// Registration page
+body, html {
+    height: 100%;
+    background-repeat: no-repeat;
+}
+
+.card-container.card {
+    max-width: 350px;
+    padding: 40px 40px;
+}
+/*
+ * Card component
+ */
+.card {
+    background-color: #F7F7F7;
+    /* just in case there no content*/
+    padding: 20px 25px 30px;
+    margin: 0 auto 25px;
+    margin-top: 50px;
+    /* shadows and rounded borders */
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.profile-img-card {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+// make jplayer responsive
+.jp-video-270p {
+	width: 100% !important;
+	img {
+		width: 100% !important;
+		height: auto !important;
+	}
+}
+
+#jquery_jplayer_N {
+	width: 100% !important;
+	height: auto !important;
+}
+
+.jp-controls-holder {
+   left: -40px !important;
 }

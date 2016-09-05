@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Str;
 use App;
+use Str;
 use Auth;
 use TKPM;
 use Cache;
 use Storage;
-use Validator;
 use App\Models\User;
 use App\Models\Vote;
 use App\Models\Music;
@@ -17,11 +16,17 @@ use App\Models\Category;
 use App\Models\MusicSold;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreMusicRequest;
+use App\Http\Requests\UpdateMusicRequest;
 
 class MusicController extends Controller
 {
+	protected $user;
+
 	public function __construct()
 	{
+		$this->user = Auth::user();
+
 		$this->middleware('auth')->except([
 			'index',
 			'listBuy',
@@ -30,7 +35,10 @@ class MusicController extends Controller
 			'getBuy',
 			'play'
 		]);
+
+		$this->middleware('musicOwner')->only(['edit', 'update']);
 	}
+
 	public function index()
 	{
 		$data = [
@@ -53,47 +61,10 @@ class MusicController extends Controller
 
 	}
 
-	public function store(Request $request)
+	public function store(StoreMusicRequest $request)
 	{
-		// dd($request);
-		$rules = [
-			'name' 	=> 'required',
-			'artist' 	=> 'required',
-			// 'music' 	=> 'required|mimes:mpga|max:64000000',
-			'music' 	=> 'required|max:64000000',
-			'image' => 'required|image',
-		];
-
-		$messages = [
-			'name.required'  => config('site.validate.name.required'),
-			'artist.required'  => config('site.validate.artist.required'),
-			// 'name.min'		 => config('site.validate.name.min'),
-			'music.required' 	 => config('site.validate.music.required'),
-			'music.mimes' 	 => config('site.validate.music.mimes'),
-			'music.size' 		 => config('site.validate.music.size'),
-			'image.required' => config('site.validate.image.required'),
-			'image.image'	 => config('site.validate.image.image'),
-			'email.required' => config('site.validate.email.required'),
-		];
-
-		$validator = Validator::make($request->all(), $rules, $messages);
-
-		if ($validator->fails()) {
-			if ($request->ajax()) {
-				$response = [];
-
-		        	$response['success'] = false;
-		        	$response['errors']	= $validator->messages();
-
-		        	return $response;
-			}
-
-			return redirect(route('music.upload'))
-				->withErrors($validator)
-				->withInput();
-		}
-
-		$storedmusic = Music::whereName($request->get('name'))->first();
+		$name = $request->get('name');
+		$storedmusic = Music::whereName($name)->first();
 
 		if ($storedmusic) {
 			if ($request->ajax()) {
@@ -121,7 +92,6 @@ class MusicController extends Controller
 
 		/****** music Uploading *******/
 		$price 			= $request->get('price');
-		$name 			= $request->get('name');
 		$artist 			= $request->get('artist');
 		$slug			= Str::slug($name);
 		$music 			= $request->file('music');
@@ -153,7 +123,7 @@ class MusicController extends Controller
 		$user_id  = (Auth::check()) ? Auth::user()->id : $admin_id;
 
 		if ($music_success && $img_success) {
-			$music = new music;
+			$music = new Music;
 			$music->name = ucwords($name);
 			$music->artist = ucwords($artist);
 			$music->mp3name = $music_name;
@@ -162,7 +132,9 @@ class MusicController extends Controller
 			$music->category_id = $request->get('cat');
 			$music->size = $music_size;
 
-			if ($price == 'free') $music->publish = 1;
+			if ($price == 'free') {
+				$music->publish = 1;
+			}
 
 			$music->price = $price;
 
@@ -183,7 +155,7 @@ class MusicController extends Controller
 			/******* Flush the cache ********/
 			Cache::flush();
 
-			if ($music->price == 'paid') {
+			if ($music->paid) {
 				// Send an email to the new user letting them know their music has been uploaded
 				$data = [
 					'music' => $music,
@@ -191,7 +163,7 @@ class MusicController extends Controller
 				];
 
 				TKPM::sendMail('emails.user.buy', $data, 'music');
-			} elseif (Auth::guest() && Input::has('email')) {
+			} elseif (Auth::guest() && $request->has('email')) {
 				$music->userEmail = $request->get('email');
 
 				$data = [
@@ -212,33 +184,33 @@ class MusicController extends Controller
 
 			if (! App::isLocal()) TKPM::tweet($music, 'music');
 
-		        	if ($request->ajax()) {
-		        		$response = [];
+        	if ($request->ajax()) {
+        		$response = [];
 
-		        		$response['success']  = true;
+        		$response['success']  = true;
 
-		        		if ($music->price == 'paid') {
-		        			$response['url'] = route('music.edit', ['id' => $music->id]);
-		        		} else {
-		        		 	$response['url'] = route('music.show', [
-		        		 		'id' =>$music->id,
-		        		 		'slug' =>$music->slug
-		        		 	]);
-		        		}
-
-		        		return $response;
-		        	}
-
-		        Cache::forget('latest.musics');
-
-			if ($music->price == 'paid') {
-        			return redirect(route('music.edit', ['id' => $music->id]));
+        		if ($music->paid) {
+        			$response['url'] = route('music.edit', ['id' => $music->id]);
         		} else {
-        		 	return redirect (route('music.show', [
+        		 	$response['url'] = route('music.show', [
         		 		'id' =>$music->id,
         		 		'slug' =>$music->slug
-        		 	]));
+        		 	]);
         		}
+
+        		return $response;
+        	}
+
+        	Cache::forget('latest.musics');
+
+			if ($music->paid) {
+					return redirect(route('music.edit', ['id' => $music->id]));
+				} else {
+				 	return redirect (route('music.show', [
+				 		'id' =>$music->id,
+				 		'slug' =>$music->slug
+				 	]));
+			}
 		} else	{
 			if ($request->ajax()) {
 		        		$response = [];
@@ -304,66 +276,25 @@ class MusicController extends Controller
 		return view('music.show', $data);
 	}
 
-	public function edit($id)
+	public function edit(Music $music)
 	{
-		$music = Music::whereId($id)->firstOrFail();
-		$user = Auth::user();
-
-		if ($user->owns($music) || $user->admin) {
-			$data = [
-				'music'	=> $music,
-				'title'	=> 'Modifye ' . $music->name,
-				'cats'	=> Category::remember(999, 'allCategories')
+		$data = [
+			'music'	=> $music,
+			'title'	=> 'Modifye ' . $music->name,
+			'cats'	=> Category::remember(999, 'allCategories')
 								->orderBy('name')
 								->get()
-			];
+		];
 
-			return view('music.edit', $data);
-		}
-
-		return redirect('/')
-				->withMessage(config('site.message.mustBeMusicOwner'))
-				->withStatus('warning');
+		return view('music.edit', $data);
 	}
 
-	public function update($id, Request $request)
+	public function update(Music $music, UpdateMusicRequest $request)
 	{
-		$rules = [
-			'image'		=> 'image'
-		];
-
-		$messages = [
-			// 'name.min'			=> config('site.validate.name.min'),
-			'image.image'		=> config('site.validate.image.image'),
-		];
-
-		$validator = Validator::make( $request->all(), $rules, $messages );
-
-		if ($validator->fails()) {
-			return back()
-				->withErrors( $validator );
-		}
-
-		$music 	= Music::find($id);
-
 		$code 	= $request->get('code');
 		$price 	= $request->get('price');
 
-		if ($music->price == 'paid') {
-			$rules['code'] = 'required|min:8';
-
-			$messages = [
-				'code.required'	=> config('site.validate.code.required'),
-				'code.min'		=> config('site.validate.code.min')
-			];
-
-			$validator = Validator::make($request->all(), $rules, $messages);
-
-			if ($validator->fails()) {
-				return back()
-					->withErrors($validator);
-			}
-
+		if ($music->paid) {
 			if (! empty($code)) {
 				$music->code = $code;
 			}
@@ -375,7 +306,6 @@ class MusicController extends Controller
 		$description = $request->get('description');
 		$category = $request->get('cat');
 		$publish = $request->get('publish');
-
 		$image = $request->file('image');
 
 		if (isset($image) ) {
@@ -484,11 +414,9 @@ class MusicController extends Controller
 
 	}
 
-	public function getMusic($id)
+	public function getMusic(Music $music)
 	{
-		$music = Music::published()->find($id);
-
-		if ($music->price == 'paid') {
+		if ($music->paid) {
 			if (! Auth::check()) {
 				return redirect(route('login'))
 					->withMessage(config('site.message.login'))
@@ -513,13 +441,11 @@ class MusicController extends Controller
 		TKPM::download($music);
 	}
 
-	public function play($id)
+	public function play(Music $music)
 	{
-		$music = Music::published()->whereId($id)->first();
-
-		if ($music->price == 'paid') {
-			return redirect("/music/buy/$music->id")
-				->withMessage( config('site.message.cant-play') );
+		if ($music->paid) {
+			return redirect(route('music.buy', ['$music->id']))
+				->withMessage(config('site.message.cant-play'));
 		}
 
 		TKPM::stream($music);
@@ -532,7 +458,7 @@ class MusicController extends Controller
 			// 'cats'	=> Category::orderBy('name')->get()
 		];
 
-		return view('music.up', $data);
+		return view('music.upload', $data);
 	}
 
 

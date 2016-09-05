@@ -1,7 +1,7 @@
 @foreach ($users as $user)
 
 <a
-    href="{{ TKPM::profileLink($user->username, $user->id) }}"
+    href="{{ $user->url }}"
     class="list-group-item">
 	 	<div class="row">
 	 		<div class="col-xs-4">
@@ -21,7 +21,7 @@
 	 			@endif
 	 		</div>
 	 		<div class="col-xs-8">
-  			<h4 class="list-group-item-heading">{{ TKPM::firstName($user->name) }}</h4>
+  			<h4 class="list-group-item-heading">{{ $user->firstname }}</h4>
   			<p class="list-group-item-text">
   				gen {{ $user->musicCount }}
   				<span class="visible-xs-inline">

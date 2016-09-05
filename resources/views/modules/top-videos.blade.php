@@ -8,7 +8,7 @@
 	@if (count($videos))
 		@foreach($videos as $video)
 		<strong>
-			<a class="list-group-item" href="{{ route('video.show', ['id'=>$video->id, 'slug'=>$video->slug]) }}">
+			<a class="list-group-item" href="{{ $video->url }}">
 				<span class="badge">
 						{{ $video->views }}
 						<i class="fa fa-eye"></i>

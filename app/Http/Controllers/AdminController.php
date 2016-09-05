@@ -2,23 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
-use Snowfire\Beautymail\Beautymail;
-
-use Mail;
-use Cache;
 use Auth;
+use Cache;
 use Validator;
-
 use App\Models\User;
 use App\Models\Music;
 use App\Models\Video;
 use App\Models\Category;
-use App\Models\Page;
+use App\Models\Playlist;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
@@ -31,10 +24,15 @@ class AdminController extends Controller
 	{
 		$data = [
 			'admin' 	=> Auth::user(),
+
 			'musics' => music::latest()->take(10)->get(),
 			'musics_count' => music::count(),
+
 			'videos' => video::latest()->take(10)->get(),
 			'videos_count' => video::count(),
+
+			'playlists' => Playlist::latest()->take(10)->get(),
+			'playlists_count' => Playlist::count(),
 
 			'users' => User::latest()->take(10)->get(),
 			'users_count' => User::count(),
