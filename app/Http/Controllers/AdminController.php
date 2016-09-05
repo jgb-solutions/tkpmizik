@@ -77,6 +77,22 @@ class AdminController extends Controller
 					->withvideoCount($video_count);
 	}
 
+	public function playlists()
+	{
+		// $video = video::remember(120)->latest()->paginate(30);
+		$playlist = playlist::latest()->paginate(30);
+
+		// $playlist_count = music::remember(120)->count();
+		$playlist_count = playlist::count();
+
+		$title = 'Administrayon Lis Mizik (' . $playlist_count . ')';
+
+		return view('admin.playlists.index')
+					->withTitle($title)
+					->withplaylists($playlist)
+					->withplaylistCount($playlist_count);
+	}
+
 	public function users()
 	{
 		$users = User::latest()->paginate(10);
