@@ -225,6 +225,36 @@ class UsersController extends Controller
 		return view('user.video', $data);
 	}
 
+	public function playlists()
+	{
+		$user = auth()->user();
+
+		$user_musics = $user->musics();
+		$user_videos = $user->videos();
+
+		$first_name = ucwords(TKPM::firstName($user->name));
+		$title = 'Navige Tout Lis Mizik ';
+		$title .= Auth::check() ? 'Ou ' :  $first_name;
+		$title .= ' Yo';
+
+		$data = [
+			'musiccount' 			=> $user_musics->count(),
+			'videocount' 			=> $user_videos->count(),
+			'musicViewsCount' 	=> $user_musics->sum('views'),
+			'videoViewsCount'		=> $user_videos->sum('views'),
+			'musicplaycount' 		=> $user_musics->sum('play'),
+			'musicdownloadcount' => $user_musics->sum('download'),
+			'videodownloadcount' => $user_videos->sum('download'),
+			'bought_count' 		=> $user->bought()->count(),
+			'title'					=> $title,
+			'first_name' 			=> $first_name,
+			'user'					=> $user,
+			'playlists' 			=> $user->playlists()->paginate(15),
+		];
+
+		return view('user.playlists', $data);
+	}
+
 	public function edit($id = null)
 	{
 		$user = $id ? User::findOrFail($id) : Auth::user();

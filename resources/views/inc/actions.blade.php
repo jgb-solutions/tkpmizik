@@ -15,7 +15,7 @@
 					class="btn btn-danger btn-lg">
 					<i class="fa fa-trash-o"></i>
 				<span>Efase</span>
-				</button>.get
+				</button>
 			</form>
 		</div>
 		<hr class="visible-xs">

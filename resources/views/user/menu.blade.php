@@ -5,15 +5,21 @@
 	</a>
 </li>
 <li @if ($list) {!! 'class="list-group-item"'!!} @endif>
-	<a href="{{ route('user.music') }}">
+	<a href="{{ route('user.musics') }}">
 		<i class="fa fa-music"></i>
 		Mizik Ou Yo
 	</a>
 </li>
 <li @if ($list) {!! 'class="list-group-item"'!!} @endif>
-	<a href="{{ route('user.video') }}">
+	<a href="{{ route('user.videos') }}">
 		<i class="fa fa-video-camera"></i>
 		Videyo ou Yo
+	</a>
+</li>
+<li @if ($list) {!! 'class="list-group-item"'!!} @endif>
+	<a href="{{ route('user.playlists') }}">
+		<i class="fa fa-list"></i>
+		Lis Mizik ou Yo
 	</a>
 </li>
 {{--<li @if ($list) {!! 'class="list-group-item"'!!} @endif>

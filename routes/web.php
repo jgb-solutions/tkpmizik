@@ -9,8 +9,8 @@ Route::get('lis', ['as'=>'playlists','uses' => 'PlaylistsController@index']);
 Route::get('lis/kreye', ['as'=>'playlists.create','uses' => 'PlaylistsController@getCreate']);
 Route::post('lis/kreye', ['as'=>'playlist.create','uses' => 'PlaylistsController@postCreate']);
 Route::get('lis/{playlist}/modifye', ['as'=>'playlist.edit','uses' => 'PlaylistsController@edit']);
-Route::put('lis/{playlist}/modifye', ['as'=>'playlist.edit','uses' => 'PlaylistsController@update']);
-Route::delete('lis/{playlist}', ['as'=>'playlist.delete','uses' => 'PlaylistsController@delete']);
+Route::put('lis/{playlist}/modifye', ['as'=>'playlist.update','uses' => 'PlaylistsController@update']);
+Route::delete('lis/{playlist}', ['as'=>'playlist.delete','uses' => 'PlaylistsController@destroy']);
 Route::get('lis/{id}/{slug?}', ['as'=>'playlist.show','uses' => 'PlaylistsController@show']);
 Route::get('/cheche', ['as' => 'search','uses' => 'SearchController@getIndex']);
 
@@ -38,8 +38,9 @@ Route::get('feed/videyo', ['as'=>'feed.video','uses' =>'FeedController@video']);
 Route::get('tout-itilizate-yo', ['as' => 'users','uses' => 'UsersController@index']);
 Route::group(['prefix' => 'kont','as' =>'user.'], function() {
 	Route::get('/', [		'as' => 'index','uses' => 'UsersController@getUser']);
-	Route::get('mizik', ['as' => 'music','uses' => 'UsersController@getUserMusics']);
-	Route::get('videyo', ['as' => 'video','uses' => 'UsersController@getUserVideos']);
+	Route::get('mizik', ['as' => 'musics','uses' => 'UsersController@getUserMusics']);
+	Route::get('videyo', ['as' => 'videos','uses' => 'UsersController@getUserVideos']);
+	Route::get('lis', ['as' => 'playlists','uses' => 'UsersController@playlists']);
 	Route::get('modifye/{user?}', ['as' => 'edit','uses' => 'UsersController@edit']);
 	Route::put('modifye/{user?}', ['as' => 'update','uses' => 'UsersController@update']);
 	Route::delete('efase/{user}', ['as' => 'delete','uses' => 'UsersController@delete']);

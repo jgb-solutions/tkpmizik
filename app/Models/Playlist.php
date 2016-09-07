@@ -40,4 +40,9 @@ class Playlist extends Model
 	{
 		return route('playlist.show', ['id' => $this->id,'name' => $this->slug ]);
 	}
+
+	public function setSlugAttribute($slug)
+	{
+		$this->attributes['slug'] = str_slug($slug);
+	}
 }

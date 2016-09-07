@@ -44,7 +44,7 @@
 
 	<form action="{{ route('music.edit', ['id'=>$music->id])}}" method="POST" enctype="multipart/form-data" class="form-horizontal">
 		{{ csrf_field() }}
-            {{ method_field('PUT') }}
+      {{ method_field('PUT') }}
 
 		@if ( $music->price == 'paid' )
 			<div class="form-group">
@@ -72,7 +72,7 @@
 		<div class="form-group">
 			<label for="image" class="control-label col-sm-4">Imaj</label>
 			<div class="col-sm-8">
-				<input type="file" name="image" id="image" class="form-control">
+				<input type="file" name="image" id="image" class="form-control" accept=".jpg,.png,jpeg,.gif">
 			</div>
 		</div>
 

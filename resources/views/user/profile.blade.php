@@ -27,7 +27,7 @@
 		@include('music.grid-12')
 
 		<div class="text-center">
-			<a href="{{ route('user.music') }}" class="btn btn-primary btn-lg">
+			<a href="{{ route('user.musics') }}" class="btn btn-primary btn-lg">
 				<i class="fa fa-music"></i>
 				Tcheke Tout Mizik Ou Yo
 			</a>
@@ -56,7 +56,7 @@
 
 		<div class="text-center">
 			<p>
-				<a href="{{ route('user.video') }}" class="btn btn-danger btn-lg">
+				<a href="{{ route('user.videos') }}" class="btn btn-danger btn-lg">
 					<i class="fa fa-video-camera"></i>
 					Tcheke Tout Videyo Ou Yo
 				</a>
