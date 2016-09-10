@@ -1,4 +1,4 @@
-<form action="{{ route('password.reset.process') }}" method="POST">
+<form action="{{ TKPM::route('password.reset.process') }}" method="POST">
 
      {{ csrf_field() }}
 

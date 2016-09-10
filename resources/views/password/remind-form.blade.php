@@ -1,4 +1,4 @@
-<form action="{{ route('password.reset.email') }}" method="POST">
+<form action="{{ TKPM::route('password.reset.email') }}" method="POST">
 	{{ csrf_field() }}
 	<div class="input-group">
 		<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
