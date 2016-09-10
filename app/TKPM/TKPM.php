@@ -309,7 +309,7 @@ class TKPM
 		return url($cdnUrl . $relativeUrl);
 	}
 
-	public static function route($path, $params = null)
+	public static function route($path, $params = [])
 	{
 		if (!App::isLocal()) {
 			return secure_url(route($path, $params, false));
