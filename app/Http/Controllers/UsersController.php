@@ -447,6 +447,8 @@ class UsersController extends Controller
 				]);
 			}
 
+			$user->delete();
+
 			return redirect(route('admin.users'))
 				->withMessage('Ou efase kont la av&egrave;k siskè.')
 				->withStatus('success');
