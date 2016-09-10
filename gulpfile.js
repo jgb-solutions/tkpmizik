@@ -28,5 +28,5 @@ elixir(function(mix) {
 			'ng-search.js',
      ], 'public/js/app.js')
 
-     .version(['css/app.css', 'js/app.js'])
+     .version(['css/app.css', 'css/vendor.css', 'js/app.js'])
 });
