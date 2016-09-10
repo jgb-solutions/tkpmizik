@@ -309,6 +309,15 @@ class TKPM
 		return url($cdnUrl . $relativeUrl);
 	}
 
+	public static function route(String $path, Array $params = null)
+	{
+		if (!App::isLocal()) {
+			return secure_url(route($path, $params, false));
+		}
+
+		return url(route($path, $params));
+	}
+
 	public static function profileImage($user)
 	{
 		if ($user->image) {

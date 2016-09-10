@@ -1,4 +1,4 @@
-<form action="{{ route('post.register')}}" method='post' role="form">
+<form action="{{ TKPM::route('post.register')}}" method='post' role="form">
 	{{ csrf_field() }}
 	<div class="input-group">
 		<span class="input-group-addon"><i class="fa fa-user"></i></span>
@@ -35,10 +35,10 @@
 <p>
 	<i class="fa fa-user"></i>
 	Ou gen kont deja?
-	<a href="{{ route('login') }}">Konekte w.</a>
+	<a href="{{ TKPM::route('login') }}">Konekte w.</a>
 
 	<br>
 
 	<i class="fa fa-key"></i> Ou bliye modpas ou?
-	<a href="{{ route('password.reset.init') }}">Reyinisyalize li.</a>
+	<a href="{{ TKPM::route('password.reset.init') }}">Reyinisyalize li.</a>
 </p>

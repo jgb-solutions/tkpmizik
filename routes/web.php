@@ -140,9 +140,10 @@ Route::get('test', function() {
 	// 	]);
 	// }
 
-	return $playlist;
+	// return $playlist;
 	// $user = App\Models\User::find(15);
 	// $user->playlists()->create([]); // create playlists with the user id
 
 	// $playlist->list()->create([]); // create music list with playlist id
+	return TKPM::route('music.show', ['id'=>139]);
 });
