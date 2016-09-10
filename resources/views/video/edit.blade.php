@@ -9,7 +9,7 @@
 <div class="col-sm-12">
 	<div class="row bg-black">
 		<h1 class="text-center">
-			<i class="fa fa-video-camera"></i>
+			<i class="fa fa-edit"></i>
 			{{ $title }}
 		</h1>
 	</div>

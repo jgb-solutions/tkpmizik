@@ -5,14 +5,19 @@ Route::get('/', ['as'=>'home','uses'=>'PagesController@index']);
 Route::get('dekouvri', ['as'=>'discover','uses'=>'PagesController@discover']);
 Route::get('dekouvri/mizik', ['as'=>'discover.music','uses'=>'PagesController@discoverMusic']);
 Route::get('dekouvri/videyo', ['as'=>'discover.video','uses'=>'PagesController@discoverVideo']);
+Route::get('/cheche', ['as' => 'search','uses' => 'SearchController@getIndex']);
+
+// Playlists
 Route::get('lis', ['as'=>'playlists','uses' => 'PlaylistsController@index']);
 Route::get('lis/kreye', ['as'=>'playlists.create','uses' => 'PlaylistsController@getCreate']);
 Route::post('lis/kreye', ['as'=>'playlist.create','uses' => 'PlaylistsController@postCreate']);
 Route::get('lis/{playlist}/modifye', ['as'=>'playlist.edit','uses' => 'PlaylistsController@edit']);
 Route::put('lis/{playlist}/modifye', ['as'=>'playlist.update','uses' => 'PlaylistsController@update']);
+Route::get('lis/{playlist}/mizik', ['as'=>'playlist.musics','uses' => 'PlaylistsController@listMusics']);
+Route::post('lis/{playlist}/ajoute/{music}', ['as'=>'playlist.add','uses' => 'PlaylistsController@postAddMusic']);
 Route::delete('lis/{playlist}', ['as'=>'playlist.delete','uses' => 'PlaylistsController@destroy']);
-Route::get('lis/{id}/{slug?}', ['as'=>'playlist.show','uses' => 'PlaylistsController@show']);
-Route::get('/cheche', ['as' => 'search','uses' => 'SearchController@getIndex']);
+Route::delete('lis/{playlist}/{music}', ['as'=>'playlist.removeMusic','uses' => 'PlaylistsController@removeMusic']);
+Route::get('lis/{id}/{slug}', ['as'=>'playlist.show','uses' => 'PlaylistsController@show']);
 
 // Registration / Login
 Route::get('koneksyon', ['as' => 'login','uses' => 'UsersController@getLogin']);
@@ -49,12 +54,15 @@ Route::group(['prefix' => 'kont','as' =>'user.'], function() {
 Route::get('@{id}', ['as' => 'user.public','uses' => 'UsersController@getUserPublic'])
 ->where('id', '[0-9]+');
 Route::get('@{username}', ['as' => 'user.public','uses' => 'UsersController@getUserName']);
-Route::get('@{id}/mizik', ['as' => 'user.public.music','uses' => 'UsersController@getUserMusics'])
+Route::get('@{id}/mizik', ['as' => 'user.public.musics','uses' => 'UsersController@getUserMusics'])
 ->where('id', '[0-9]+');
-Route::get('@{username}/mizik', ['as' => 'user.public.music','uses' => 'UsersController@getUserMusics']);
-Route::get('@{id}/videyo', ['as' => 'user.public.video','uses' => 'UsersController@getUserVideos'])
+Route::get('@{username}/mizik', ['as' => 'user.public.musics','uses' => 'UsersController@getUserMusics']);
+Route::get('@{id}/videyo', ['as' => 'user.public.videos','uses' => 'UsersController@getUserVideos'])
 ->where('id', '[0-9]+');
-Route::get('@{username}/videyo', ['as' => 'user.public.video','uses' => 'UsersController@getUserVideos']);
+Route::get('@{username}/videyo', ['as' => 'user.public.videos','uses' => 'UsersController@getUserVideos']);
+Route::get('@{id}/lis', ['as' => 'user.public.playlists','uses' => 'UsersController@playlists'])
+->where('id', '[0-9]+');
+Route::get('@{username}/lis', ['as' => 'user.public.playlists','uses' => 'UsersController@playlists']);
 
 
 // Categories routes

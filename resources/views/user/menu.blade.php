@@ -22,6 +22,12 @@
 		Lis Mizik ou Yo
 	</a>
 </li>
+<li @if ($list) {!! 'class="list-group-item"'!!} @endif>
+	<a href="{{ route('playlists.create') }}">
+		<i class="fa fa-list"></i>
+		Kreye Lis Mizik
+	</a>
+</li>
 {{--<li @if ($list) {!! 'class="list-group-item"'!!} @endif>
     <a href="{{ route('user.bought') }}">
     	<i class="fa fa-music"></i>

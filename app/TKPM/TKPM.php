@@ -18,7 +18,7 @@ class TKPM
 	{
 		$key = "vote$obj$obj_id";
 
-		$html = Cache::get($key, function() use ($obj, $obj_id, $vote_up, $vote_down, $key) {
+		$html = Cache::remember($key, 120, function() use ($obj, $obj_id, $vote_up, $vote_down, $key) {
 			$btn1 		= 'default';
 			$disabled1 	= '';
 			$btn2 		= 'default';
@@ -40,8 +40,7 @@ class TKPM
 				}
 			}
 
-			$html = "<div class='btn-group btn-group-lg' id='vote-btn'>
-				<button
+			$html = "<button
 					class='btn btn-$btn1'
 					id='voteUp'  $disabled1>
 					<i class='fa fa-thumbs-o-up fa-lg'></i>
@@ -60,10 +59,7 @@ class TKPM
 			// $html +=  $vote_down ?: '';
 			$html .= "</span>
 					</small>
-				</button>
-			</div>";
-
-			Cache::put($key, $html, 120);
+				</button>";
 
 			return $html;
 		});

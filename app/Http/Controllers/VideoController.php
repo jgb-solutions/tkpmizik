@@ -159,7 +159,7 @@ class VideoController extends Controller
 
 		$data = [
 		    'video' => $video,
-		    'title' => "Modifye $video->name",
+		    'title' => $video->name,
 		    'cats' => $cats
 		];
 

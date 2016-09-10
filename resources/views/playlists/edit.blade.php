@@ -38,6 +38,10 @@
 				{{ csrf_field() }}
       		{{ method_field('PUT') }}
 			</form>
+
+			<p class="bg-info padding1em btlr btrr bbrr bblr">
+				Ou vle modifye mizik ki nan lis sa a pito? <a href="{{route('playlist.musics', ['playlist' => $playlist->id])}}">Klike la</a>
+			</p>
 		</div>
 
 		<div class="col-sm-6">

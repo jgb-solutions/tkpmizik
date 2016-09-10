@@ -23,7 +23,7 @@ class Playlist extends Model
 	{
 		$ids = $this->list()->pluck('music_id')->toArray();
 
-		$musics = Music::find($ids, ['id', 'artist', 'name', 'image']);
+		$musics = Music::find($ids, ['id', 'artist', 'name', 'image', 'slug']);
 
 		$sorted = array_flip($ids);
 

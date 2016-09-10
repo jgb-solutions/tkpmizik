@@ -39,7 +39,13 @@
 		</div>
 
 		<div class="col-sm-6">
-			@include('admin.modules.playlists')
+			@if ($playlists->count() > 0)
+				@include('admin.modules.playlists')
+			@else
+				<div class="row bg-black btlr btrr bbrr bblr">
+					<h3 class="text-center"><i class="fa fa-th-list"></i> Ou poko gen Lis Mizik.</h3>
+				</div>
+			@endif
 		</div>
 	</div>
 </div>

@@ -18,7 +18,7 @@ angular.module('app')
 				.then(function( response ) {
 					let data = [];
 
-					console.log( response );
+					// console.log( response );
 
 					data = ( withType ) ? response.data.data : response.data;
 

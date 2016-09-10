@@ -232,7 +232,7 @@ class MusicController extends Controller
 	{
 		$key = '_music_show_' . $id;
 
-		$data = Cache::get($key, function() use ($id, $key) {
+		$data = Cache::remember($key, 120, function() use ($id, $key) {
 			$music = Music::with('user', 'category')->findOrFail($id);
 
 			if ($music->price == 'paid' && $music->publish) {
@@ -265,10 +265,16 @@ class MusicController extends Controller
 			$data = [
 				'music' 	=> $music,
 				'related' => $related,
-				'author'	=> $author
+				'author'	=> $author,
+				'playlists' => []
 			];
 
-			Cache::put($key, $data, 120);
+			if (Auth::user()) {
+				$user = Auth::user();
+				$user->load('playlists.list');
+
+				$data['playlists'] = $user->playlists;
+			}
 
 			return $data;
 		});
@@ -280,7 +286,7 @@ class MusicController extends Controller
 	{
 		$data = [
 			'music'	=> $music,
-			'title'	=> 'Modifye ' . $music->name,
+			'title'	=> $music->name,
 			'cats'	=> Category::remember(999, 'allCategories')
 								->orderBy('name')
 								->get()
@@ -414,7 +420,7 @@ class MusicController extends Controller
 
 	}
 
-	public function getMusic(Music $music)
+	public function getMusic(Music $music, Request $request)
 	{
 		if ($music->paid) {
 			if (! Auth::check()) {
@@ -436,6 +442,14 @@ class MusicController extends Controller
 				}
 
 			}
+		}
+
+		if ($music->download >= 100) {
+			if ($request->has('token')) {
+				TKPM::download($music);
+			}
+
+			return view('music.download', compact('music'));
 		}
 
 		TKPM::download($music);

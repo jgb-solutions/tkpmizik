@@ -44,11 +44,13 @@
 		</div>
 	</form>
 	<br>
-	@if (Auth::check())
-		<ul class="list-group black">
+	<ul class="list-group black">
+		@if (Auth::check())
 			@include('user.menu', ['list' => true])
-		</ul>
-	@endif
+		@else
+			@include('user.public-menu', ['list' => true])
+		@endif
+	</ul>
 
 	@if ( $bought_count )
 	<hr>

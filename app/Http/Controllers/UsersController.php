@@ -149,15 +149,9 @@ class UsersController extends Controller
 
 	public function getUsermusics($usernameOrId = null)
 	{
-		if (isset($usernameOrId)) {
-			if (is_numeric($usernameOrId)) {
-				$user = User::findOrFail($usernameOrId);
-			} else if (is_string($usernameOrId)) {
-				$user = User::byUsername($usernameOrId)->firstOrFail();
-			}
-		} else {
-			$user = Auth::user();
-		}
+		$userRoute = $this->getUserFrom($usernameOrId);
+		$user = $userRoute['user'];
+		$route = $userRoute['route'];
 
 		$user_musics = $user->musics();
 		$user_videos = $user->videos();
@@ -172,15 +166,16 @@ class UsersController extends Controller
 			// 'musics' 				=> $user->musics()->latest()->paginate(10),
 			'musiccount' 			=> $user_musics->count(),
 			'videocount' 			=> $user_videos->count(),
-			'musicViewsCount' 		=> $user_musics->sum('views'),
+			'musicViewsCount' 	=> $user_musics->sum('views'),
 			'videoViewsCount'		=> $user_videos->sum('views'),
 			'musicplaycount' 		=> $user_musics->sum('play'),
-			'musicdownloadcount' 	=> $user_musics->sum('download'),
-			'videodownloadcount' 	=> $user_videos->sum('download'),
+			'musicdownloadcount' => $user_musics->sum('download'),
+			'videodownloadcount' => $user_videos->sum('download'),
 			'bought_count' 		=> $user->bought()->count(),
-			'first_name' 		=> $first_name,
-			'title'				=> $title,
-			'user'				=> $user
+			'first_name' 			=> $first_name,
+			'title'					=> $title,
+			'user'					=> $user,
+			'route' 					=> $route
 		];
 
 		return view('user.music', $data);
@@ -188,15 +183,9 @@ class UsersController extends Controller
 
 	public function getUservideos($usernameOrId = null)
 	{
-		if (isset($usernameOrId)) {
-			if (is_numeric($usernameOrId)) {
-				$user = User::findOrFail($usernameOrId);
-			} else if (is_string($usernameOrId)) {
-				$user = User::byUsername($usernameOrId)->firstOrFail();
-			}
-		} else {
-			$user = Auth::user();
-		}
+		$userRoute = $this->getUserFrom($usernameOrId);
+		$user = $userRoute['user'];
+		$route = $userRoute['route'];
 
 		$user_musics = $user->musics();
 		$user_videos = $user->videos();
@@ -212,22 +201,25 @@ class UsersController extends Controller
 			'musiccount' 			=> $user_musics->count(),
 			'videocount' 			=> $user_videos->count(),
 			'musicViewsCount' 	=> $user_musics->sum('views'),
-			'videoViewsCount'	=> $user_videos->sum('views'),
+			'videoViewsCount'		=> $user_videos->sum('views'),
 			'musicplaycount' 		=> $user_musics->sum('play'),
-			'musicdownloadcount' 	=> $user_musics->sum('download'),
-			'videodownloadcount' 	=> $user_videos->sum('download'),
+			'musicdownloadcount' => $user_musics->sum('download'),
+			'videodownloadcount' => $user_videos->sum('download'),
 			'bought_count' 		=> $user->bought()->count(),
-			'title'				=> $title,
-			'first_name' 		=> $first_name,
-			'user'				=> $user
+			'title'					=> $title,
+			'first_name' 			=> $first_name,
+			'user'					=> $user,
+			'route'					=> $route
 		];
 
 		return view('user.video', $data);
 	}
 
-	public function playlists()
+	public function playlists($usernameOrId = null)
 	{
-		$user = auth()->user();
+		$userRoute = $this->getUserFrom($usernameOrId);
+		$user = $userRoute['user'];
+		$route = $userRoute['route'];
 
 		$user_musics = $user->musics();
 		$user_videos = $user->videos();
@@ -249,6 +241,7 @@ class UsersController extends Controller
 			'title'					=> $title,
 			'first_name' 			=> $first_name,
 			'user'					=> $user,
+			'route'					=> $route,
 			'playlists' 			=> $user->playlists()->paginate(15),
 		];
 
@@ -622,4 +615,25 @@ class UsersController extends Controller
             'avatar' => $user->avatar
         ]);
     }
+
+   private function getUserFrom($usernameOrId) {
+   	$route = [];
+
+    	if (isset($usernameOrId)) {
+			if (is_numeric($usernameOrId)) {
+				$user = User::findOrFail($usernameOrId);
+				$route = ['id' => $usernameOrId];
+			} else if (is_string($usernameOrId)) {
+				$user = User::byUsername($usernameOrId)->firstOrFail();
+				$route = ['username' => $usernameOrId];
+			}
+		} else {
+			$user = auth()->user();
+		}
+
+		return $data = [
+			'user' => $user,
+			'route' => $route
+		];
+   }
 }

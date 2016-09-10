@@ -12,7 +12,7 @@ class Music extends Model
 	use MP34Trait;
 
 	protected $table = 'mp3s';
-	protected $appends = ['url', 'title', 'mp3', 'poster'];
+	protected $appends = ['url', 'title', 'mp3', 'poster', 'download_url'];
 
 	protected $fillable = [
 		'name', 'mp3name', 'image', 'user_id', 'description', 'category_id', 'size', 'slug'
@@ -51,6 +51,16 @@ class Music extends Model
 	public function getImageUrlAttribute()
 	{
 		return url(TKPM::asset($this->image, 'show'));
+	}
+
+	public function scopeUrl()
+	{
+		return route('music.show', ['id' => $this->id, 'slug' => $this->slug]);
+	}
+
+	public function getDownloadUrlAttribute()
+	{
+		return route('music.get', ['music' => $this->id]);
 	}
 
 	// // TNTSearch

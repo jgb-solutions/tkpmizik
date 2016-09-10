@@ -4,11 +4,14 @@
 		@foreach ( $playlists as $playlist )
 			<tr>
 				<td>
-					<i class="fa fa-list"></i>
+					<a class="btn btn-default"
+						href="{{ route('playlist.musics', ['id' => $playlist->id]) }}">
+						<i class="fa fa-eye"></i>
+					</a>
 				</td>
 				<td>
 					<strong>
-						<a href="{{ route('playlist.show', ['id' => $playlist->id, 'slug' => $playlist->slug]) }}">
+						<a href="{{ route('playlist.musics', ['id' => $playlist->id]) }}">
 						{{ $playlist->name }}</a>
 					</strong>
 				</td>
