@@ -163,7 +163,6 @@ return [
 		Collective\Html\HtmlServiceProvider::class,
 		// TeamTNT\TNTSearch\TNTSearchServiceProvider::class,
 		Laravel\Socialite\SocialiteServiceProvider::class,
-		Xaamin\Whatsapi\WhatsapiServiceProvider::class
 
 	],
 
@@ -218,8 +217,6 @@ return [
 		// 'TNTSearch'	=> TeamTNT\TNTSearch\Facades\TNTSearch::class,
 		'TKPM'	=> App\TKPM\TKPM::class,
 		'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-		// 'Whatsapi' => 'Xaamin\Whatsapi\Facades\Laravel\Whatsapi',
-	   // 'WhatsapiTool' => 'Xaamin\Whatsapi\Facades\Laravel\Registration',
 	]
 
 ];

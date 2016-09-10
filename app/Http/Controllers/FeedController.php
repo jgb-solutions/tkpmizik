@@ -90,9 +90,9 @@ class FeedController extends Controller
 
 			$item->title($title)
 				->description($obj->description)
-				->url(url("/$type/{$obj->id}"))
+				->url($obj->url)
 				->pubDate($obj->created_at->timestamp)
-				->guid(url("/$type/{$obj->id}"), true)
+				->guid($obj->url, true)
 				->appendTo($channel);
 		}
 
@@ -107,7 +107,7 @@ class FeedController extends Controller
 		$feed = str_replace(
 			'<channel>',
 			'<channel>
-			<atom:link href="'. url(env('SITE_URL') . "/$type/feed") . '" rel="self" type="application/rss+xml" />',
+			<atom:link href="'. url(config('site.url') . "/feed/$type") . '" rel="self" type="application/rss+xml" />',
 			$feed
 		);
 
