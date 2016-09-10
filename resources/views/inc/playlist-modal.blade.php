@@ -11,7 +11,7 @@
 						<form action="{{route('playlist.add', ['id'=>$playlist, 'music'=>$music->id])}}" method="POST" class="form-inline" role="form">
 							<p>
 								<button type="submit" class="btn btn-primary btn-block">
-									({{$playlist->list->count()}}) {{$playlist->name}} <i class="fa fa-plus pull-right"></i>
+									({{$playlist->mList->count()}}) {{$playlist->name}} <i class="fa fa-plus pull-right"></i>
 								</button>
 							</p>
 							{{ csrf_field() }}

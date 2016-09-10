@@ -271,7 +271,7 @@ class MusicController extends Controller
 
 			if (Auth::user()) {
 				$user = Auth::user();
-				$user->load('playlists.list');
+				$user->load('playlists.mList');
 
 				$data['playlists'] = $user->playlists;
 			}
