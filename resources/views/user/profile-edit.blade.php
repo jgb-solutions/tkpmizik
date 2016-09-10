@@ -22,7 +22,7 @@
 	
 	@include('inc.errors')
 
-	<form action="{{route('user.update', ['id'=>$user->id])}}" enctype="multipart/form-data" class="form-horizontal" method="POST">
+	<form action="{{TKPM::route('user.update', ['id'=>$user->id])}}" enctype="multipart/form-data" class="form-horizontal" method="POST">
 		{{ csrf_field() }}
 		{{ method_field('PUT') }}
 		<div class="form-group">
@@ -92,7 +92,7 @@
 		</h3>
 	</div>
 	<hr>
-	<form action="{{ route('user.delete', ['user' => $user->id])}}" method="POST">
+	<form action="{{ TKPM::route('user.delete', ['user' => $user->id])}}" method="POST">
 		{{ method_field('DELETE') }}
 		{{ csrf_field() }}
 		<div class="checkbox">
