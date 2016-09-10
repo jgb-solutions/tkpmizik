@@ -64,7 +64,7 @@ class VideoController extends Controller
 		$regex = '%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i';
 		if (preg_match($regex, $url, $match)) {
 	    		$id 	= $match[1];
-	    		$image_url 	=	"http://img.youtube.com/vi/$id/hqdefault.jpg";
+	    		$image_url 	=	"https://img.youtube.com/vi/$id/hqdefault.jpg";
 		} else {
 			return back()
 				->withInput()
