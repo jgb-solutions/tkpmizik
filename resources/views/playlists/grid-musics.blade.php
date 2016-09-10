@@ -19,7 +19,7 @@
 					</strong>
 				</td>
 				<td>
-					<form action="{{ route('playlist.removeMusic', ['playlist'=>$playlist->id, 'id' => $music->id]) }}" method="POST">
+					<form action="{{ TKPM::route('playlist.removeMusic', ['playlist'=>$playlist->id, 'id' => $music->id]) }}" method="POST">
 						{{ csrf_field() }}
 						{{ method_field('DELETE') }}
 						<button
