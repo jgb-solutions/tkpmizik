@@ -14,7 +14,7 @@ return [
 	'logo'				=> 'images/logo_tkp.jpg',
 	'logo_small'			=> 'images/logo.png',
 	'separator'			=> '--|--',
-	'email'				=> 'tkpmizik@gmail.com',
+	'email'				=> 'mizik@tikwenpam.net',
 	'fb_admin'			=> 'jeveuxblogger',
 	'fb_id'				=> '794106764051904',
 
