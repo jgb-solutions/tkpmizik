@@ -26,7 +26,7 @@ class PlaylistsController extends Controller
 		$key = 'all_playlists_' . $page;
 
 		$playlists = Cache::rememberForEver($key, function() {
-			return Playlist::has('list')->latest()->paginate(15);
+			return Playlist::has('mList')->latest()->paginate(15);
 		});
 
 		// return $playlists;
