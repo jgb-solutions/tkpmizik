@@ -1,19 +1,16 @@
 <div class="row">
-	<div class="col-sm-12">
-		<p>
+		<div class="col-sm-6">
 			<a href="{{ route('facebook.login') }}" class="btn btn-lg btn-block btn-primary">
-				<i class="fa fa-facebook pull-left"></i>
+				<i class="fa fa-facebook"></i>
 				Facebook
 			</a>
-		</p>
-	</div>
-	<div class="col-sm-12">
-		<p>
+		</div>
+		<br class="visible-xs">
+		<div class="col-sm-6">
 			<a href="{{ route('twitter.login') }}" class="btn btn-lg btn-block btn-info">
-				<i class="fa fa-twitter pull-left"></i>
+				<i class="fa fa-twitter"></i>
 				Twitter
 			</a>
-		</p>
-	</div>
+		</div>
 </div>
 <hr>
