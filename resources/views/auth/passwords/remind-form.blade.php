@@ -11,7 +11,7 @@
 
 @include('inc.errors')
 
-<form action="{{ route('password.reset.email') }}" method="POST">
+<form action="{{ TKPM::route('password.reset.email') }}" method="POST">
 
 	{{ csrf_field() }}
 
