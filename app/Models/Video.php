@@ -24,7 +24,7 @@ class Video extends Model
 
 	public function getImageUrlAttribute()
 	{
-		return "https://img.youtube.com/vi/$this->id/hqdefault.jpg";
+		return "https://img.youtube.com/vi/$this->youtube_id/hqdefault.jpg";
 	}
 
 
