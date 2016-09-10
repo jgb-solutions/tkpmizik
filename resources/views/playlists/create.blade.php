@@ -22,7 +22,7 @@
 
 	<div class="row">
 		<div class="col-sm-6">
-			<form action="{{route('playlists.create')}}" method="POST">
+			<form action="{{TKPM::route('playlists.create')}}" method="POST">
 				<div class="form-group">
 					<input name="name" type="name" class="form-control" id="name" placeholder="Non Lis Mizik La" value="{{old('name')}}" required>
 				</div>
