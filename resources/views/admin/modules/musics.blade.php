@@ -10,7 +10,7 @@
 				</td>
 				<td>
 					<strong>
-						<a href="{{ route('music.show', ['id' => $music->id, 'slug' => $music->slug]) }}">
+						<a href="{{ TKPM::route('music.show', ['id' => $music->id, 'slug' => $music->slug]) }}">
 							{{ $music->name }}
 							@if ( $music->price == 'paid')
 							- <i class="fa fa-dollar"></i>
@@ -21,12 +21,12 @@
 				<td>
 					<a
 						class="btn btn-default"
-						href="{{ route('music.edit', $music->id) }}">
+						href="{{ TKPM::route('music.edit', $music->id) }}">
 						<i class="fa fa-edit"></i>
 					</a>
 				</td>
 				<td>
-					<form action="{{ route('music.delete', ['id' => $music->id]) }}" method="POST">
+					<form action="{{ TKPM::route('music.delete', ['id' => $music->id]) }}" method="POST">
 						{{ csrf_field() }}
 						{{ method_field('DELETE') }}
 						<button

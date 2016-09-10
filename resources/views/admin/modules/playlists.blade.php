@@ -5,25 +5,25 @@
 			<tr>
 				<td>
 					<a class="btn btn-default"
-						href="{{ route('playlist.musics', ['id' => $playlist->id]) }}">
+						href="{{ TKPM::route('playlist.musics', ['id' => $playlist->id]) }}">
 						<i class="fa fa-eye"></i>
 					</a>
 				</td>
 				<td>
 					<strong>
-						<a href="{{ route('playlist.musics', ['id' => $playlist->id]) }}">
+						<a href="{{ TKPM::route('playlist.musics', ['id' => $playlist->id]) }}">
 						{{ $playlist->name }}</a>
 					</strong>
 				</td>
 				<td>
 					<a
 						class="btn btn-default"
-						href="{{ route('playlist.edit', ['list' => $playlist->id]) }}">
+						href="{{ TKPM::route('playlist.edit', ['list' => $playlist->id]) }}">
 						<i class="fa fa-edit"></i>
 					</a>
 				</td>
 				<td>
-					<form action="{{ route('playlist.delete', ['list' => $playlist->id]) }}" method="POST">
+					<form action="{{ TKPM::route('playlist.delete', ['list' => $playlist->id]) }}" method="POST">
 						{{ csrf_field() }}
 						{{ method_field('DELETE') }}
 						<button

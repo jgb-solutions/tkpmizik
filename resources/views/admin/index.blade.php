@@ -25,7 +25,7 @@
 			<div class="row bg-black btrr bbrr white">
 				<h3 class="text-center">
 					<a
-						href="{{route('admin.music')}}">
+						href="{{TKPM::route('admin.music')}}">
 						<i class="fa fa-music"></i>
 						Mizik ({{ $musics_count }})
 					</a>
@@ -36,7 +36,7 @@
 			@include('admin.modules.musics')
 
 			<p class="text-center">
-				<a href="{{ route('music.upload') }}" class="btn btn-primary btn-lg">
+				<a href="{{ TKPM::route('music.upload') }}" class="btn btn-primary btn-lg">
 					<i class="fa fa-music"></i> Mete Mizik
 				</a>
 			</p>
@@ -47,7 +47,7 @@
 			<div class="row bg-black btrr bbrr white">
 				<h3 class="text-center">
 					<a
-						href="{{route('admin.video')}}">
+						href="{{TKPM::route('admin.video')}}">
 						<i class="fa fa-video-camera"></i>
 						Videyo ({{ $videos_count }})
 					</a>
@@ -58,7 +58,7 @@
 			@include('admin.modules.videos')
 
 			<p class="text-center">
-				<a href="{{ route('video.upload') }}" class="btn btn-danger btn-lg">
+				<a href="{{ TKPM::route('video.upload') }}" class="btn btn-danger btn-lg">
 					<i class="fa fa-video-camera"></i> Mete Videyo
 				</a>
 			</p>
@@ -69,7 +69,7 @@
 			<div class="row bg-black btrr bbrr white">
 				<h3 class="text-center">
 					<a
-						href="{{route('admin.playlists')}}">
+						href="{{TKPM::route('admin.playlists')}}">
 						<i class="fa fa-list"></i>
 						Lis Mizik ({{ $playlists_count }})
 					</a>
@@ -80,7 +80,7 @@
 			@include('admin.modules.playlists')
 
 			<p class="text-center">
-				<a href="{{ route('playlists.create') }}" class="btn btn-danger btn-lg">
+				<a href="{{ TKPM::route('playlists.create') }}" class="btn btn-danger btn-lg">
 					<i class="fa fa-list"></i> Kreye Lis Mizik
 				</a>
 			</p>
@@ -91,7 +91,7 @@
 			<div class="row bg-black white btlr bblr">
 				<h3 class="text-center">
 					<a
-						href="{{ route('admin.cat') }}">
+						href="{{ TKPM::route('admin.cat') }}">
 						<i class="fa fa-th-list"></i>
 						Kategori ({{ $cats_count }})
 					</a>
@@ -102,7 +102,7 @@
 			@include('admin.modules.categories')
 
 			<p class="text-center">
-				<a href="{{route('admin.cat')}}" class="btn btn-primary btn-lg">
+				<a href="{{TKPM::route('admin.cat')}}" class="btn btn-primary btn-lg">
 					<i class="fa fa-th-list"></i> Kreye Kategori
 				</a>
 			</p>
@@ -110,7 +110,7 @@
 			<br>
 			<div class="row bg-black white btlr bblr">
 				<h3 class="text-center">
-					<a href="{{ route('admin.users') }}">
+					<a href="{{ TKPM::route('admin.users') }}">
 						<i class="fa fa-user"></i>
 						Itilizatè ({{ $users_count }})
 					</a>

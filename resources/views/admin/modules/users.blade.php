@@ -16,12 +16,12 @@
 				<td>
 					<a
 						class="btn btn-default"
-						href="{{ route('user.edit',  $user->id) }}">
+						href="{{ TKPM::route('user.edit',  $user->id) }}">
 						<i class="fa fa-edit"></i>
 					</a>
 				</td>
 				<td>
-					<form action="{{route('user.delete', ['user'=>$user->id]) }}" method="POST">
+					<form action="{{TKPM::route('user.delete', ['user'=>$user->id]) }}" method="POST">
 						{{ csrf_field() }}
 						{{ method_field('DELETE') }}
 						<button

@@ -8,19 +8,19 @@
 				</td>
 				<td>
 					<strong>
-						<a href="{{ route('video.show', ['id' => $video->id, 'slug' => $video->slug]) }}">
+						<a href="{{ TKPM::route('video.show', ['id' => $video->id, 'slug' => $video->slug]) }}">
 						{{ $video->name }}</a>
 					</strong>
 				</td>
 				<td>
 					<a
 						class="btn btn-default"
-						href="{{ route('video.edit', ['id' => $video->id]) }}">
+						href="{{ TKPM::route('video.edit', ['id' => $video->id]) }}">
 						<i class="fa fa-edit"></i>
 					</a>
 				</td>
 				<td>
-					<form action="{{ route('video.delete', ['id' => $video->id]) }}" method="POST">
+					<form action="{{ TKPM::route('video.delete', ['id' => $video->id]) }}" method="POST">
 						{{ csrf_field() }}
 						{{ method_field('DELETE') }}
 						<button

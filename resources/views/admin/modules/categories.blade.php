@@ -8,19 +8,19 @@
 				</td>
 				<td>
 					<strong>
-						<a href="{{ route('cat.show', ['slug' => $category->slug]) }}">
+						<a href="{{ TKPM::route('cat.show', ['slug' => $category->slug]) }}">
 						{{ $category->name }}</a>
 					</strong>
 				</td>
 				<td>
 					<a
 						class="btn btn-default"
-						href="{{ route('admin.cat.edit', ['id' => $category->id]) }}">
+						href="{{ TKPM::route('admin.cat.edit', ['id' => $category->id]) }}">
 						<i class="fa fa-edit"></i>
 					</a>
 				</td>
 				<td>
-					<form action="{{route('admin.cat.delete', ['id'=>$category->id]) }}" method="POST">
+					<form action="{{TKPM::route('admin.cat.delete', ['id'=>$category->id]) }}" method="POST">
 						{{ csrf_field() }}
 						{{ method_field('DELETE') }}
 						<button
