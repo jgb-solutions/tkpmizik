@@ -9,6 +9,7 @@ use Cache;
 use Image;
 use getID3;
 use Storage;
+use Twitter;
 use App\Models\Vote;
 use getid3_writetags;
 
