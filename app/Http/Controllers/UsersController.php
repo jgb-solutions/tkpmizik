@@ -447,7 +447,9 @@ class UsersController extends Controller
 				]);
 			}
 
-			return redirect(route('admin.users'));
+			return redirect(route('admin.users'))
+				->withMessage('Ou efase kont la av&egrave;k siskè.')
+				->withStatus('success');
 		}
 
 		$musics = $user->musics()->get();
