@@ -398,10 +398,12 @@ class UsersController extends Controller
 
 		$loggedUser = Auth::user();
 
-		if ($user->id !== $loggedUser->id) {
-			return redirect(route('user.index'))
-				->withMessage('Ou pa gen dwa efase kont sa a.')
-				->withStatus('warning');
+		if (!$loggedUser->admin) {
+			if ($user->id !== $loggedUser->id) {
+				return redirect(route('user.index'))
+					->withMessage('Ou pa gen dwa efase kont sa a.')
+					->withStatus('warning');
+			}
 		}
 
 		$del = $request->get('del');
