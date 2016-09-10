@@ -42,7 +42,7 @@
 
 	@include('inc.errors')
 
-	<form action="{{ route('music.edit', ['id'=>$music->id])}}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+	<form action="{{ TKPM::route('music.edit', ['id'=>$music->id])}}" method="POST" enctype="multipart/form-data" class="form-horizontal">
 		{{ csrf_field() }}
       {{ method_field('PUT') }}
 

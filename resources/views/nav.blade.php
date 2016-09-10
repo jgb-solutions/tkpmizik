@@ -50,12 +50,12 @@
 				</li>
 			@else
 				<li>
-					<a href="{{ route('login') }}">
+					<a href="{{ TKPM::route('login') }}">
 						<i class="fa fa-sign-in"></i> Koneksyon
 					</a>
 				</li>
 				<li>
-					<a href="{{ route('register') }}">
+					<a href="{{ TKPM::route('register') }}">
 						<i class="fa fa-user"></i>
 						Kreye Kont
 					</a>

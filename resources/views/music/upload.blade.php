@@ -20,7 +20,7 @@
 
 		@include('inc.errors')
 
-		<form action="{{route('music.store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal" id ='udpForm'>
+		<form action="{{TKPM::route('music.store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal" id ='udpForm'>
 			{{ csrf_field() }}
 		{{--@if ( Auth::user() )
 			@include('inc.free-paid')

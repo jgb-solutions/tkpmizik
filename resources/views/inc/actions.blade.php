@@ -2,9 +2,9 @@
 	<div class="col-sm-6">
 		@if(Auth::check())
 		  	@if(Auth::user()->ownerOrAdmin($obj))
-				<form action="{{ route($route.'.delete', $obj->id) }}" method="POST" role="form">
+				<form action="{{ TKPM::route($route.'.delete', $obj->id) }}" method="POST" role="form">
 					<a class="btn btn-default"
-						href="{{ route($route.'.edit', $obj->id) }}">
+						href="{{ TKPM::route($route.'.edit', $obj->id) }}">
 						<i class="fa fa-edit"></i>
 		  				<span>Modifye</span>
 					</a>
@@ -47,7 +47,7 @@
 
 @if ($route !== 'playlist')
 	  	<a class="btn btn-success downloadButton"
-	  		href="{{ route($route.'.get', $obj->id)}}"
+	  		href="{{ TKPM::route($route.'.get', $obj->id)}}"
 	  		target="_blank">
 	  		<i class="fa fa-download"></i>
 	  		<span>Telechaje</span>

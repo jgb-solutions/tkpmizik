@@ -16,7 +16,7 @@
 	<br>
 </div>
 <div class="col-sm-8 col-sm-offset-2">
-	{{ Form::open(['url' => route('video.update', $video->id), 'method' => 'PUT', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal']) }}
+	{{ Form::open(['url' => TKPM::route('video.update', $video->id), 'method' => 'PUT', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal']) }}
 		<div class="form-group">
 			<label for="name" class="control-label col-sm-4">Non Videyo a</label>
 			<div class="col-sm-8">

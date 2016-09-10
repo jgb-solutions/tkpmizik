@@ -20,7 +20,7 @@
 
 		@include('inc.errors')
 
-		<form method="POST"  action="{{route('video.store')}}" class="form-horizontal">
+		<form method="POST"  action="{{TKPM::route('video.store')}}" class="form-horizontal">
 			{{ csrf_field() }}
 
 			<div class="form-group">
