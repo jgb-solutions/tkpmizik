@@ -9,7 +9,7 @@
 					<img
 				  		alt="{{ $video->name }}"
 						class="img-responsive small-square lazy"
-						data-original="{{ $video->image }}">
+						data-original="{{ $video->imageUrl }}">
 				</div>
 			</div>
 			<div class="col-sm-8 col-xs-8 right">

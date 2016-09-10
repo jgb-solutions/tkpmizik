@@ -22,6 +22,11 @@ class Video extends Model
 		return route('video.show', ['id' => $this->id,'name' => $this->slug]);
 	}
 
+	public function getImageUrlAttribute()
+	{
+		return "https://img.youtube.com/vi/$this->id/hqdefault.jpg";
+	}
+
 
 	// // TNTSearch
 	// public static function insertToIndex($mp4)
