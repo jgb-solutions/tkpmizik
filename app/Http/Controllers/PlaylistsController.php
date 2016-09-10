@@ -112,7 +112,7 @@ class PlaylistsController extends Controller
 	{
 		$this->authorize('destroy', $playlist);
 
-		// $playlist->list()->delete();
+		// $playlist->mList()->delete();
 		$playlist->delete();
 
 		Cache::forget('_playlist_show_' . $playlist->id);
@@ -143,13 +143,13 @@ class PlaylistsController extends Controller
 
 	public function postAddMusic(Playlist $playlist, Music $music)
 	{
-		if($playlist->list()->whereMusicId($music->id)->first()) {
+		if($playlist->mList()->whereMusicId($music->id)->first()) {
 			return redirect($playlist->url)
 				->withMessage('Ou ajoute mizik sa a nan lis la deja')
 				->withStatus('warning');
 		}
 
-		$playlist->list()->create([
+		$playlist->mList()->create([
 			'music_id' => $music->id
 		]);
 
@@ -162,7 +162,7 @@ class PlaylistsController extends Controller
 
 	public function removeMusic(Playlist $playlist, Music $music)
 	{
-		$playlist->list()->whereMusicId($music->id)->delete();
+		$playlist->mList()->whereMusicId($music->id)->delete();
 
 		Cache::flush();
 
