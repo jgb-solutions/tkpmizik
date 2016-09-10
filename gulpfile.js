@@ -8,7 +8,6 @@ elixir(function(mix) {
      .less('style.less', 'public/css/app.css')
 
      	.styles([
-     		'vendor/font-awesome.min.css',
      		'vendor/360player.css',
 			'vendor/360player-visualization.css',
 			'jplayer/jplayer.blue.monday.min.css'
