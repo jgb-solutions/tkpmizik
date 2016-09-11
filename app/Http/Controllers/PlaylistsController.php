@@ -37,7 +37,7 @@ class PlaylistsController extends Controller
 	{
 		$key = '_playlist_show_' . $id;
 
-		$data = Cache::remember($key, 120, function() use ($id) {
+		$data = Cache::rememberForEver($key, function() use ($id) {
 			$playlist = Playlist::findOrFail($id);
 
 		   $data = [

@@ -289,7 +289,8 @@ class MusicController extends Controller
 			'title'	=> $music->name,
 			'cats'	=> Category::remember(999, 'allCategories')
 								->orderBy('name')
-								->get()
+								->get(),
+			'user' => Auth::user()
 		];
 
 		return view('music.edit', $data);
@@ -312,6 +313,7 @@ class MusicController extends Controller
 		$description = $request->get('description');
 		$category = $request->get('cat');
 		$publish = $request->get('publish');
+		$featured = $request->get('featured');
 		$image = $request->file('image');
 
 		if (isset($image) ) {
@@ -349,6 +351,14 @@ class MusicController extends Controller
 
 		if (! empty($price)) {
 			$music->price = $price;
+		}
+
+		if (Auth::user()->admin) {
+			if ($featured) {
+				$music->featured = 1;
+			} else {
+				$music->featured = 0;
+			}
 		}
 
 		if ($publish && $price == 'paid') {

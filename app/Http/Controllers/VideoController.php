@@ -29,8 +29,6 @@ class VideoController extends Controller
 		]);
 
 		$this->middleware('videoOwner')->only(['edit', 'update']);
-
-		$this->user = Auth::user();
 	}
 
 	public function index()
@@ -155,12 +153,11 @@ class VideoController extends Controller
 	{
 		$cats = Category::remember('999', 'allCategories')->byName()->get();
 
-		$user = $this->user;
-
 		$data = [
 		    'video' => $video,
 		    'title' => $video->name,
-		    'cats' => $cats
+		    'cats' => $cats,
+		    'user' => Auth::user()
 		];
 
 		return view('video.edit', $data);
@@ -173,6 +170,7 @@ class VideoController extends Controller
 		$slug = Str::slug($name);
 		$description = $request->get('description');
 		$category = $request->get('cat');
+		$featured = $request->get('featured');
 
 		if (! empty($name)) {
 			$video->name = ucwords($name);
@@ -192,6 +190,14 @@ class VideoController extends Controller
 
 		if (! empty($category)) {
 			$video->category_id = $category;
+		}
+
+		if (Auth::user()->admin) {
+			if ($featured) {
+				$video->featured = 1;
+			} else {
+				$video->featured = 0;
+			}
 		}
 
 		$video->slug = $slug;

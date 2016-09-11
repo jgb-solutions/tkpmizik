@@ -10,7 +10,7 @@ class PagesController extends Controller
 {
 	public function index()
 	{
-		$data = Cache::get('page.home', function() {
+		$data = Cache::rememberForever('page.home', function() {
 			$data = [
 				'featuredMusics' => Music::featured()
 										->published()
@@ -27,8 +27,6 @@ class PagesController extends Controller
 											->take(12)
 											->get(),
 			];
-
-			Cache::put('page.home', $data, 120);
 
 			return $data;
 		});

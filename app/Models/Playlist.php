@@ -21,7 +21,7 @@ class Playlist extends Model
 
 	public function getMusicsAttribute()
 	{
-		$ids = $this->list()->pluck('music_id')->toArray();
+		$ids = $this->mList()->pluck('music_id')->toArray();
 
 		$musics = Music::find($ids, ['id', 'artist', 'name', 'image', 'slug']);
 

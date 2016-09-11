@@ -115,6 +115,17 @@
 			</div>
 		@endif --}}
 
+		@if ($user->admin)
+			<div class="form-group">
+		    	<label for="featured" class="control-label col-sm-4">
+		      	 Pwomote
+		    	</label>
+		    	<div class="col-sm-8">
+		    		<input type="checkbox" name="featured" {{ $music->featured ? 'checked' : '' }}>
+		    	</div>
+			</div>
+		@endif
+
 		<div class="form-group">
 			<div class="col-sm-8 col-sm-offset-4">
 				<button type="submit" class="btn btn-primary btn-lg">
