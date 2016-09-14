@@ -272,6 +272,7 @@
 		</form>
 
 		<div ng-show="showPB">
+			<br>
 			<div class="progress">
 				<div class="progress-bar progress-bar-success"
 				role="progressbar" aria-valuenow="@{{pbWidth}}" aria-valuemin="@{{pbWidth}}"
