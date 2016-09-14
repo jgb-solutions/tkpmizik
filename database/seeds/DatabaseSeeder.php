@@ -13,8 +13,6 @@ class DatabaseSeeder extends Seeder {
 
         $this->call('CategoryTableSeeder');
         $this->command->info('Category table seeded!');
-
-        $this->command->info('Page table seeded!');
     }
 
 }
@@ -28,8 +26,8 @@ class UserTableSeeder extends Seeder {
         User::create([
         	'name'	    => 'Jean Gérard Bousiquot',
             'username'  => 'jgbneatdesign',
-        	'email'     => 'jgbneatdesign@gmail.com',
-        	'password'  => Hash::make('tkp898989'),
+        	'email'     => 'admin@email.com',
+        	'password'  => Hash::make('password'),
             'telephone' => '+50936478199',
         	'admin'	    => 1
         ]);
