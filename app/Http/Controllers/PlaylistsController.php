@@ -71,9 +71,11 @@ class PlaylistsController extends Controller
 	{
 		$user = auth()->user();
 
+		$name = $request->get('name');
+
 		$playlist = [
-			'name' => $request->get('name'),
-			'slug' => $request->get('name')
+			'name' => $name,
+			'slug' => str_slug($name)
 		];
 
 		$user->playlists()->create($playlist);
