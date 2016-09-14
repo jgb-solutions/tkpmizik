@@ -30,16 +30,16 @@
 		</div>
 
 		<div class="form-group">
-			<label for="artist" class="control-label col-sm-4">Mete Non Atis la</label>
+			<label for="artist" class="control-label col-sm-4">Non Atis/Gwoup la</label>
 			<div class="col-sm-8">
-				<input name="artist" type="artist" class="form-control" id="artist" placeholder="Bay non atis ki f&egrave; videyo a" value="{{ $video->artist }}">
+				<input name="artist" type="artist" class="form-control" id="artist" placeholder="Bay non atis/Gwoup ki f&egrave; videyo a" value="{{ $video->artist }}">
 			</div>
 		</div>
 
 		<div class="form-group">
 			<label for="category" class="control-label col-sm-4">Kategori</label>
 			<div class="col-sm-8">
-				<select class="form-control" name="cat">
+				<select class="form-control" name="cat" id="category">
 				@foreach( $cats as $cat )
 					<option
 						value="{{ $cat->id }}"

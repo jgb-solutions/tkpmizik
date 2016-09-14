@@ -47,20 +47,20 @@ class TKPM
 					<i class='fa fa-thumbs-o-up fa-lg'></i>
 					<small>
 						<span class='vote-num' id='vote-up-num'>";
-			// $html +=  $vote_up ?: '';
-			$html .= "</span>
-					</small>
-				</button>
-				<button
-					class='btn btn-$btn2'
-					id='voteDown'  $disabled2>
-					<i class='fa fa-thumbs-o-down fa-lg'></i>
-					<small>
-						<span class='vote-num' id='vote-down-num'>";
-			// $html +=  $vote_down ?: '';
+			$html .=  $vote_up ?: '';
 			$html .= "</span>
 					</small>
 				</button>";
+			// 	<button
+			// 		class='btn btn-$btn2'
+			// 		id='voteDown'  $disabled2>
+			// 		<i class='fa fa-thumbs-o-down fa-lg'></i>
+			// 		<small>
+			// 			<span class='vote-num' id='vote-down-num'>";
+			// $html .=  $vote_down ?: '';
+			// $html .= "</span>
+			// 		</small>
+			// 	</button>";
 
 			return $html;
 		});

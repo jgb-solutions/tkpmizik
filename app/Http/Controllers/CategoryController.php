@@ -11,6 +11,7 @@ use App\Http\Requests;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateCategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -18,8 +19,8 @@ class CategoryController extends Controller
 	{
 		$this->middleware('admin')->except([
 			'show',
-			'music',
-			'video'
+			'musics',
+			'videos'
 		]);
 	}
 
@@ -54,121 +55,140 @@ class CategoryController extends Controller
 			'slug' => Str::slug($request->get('slug'))
 		]);
 
-		Cache::flush();
+		Cache::forget('allCategories');
 
 		return redirect(route('admin.cat'));
 	}
 
 	public function show($slug)
 	{
-		$cat = Category::remember(120)->whereSlug($slug)->firstOrFail();
-		// $cat = Category::whereSlug($slug)->first();
+		$key = "category.$slug";
 
-		$musics = $cat->musics()->remember(120)->published()->latest()->take(20)->get();
-		// $musics = $cat->musics()->published()->latest()->take(20)->get();
-		$videos = $cat->videos()->remember(120)->latest()->take(20)->get();
-		// $videos = $cat->videos()->latest()->take(20)->get();
+		$data = Cache::rememberForever($key, function() use ($slug) {
+		   $cat = Category::with([
+						'musics' => function($query) {
+							$query->published()->latest()->take(20);
+						},
+						'videos' => function($query) {
+							$query->latest()->take(20);
+						}
+					])
+				->whereSlug($slug)
+				->firstOrFail();
+			// $cat = Category::whereSlug($slug)->first();
 
-		$musics->each( function($music) {
-			$music->type = 'music';
-			$music->icon = 'music';
+			$musics = $cat->musics;
+			// $musics = $cat->musics()->published()->latest()->take(20)->get();
+			$videos = $cat->videos;
+			// $videos = $cat->videos()->latest()->take(20)->get();
+
+			$musics->each( function($music) {
+				$music->type = 'music';
+				$music->icon = 'music';
+			});
+
+			$videos->each( function($video) {
+				$video->type = 'video';
+				$video->icon = 'facetime-video';
+			});
+
+			$merged = $musics->merge($videos);
+
+			return [
+				'results' => $merged->shuffle(),
+				'cat' => $cat,
+				'title' => "Navige Tout $cat->name Yo",
+				'musiccount' => $musics->count(),
+				'videocount' => $videos->count(),
+				'author' => ''
+			];
 		});
-
-		$videos->each( function($video) {
-			$video->type = 'video';
-			$video->icon = 'facetime-video';
-		});
-
-		$merged = $musics->merge($videos);
-
-		$data = [
-			'results' => $merged->shuffle(),
-			'cat' => $cat,
-			'title' => "Navige Tout $cat->name Yo",
-			'musiccount' => $musics->count(),
-			'videocount' => $videos->count(),
-			'author' => ''
-		];
 
 		return view('cats.show', $data);
 	}
 
-	public function music($slug)
+	public function musics($slug)
 	{
-		$cat = Category::remember(120)->whereSlug($slug)->first();
-		// $cat = Category::whereSlug($slug)->first();
+		if (request()->has('page')) {
+			$page = request()->get('page');
+		} else {
+			$page = 1;
+		}
 
-		$data = [
-			'cat' 	=> $cat,
-			'musics' 	=> $cat->musics()->remember(120)->published()->latest()->paginate(10),
-			// 'musics' 	=> $cat->musics()->published()->latest()->paginate(10),
-			'title' => $cat->name
-		];
+		$key = "category_musics_" . $slug . $page;
+
+		$data = Cache::rememberForever($key, function() use ($slug) {
+		   $cat = Category::with([
+				'musics' => function($query) {
+					$query->published()->latest();
+				}
+			])
+			->whereSlug($slug)->first();
+
+			return [
+				'cat' 	=> $cat,
+				'musics' 	=> $cat->musics()->paginate(10),
+				// 'musics' 	=> $cat->musics()->published()->latest()->paginate(10),
+				'title' => $cat->name
+			];
+		});
 
 		return view('cats.music', $data);
 	}
 
-	public function video($slug)
+	public function videos($slug)
 	{
-		$cat = Category::remember(120)->whereSlug($slug)->first();
-		// $cat = Category::whereSlug($slug)->first();
+		if (request()->has('page')) {
+			$page = request()->get('page');
+		} else {
+			$page = 1;
+		}
 
-		$data = [
-			'cat' 	=> $cat,
-			'videos' 	=> $cat->videos()->remember(120)->latest()->paginate(10),
-			// 'videos' 	=> $cat->videos()->latest()->paginate(10),
-			'title' => $cat->name
-		];
+		$key = "category_videos_" . $slug . $page;
+
+		$data = Cache::rememberForever($key, function() use ($slug) {
+		   $cat = Category::with([
+				'videos' => function($query) {
+					$query->latest();
+				}
+			])
+			->whereSlug($slug)->first();
+
+			return [
+				'cat' 	=> $cat,
+				'videos' 	=> $cat->videos()->paginate(10),
+				'title' => $cat->name
+			];
+		});
 
 		return view('cats.video', $data);
 	}
 
-	public function edit($id)
+	public function edit(Category $category)
 	{
-		$data = [
-			'category' 	 => Category::findOrFail($id),
-			'categories' => Category::byName()->get(),
-		];
-
-		return view('cats.edit', $data);
+		return view('cats.edit', [
+			'category' 	 => $category,
+			'categories' => Cache::get('allCategories', Category::byName()->get()),
+		]);
 	}
 
-	public function update(Request $request)
+	public function update(UpdateCategoryRequest $request, Category $category)
 	{
-		$id = $request->get('id');
-
-		$rules = ['name' => 'required', 'slug' => 'required'];
-
-		$messages = [
-			'name.required' => config('site.validate.name.required'),
-			'slug.required' => config('site.validate.slug.required')
-		];
-
-		$validator = Validator::make( $request->all(), $rules, $messages );
-
-		if ($validator->fails()){
-			return redirect( route('admin.cat.edit', $id) )
-				->withErrors($validator);
-		}
-
-		$category = Category::findOrFail($id);
-
 		$category->name = $request->get('name');
 		$category->slug = str_slug($request->get('slug'));
 		$category->save();
 
-		Cache::flush();
+		Cache::forget('allCategories');
 
 		return redirect(route('admin.cat'));
 	}
 
-	public function delete($id)
+	public function destroy($id)
 	{
 		Category::destroy($id);
 
-		Cache::flush();
+		Cache::forget('allCategories');
 
 		return back();
 	}
-
 }

@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Auth;
-
-use App\MP3;
-use App\MP4;
-use App\Category;
-use App\Vote;
+use App\Models\Vote;
+use App\Models\Music;
+use App\Models\Video;
+use App\Models\Category;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AJAXController extends Controller
 {
@@ -35,14 +33,14 @@ class AJAXController extends Controller
 
 	private function vpd_count($id, $o, $action = null)
 	{
-		$obj = $o == 'MP3' ? MP3::find($id) : MP4::find($id);
+		$obj = $o == 'music' ? Music::find($id) : Video::find($id);
 		$obj->views += 1;
 		$obj->save();
 
 		$data = [
 			'views' 	=> $obj->views,
 			'download' 	=> $obj->download,
-			'play'		=> $o == 'MP3' ? $obj->play : ''
+			'play'		=> $o == 'music' ? $obj->play : ''
 		];
 
 		return $data;
@@ -56,7 +54,7 @@ class AJAXController extends Controller
 			return $this->$fn($query);
 		}
 
-		$mp3results = MP3::published()
+		$musicresults = Music::published()
 			->search($query)
 			->orderBy('download', 'desc')
 			->orderBy('play', 'desc')
@@ -64,63 +62,62 @@ class AJAXController extends Controller
 			->take( 10 )
 			->get(['id', 'name', 'views', 'download', 'price']);
 
-		$mp3results->each( function( $mp3 )
+		$musicresults->each( function( $music )
 		{
-			$mp3->type = 'mp3';
-			$mp3->icon = 'music';
+			$music->type = 'music';
+			$music->icon = 'music';
 		});
 
-		$mp4results = MP4::search($query)
+		$videoresults = Video::search($query)
 			->orderBy('download', 'desc')
 			->rand() // get random rows from the DB
 			->take(10)
 			->get(['id', 'views', 'name', 'download']);
 
-		$mp4results->each( function( $mp4 )
+		$videoresults->each( function( $video )
 		{
-			$mp4->type = 'mp4';
-			$mp4->icon = 'video-camera';
+			$video->type = 'video';
+			$video->icon = 'video-camera';
 		});
 
-		$results = $mp3results->merge( $mp4results );
+		$results = $musicresults->merge( $videoresults );
 		$shuffle_results = $results->shuffle();
 
 		return $shuffle_results;
 	}
 
-	private function searchMP3( $query )
+	private function searchMusic( $query )
 	{
-		$mp3results = MP3::published()
+		$musicresults = Music::published()
 						->search($query)
 						->orderBy('play', 'desc')
 						->orderBy('download', 'desc')
 						->take( 20 )
 						->get(['id', 'name', 'play', 'download', 'image', 'price']);
 
-		$mp3results->each( function( $mp3 )
+		$musicresults->each( function( $music )
 		{
-			$mp3->icon = 'music';
-			$mp3->type = 'mp3';
+			$music->icon = 'music';
+			$music->type = 'music';
 		});
 
-		return $mp3results;
+		return $musicresults;
 	}
 
-	private function searchMP4($query)
+	private function searchVideo($query)
 	{
-		$mp4results = MP4::search($query)
-						->orderBy('play', 'desc')
-						->orderBy('download', 'desc')
-						->take(20)
-						->get(['id', 'views', 'name', 'download']);
+		$videoresults = Video::search($query)
+			->orderBy('play', 'desc')
+			->orderBy('download', 'desc')
+			->take(20)
+			->get(['id', 'views', 'name', 'download']);
 
-		$mp4results->each( function($mp4)
-		{
-			$mp4->icon = 'video-camera';
-			$mp4->type = 'mp4';
+		$videoresults->each( function($video) {
+			$video->icon = 'video-camera';
+			$video->type = 'video';
 		});
 
-		return $mp4results;
+		return $videoresults;
 	}
 
 	// Vote Up and Down
@@ -150,7 +147,7 @@ class AJAXController extends Controller
 				]);
 			}
 
-			$obj = $obj == 'MP3' ? MP3::find($id) : MP4::find($id);
+			$obj = $obj == 'music' ? Music::find($id) : Video::find($id);
 			// $obj = $obj::find($id);
 			$obj->vote_up += 1;
 			$obj->save();
@@ -190,7 +187,7 @@ class AJAXController extends Controller
 				]);
 			}
 
-			$obj = $obj == 'MP3' ? MP3::find($id) : MP4::find($id);
+			$obj = $obj == 'music' ? Music::find($id) : Video::find($id);
 			// $obj = $obj::find($id);
 			$obj->vote_down -= 1;
 			$obj->save();
@@ -215,7 +212,7 @@ class AJAXController extends Controller
 				->first()
 				->delete();
 
-			$obj = $obj == 'MP3' ? MP3::find($id) : MP4::find($id);
+			$obj = $obj == 'music' ? Music::find($id) : Video::find($id);
 			// $obj = $obj::find($id);
 
 			if ($action == 'up') {

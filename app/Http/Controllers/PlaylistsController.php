@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Cache;
 use App\Models\Music;
 use App\Models\Playlist;
+use Illuminate\Http\Request;
 use App\Http\Requests\CreatePlaylistRequest;
 use App\Http\Requests\UpdatePlaylistRequest;
 
@@ -33,7 +34,7 @@ class PlaylistsController extends Controller
 		return view('playlists.index', compact('playlists'));
 	}
 
-	public function show($id)
+	public function show($id, Request $request)
 	{
 		$key = '_playlist_show_' . $id;
 
@@ -48,7 +49,9 @@ class PlaylistsController extends Controller
 		   return $data;
 		});
 
-		// return $data;
+		if ($request->ajax()) {
+			return $data['musics'];
+		}
 
 		return view('playlists.show', $data);
 	}

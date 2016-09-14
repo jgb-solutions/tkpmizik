@@ -1,34 +1,32 @@
-{{-- <link href="http://localhost:7000/dist/skin/blue.monday/css/jplayer.blue.monday.min.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="http://localhost:7000/lib/jquery.min.js"></script>
-<script type="text/javascript" src="http://localhost:7000/dist/jplayer/jquery.jplayer.min.js"></script>
-<script type="text/javascript" src="http://localhost:7000/dist/add-on/jplayer.playlist.min.js"></script> --}}
 <script type="text/javascript">
-	var musics = $.parseJSON('{!! $musics !!}');
-	console.log(musics);
 	// {
 	// 	title:"Cro Magnon Man",
 	// 	artist:"The Stark Palace",
 	// 	mp3:"http://tkpmizik.dev/jwe/mizik/140",
 	// 	poster: "http://tkpmizik.dev/images/logo.png"
 	// }
-	$(document).ready(function(){
 
-		var myPlaylist = new jPlayerPlaylist({
-			jPlayer: "#jquery_jplayer_N",
-			cssSelectorAncestor: "#jp_container_N"
-		},
-		musics, {
-			playlistOptions: {
-				// enableRemoveControls: true,
-				// autoPlay: true
+	$(function(){
+		$.get('{{$playlist->url}}', function(musics) {
+			console.log(musics);
+			var myPlaylist = new jPlayerPlaylist({
+				jPlayer: "#jquery_jplayer_N",
+				cssSelectorAncestor: "#jp_container_N"
 			},
-			swfPath: "../../dist/jplayer",
-			supplied: "webmv, ogv, m4v, oga, mp3",
-			useStateClassSkin: true,
-			autoBlur: false,
-			smoothPlayBar: true,
-			keyEnabled: true,
-			audioFullScreen: true
+			musics,
+			{
+				playlistOptions: {
+					// enableRemoveControls: true,
+					// autoPlay: true
+				},
+				// swfPath: "../../dist/jplayer",
+				supplied: "webmv, ogv, m4v, oga, mp3",
+				useStateClassSkin: true,
+				autoBlur: false,
+				smoothPlayBar: true,
+				keyEnabled: true,
+				audioFullScreen: true
+			});
 		});
 	});
 </script>

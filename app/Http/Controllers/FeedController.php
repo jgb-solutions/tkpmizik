@@ -2,65 +2,62 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Cache;
-
+use Carbon\Carbon;
 use App\Models\Music;
 use App\Models\Video;
-
 use Suin\RSSWriter\Feed;
 use Suin\RSSWriter\Item;
 use Suin\RSSWriter\Channel;
 
 class FeedController extends Controller
 {
-	public function music()
+	public function musics()
 	{
-		return $this->getRss('music');
+		return $this->getRss('musics');
 	}
 
-	public function video()
+	public function videos()
 	{
-		return $this->getRss('mp4');
+		return $this->getRss('videos');
 	}
 
 	private function getRSS($type)
 	{
 		$key = $type . '_rss_feed_';
 
-		if (Cache::has($key))
-		{
-			return Cache::get($key);
-		}
+		$rss = Cache::rememberForever($key, function() use ($type) {
+			switch ($type) {
+				case 'musics':
+					$objs =  Music::published()
+								->latest()
+								->with('category')
+								->take(30)
+								->get();
 
-		switch ($type) {
-			case 'music':
-				$objs =  Music::published()
-							->latest()
-							->with('category')
-							->take(10)
-							->get();
+					$hash = 'Mizik';
+					$type = 'mizik';
+				break;
 
-				$hash = 'Mizik';
-			break;
-			case 'mp4':
-				$objs = Video::latest()
-							->with('category')
-							->take(10)
-							->get();
+				case 'videos':
+					$objs = Video::latest()
+								->with('category')
+								->take(30)
+								->get();
 
-				$hash = 'Videyo';
-			break;
-		}
+					$hash = 'Videyo';
+					$type = 'videyo';
+				break;
+			}
 
-		$rss = $this->buildRssData($objs, $type, $hash);
+			$rss = $this->buildRssData($objs, $type, $hash);
 
-		$rss = response($rss)->header('Content-type', 'application/rss+xml');
+			$rss = response($rss)->header('Content-type', 'application/rss+xml');
 
-		Cache::put($key, $rss, 30);
+			return $rss;
+		});
 
 		return $rss;
-
 	}
 
 	/**
@@ -70,7 +67,7 @@ class FeedController extends Controller
 	*/
 	protected function buildRssData($objs, $type, $hash)
 	{
-		$now 		= \Carbon\Carbon::now();
+		$now 		= Carbon::now();
 		$feed 		= new Feed();
 		$channel 	= new Channel();
 
@@ -86,7 +83,7 @@ class FeedController extends Controller
 		{
 			$item = new Item();
 
-			$title = "#Nouvo$hash $obj->name #{$obj->category->slug} via @TKPMizik | @TiKwenPam";
+			$title = "#Nouvo$hash $obj->name #{$obj->category->slug} via @TKPMizik @TiKwenPam";
 
 			$item->title($title)
 				->description($obj->description)

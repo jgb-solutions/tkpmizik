@@ -45,7 +45,7 @@ class AdminController extends Controller
 		return view('admin.index', $data);
 	}
 
-	public function music()
+	public function musics()
 	{
 		// $music = music::remember(120)->latest()->paginate(30);
 		$music = music::latest()->paginate(30);
@@ -61,7 +61,7 @@ class AdminController extends Controller
 					->withmusicCount($music_count);
 	}
 
-	public function video()
+	public function videos()
 	{
 		// $video = video::remember(120)->latest()->paginate(30);
 		$video = video::latest()->paginate(30);

@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use TeamTNT\TNTSearch\TNTSearch;
-
 use App\Models\Music;
 use App\Models\Video;
 use App\Models\Category;
-
+use Illuminate\Http\Request;
+use TeamTNT\TNTSearch\TNTSearch;
+use App\Http\Controllers\Controller;
 
 class SearchController extends Controller
 {
@@ -23,7 +21,7 @@ class SearchController extends Controller
 		$term = $this->request->get('q');
 		$type = $this->request->get('type');
 
-		if ( isset($type) && ! empty($type) ) {
+		if (isset($type) && ! empty($type)) {
 			$fn = 'search' . $type;
 			return $this->$fn($term);
 		}
@@ -31,7 +29,7 @@ class SearchController extends Controller
 		// $music_res = $this->search('musics', $query);
 		$music_res = null;
 		$music_results = Music::search($music_res['ids'], $term)
-			->get(['id', 'name', 'play', 'download', 'views', 'image', 'slug']);
+			->get(['id', 'play', 'download', 'views', 'artist', 'name']);
 
 		$music_results = $this->prepare('music', $music_results);
 
@@ -39,7 +37,7 @@ class SearchController extends Controller
 		$video_res = null;
 
 		$video_results = Video::search($video_res['ids'], $term)
-			->get(['id', 'name', 'download', 'views', 'image', 'slug']);
+			->get(['id', 'download', 'views', 'artist', 'name']);
 
 		$video_results = $this->prepare('video', $video_results);
 
@@ -68,7 +66,7 @@ class SearchController extends Controller
 
 		$musics = Music::search($music_res['ids'], $term)
 			// ->get(['id', 'name', 'play', 'download', 'views', 'image']);
-			->paginate(20, ['id', 'name', 'play', 'views', 'download', 'image'] );
+			->paginate(20, ['id', 'name', 'play', 'views', 'artist', 'download'] );
 
 		$music_results = $this->prepare('music', $musics);
 
@@ -95,7 +93,7 @@ class SearchController extends Controller
 		$video_res = null;
 
 		$videos = Video::search($video_res['ids'], $term)
-			->paginate( 20, ['id', 'name', 'download', 'views', 'image'] );
+			->paginate( 20, ['id', 'name', 'download', 'views', 'artist']);
 
 		$videos = $this->prepare('video', $videos);
 
@@ -118,12 +116,12 @@ class SearchController extends Controller
 
 		$tnt->loadConfig([
 	        		"storage"  => storage_path(),
-	    	]);
+	   ]);
 
 		$tnt->selectIndex("{$index}.index");
 		$tnt->asYouType = true;
 
-	   dd( $tnt->search($term, $howmany));
+	   dd($tnt->search($term, $howmany));
 	}
 
 	private function prepare($type, $collection)

@@ -88,7 +88,7 @@ class VideoController extends Controller
 			return redirect(route('video.show', ['id'=>$storedvideo->id, 'slug'=>$storedvideo->slug]));
 		}
 
-		$user_id = $this->user->id;
+		$user_id = Auth::user()->id;
 
 		// Insert the infos in the database
 		$video = new video;

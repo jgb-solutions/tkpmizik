@@ -14,6 +14,7 @@ use App\Models\Music;
 use App\Models\Video;
 use App\Models\Category;
 use App\Models\MusicSold;
+use App\Models\MusicList;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMusicRequest;
@@ -63,8 +64,12 @@ class MusicController extends Controller
 
 	public function store(StoreMusicRequest $request)
 	{
-		$name = $request->get('name');
-		$storedmusic = Music::whereName($name)->first();
+		$name 	= $request->get('name');
+		$artist 	= $request->get('artist');
+
+		$storedmusic = Music::whereName($name)
+								->whereArtist($artist)
+								->first();
 
 		if ($storedmusic) {
 			if ($request->ajax()) {
@@ -74,10 +79,11 @@ class MusicController extends Controller
 	        		if ($storedmusic->price == 'paid') {
 	        			$response['url'] = route('music.edit', ['id' => $storedmusic->id]);
 	        		} else {
-	        		 	$response['url'] = route('music.show', [
-	        		 		'id' =>$storedmusic->id,
-	        		 		'slug' =>$storedmusic->slug
-	        		 	]);
+	        		 	$response = [
+	        				'success' => true,
+	        				'id' => $storedmusic->id,
+        		 			'url' => $storedmusic->url
+	        			];
 	        		}
 
 	        		return $response;
@@ -91,15 +97,14 @@ class MusicController extends Controller
 
 
 		/****** music Uploading *******/
-		$price 			= $request->get('price');
-		$artist 			= $request->get('artist');
+		$price 		= $request->get('price');
 		$slug			= Str::slug($name);
-		$music 			= $request->file('music');
-		$music_size 		= TKPM::size($music->getClientsize());
-		$music_ext 		= $music->getClientOriginalExtension();
-		$music_name 		=  Str::random(8) . time() . '.' . $music_ext;
+		$music 		= $request->file('music');
+		$music_size = TKPM::size($music->getClientsize());
+		$music_ext 	= $music->getClientOriginalExtension();
+		$music_name =  Str::random(8) . time() . '.' . $music_ext;
 
-		$content = file_get_contents( $request->file('music')->getRealPath() );
+		$content = file_get_contents($request->file('music')->getRealPath());
 
 		$music_success = Storage::disk('musics')->put($music_name, $content);
 
@@ -114,7 +119,7 @@ class MusicController extends Controller
 		$img_success = Storage::disk('images')->put($img_name, $content);
 
 		if ($img_success) {
-			TKPM::image($img_name, 250, 250, 'thumbs');
+			TKPM::image($img_name, 245, 250, 'thumbs');
 			TKPM::image($img_name, 100, null, 'thumbs/tiny');
 			TKPM::image($img_name, 640, 360, 'show');
 		}
@@ -129,7 +134,7 @@ class MusicController extends Controller
 			$music->mp3name = $music_name;
 			$music->image = $img_name;
 			$music->user_id = $user_id;
-			$music->category_id = $request->get('cat');
+			$music->category_id = $request->get('category');
 			$music->size = $music_size;
 
 			if ($price == 'free') {
@@ -187,15 +192,14 @@ class MusicController extends Controller
         	if ($request->ajax()) {
         		$response = [];
 
-        		$response['success']  = true;
-
         		if ($music->paid) {
         			$response['url'] = route('music.edit', ['id' => $music->id]);
         		} else {
-        		 	$response['url'] = route('music.show', [
-        		 		'id' =>$music->id,
-        		 		'slug' =>$music->slug
-        		 	]);
+	        		$response = [
+	        			'success' => true,
+	        			'id' => $music->id,
+        		 		'url' => $music->url
+	        		];
         		}
 
         		return $response;
@@ -400,9 +404,8 @@ class MusicController extends Controller
 		if ($user->id == $music->user_id || $user->admin) {
 			Vote::whereObj('music')
 				->whereObjId($music->id)
-				->whereUserId(Auth::user()->id)
+				->whereUserId($user->id)
 				->delete();
-
 
 			Storage::disk('images')->delete([
 				$music->image,
@@ -411,9 +414,11 @@ class MusicController extends Controller
 				'show/' . $music->image
 			]);
 
-			$music->delete();
-
 			Storage::disk('musics')->delete($music->mp3name);
+
+			MusicList::whereMusicId($music->id)->delete();
+
+			$music->delete();
 
 			Cache::flush();
 

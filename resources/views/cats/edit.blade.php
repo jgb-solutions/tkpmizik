@@ -21,7 +21,7 @@
 
 	<div class="row">
 		<div class="col-sm-6">
-			<form action="{{route('admin.cat.update', ['id'=>$category->id])}}" method="POST" id="form-category-create">
+			<form action="{{route('admin.cat.update', ['category'=>$category->id])}}" method="POST" id="form-category-create">
 				{{ csrf_field() }}
 				{{ method_field('PUT') }}
 				<div class="form-group">

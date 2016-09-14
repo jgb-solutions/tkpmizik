@@ -56,7 +56,7 @@ class UsersController extends Controller
 
 	public function postLogin(Request $request)
 	{
-		if (Auth::attempt($request->only('email', 'password'))) {
+		if (Auth::attempt($request->only('email', 'password'), true)) {
 			$user = Auth::user();
 
 			if ($user->admin) {
@@ -156,7 +156,7 @@ class UsersController extends Controller
 		$user_musics = $user->musics();
 		$user_videos = $user->videos();
 
-		$first_name = ucwords( TKPM::firstName($user->name) );
+		$first_name = ucwords( TKPM::firstName($user->name));
 		$title = 'Navige Tout Mizik ';
 		$title .= Auth::check() ? 'Ou ' :  $first_name;
 		$title .= ' Yo';
@@ -291,27 +291,27 @@ class UsersController extends Controller
 			}
 		}
 
-		if ( !empty($name) ) {
+		if ( !empty($name)) {
 			$user->name = $name;
 		}
 
-		if ( !empty($email) ) {
+		if ( !empty($email)) {
 			$user->email = $email;
 		}
 
-		if ( !empty($password) ) {
-			$user->password = Hash::make($password );
+		if ( !empty($password)) {
+			$user->password = Hash::make($password);
 		}
 
-		if ( !empty($image) ) {
+		if ( !empty($image)) {
 			$user->image = $img_name;
 		}
 
-		if ( !empty($telephone) ) {
+		if ( !empty($telephone)) {
 			$user->telephone = $telephone;
 		}
 
-		if ( !empty($username) ) {
+		if ( !empty($username)) {
 			$user->username = $username;
 		}
 
@@ -324,7 +324,7 @@ class UsersController extends Controller
 				->withMessage("Ou mete pwofil la ajou avèk siskè!")
 				->withStatus('success');
 
-		return redirect( route('user.index') )
+		return redirect( route('user.index'))
 			->withMessage('Ou mete pwofil ou ajou avèk siskè!')
 			->withStatus('success');
 
@@ -374,7 +374,7 @@ class UsersController extends Controller
 				'musicplaycount' 		=> $user->musics()->sum('play'),
 				'musicdownloadcount' 	=> $user->musics()->sum('download'),
 				'videodownloadcount' 	=> $user->videos()->sum('download'),
-				'first_name' 		=> ucwords( TKPM::firstName($user->name) ),
+				'first_name' 		=> ucwords( TKPM::firstName($user->name)),
 				'bought_count' 		=> $user->bought()->count(),
 				'title'				=> "Pwofil $user->name",
 				'user'				=> $user,
@@ -388,7 +388,7 @@ class UsersController extends Controller
 		return view('user.profile-public')->with($data);
 	}
 
-	public function delete(Request $request, User $user)
+	public function destroy(Request $request, User $user)
 	{
 		if ($user->admin) {
 			return redirect(route('admin.users'))
@@ -406,21 +406,23 @@ class UsersController extends Controller
 			}
 		}
 
+		$user->load('musics', 'videos');
+
 		$del = $request->get('del');
 
 		$admin = $loggedUser->admin ? $loggedUser : User::whereAdmin(1)->first();
 
-		if ( $loggedUser->admin ) {
-			$musics = $user->musics()->get();
-			$videos = $user->videos()->get();
+		if ($loggedUser->admin) {
+			$musics = $user->musics;
+			$videos = $user->videos;
 
 			foreach ($musics as $music) {
 				$music->user_id = $admin->id;
 				$music->save();
 
 				Vote::whereObj('music')
-					->whereObjId($music->id )
-					->whereUserId($user->id )
+					->whereObjId($music->id)
+					->whereUserId($user->id)
 					->delete();
 			}
 
@@ -429,8 +431,8 @@ class UsersController extends Controller
 				$video->save();
 
 				Vote::whereObj('video')
-					->whereObjId($video->id )
-					->whereUserId($user->id )
+					->whereObjId($video->id)
+					->whereUserId($user->id)
 					->delete();
 			}
 
@@ -454,16 +456,16 @@ class UsersController extends Controller
 				->withStatus('success');
 		}
 
-		$musics = $user->musics()->get();
-		$videos = $user->videos()->get();
+		$musics = $user->musics;
+		$videos = $user->videos;
 
 		foreach ($musics as $music) {
 			Vote::whereObj('music')
-				->whereObjId($music->id )
-				->whereUserId($user->id )
+				->whereObjId($music->id)
+				->whereUserId($user->id)
 				->delete();
 
-			if ($del ) {
+			if ($del) {
 				Storage::disk('musics')->delete([$music->mp3name]);
 				Storage::disk('images')->delete([
 					$music->image,
@@ -471,6 +473,7 @@ class UsersController extends Controller
 					'thumbs/' . $music->image,
 					'thumbs/tiny/' . $music->image,
 				]);
+
 				$music->delete();
 			} else {
 				$music->user_id = $admin->id;
@@ -481,11 +484,11 @@ class UsersController extends Controller
 
 		foreach ($videos as $video) {
 			Vote::whereObj('video')
-				->whereObjId($video->id )
-				->whereUserId($user->id )
+				->whereObjId($video->id)
+				->whereUserId($user->id)
 				->delete();
 
-			if ($del ) {
+			if ($del) {
 				$video->delete();
 			} else {
 				$video->user_id = $admin->id;

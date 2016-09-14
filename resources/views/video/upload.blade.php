@@ -31,14 +31,14 @@
 			</div>
 
 			<div class="form-group">
-				<label for="artist" class="col-sm-4 control-label">Mete Non Atis la</label>
+				<label for="artist" class="col-sm-4 control-label">Non Atis/Gwoup la</label>
 				<div class="col-sm-8">
-					<input required type="text" name="artist" class="form-control" id="artist" placeholder="Bay non atis ki f&egrave; videyo a" value="{{ old('name') }}">
+					<input required type="text" name="artist" class="form-control" id="artist" placeholder="Bay non atis/gwoup  ki f&egrave; videyo a" value="{{ old('name') }}">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label for="name" class="col-sm-4 control-label">Mete Lyen Videyo a</label>
+				<label for="url" class="col-sm-4 control-label">Mete Lyen Videyo a</label>
 				<div class="col-sm-8">
 					<input required type="url" name="url" class="form-control" id="url" placeholder="Antre Lyen Videyo YouTube la" value="{{ old('url') }}">
 				</div>
@@ -47,12 +47,12 @@
 			<div class="form-group">
 				<label for="category" class="col-sm-4 control-label">Kategori Videyo a</label>
 				<div class="col-sm-8">
-					<select class="form-control" name="cat">
+					<select class="form-control" name="cat" id="category">
 
 					@foreach( $categories as $category )
 						<option
 							value="{{ $category->id }}"
-							{{ $category->slug == 'rap' ? 'selected' : '' }}>
+							{{ $category->slug == 'rap-kreyol' ? 'selected' : '' }}>
 							{{ $category->name }}
 						</option>
 					@endforeach
@@ -75,7 +75,7 @@
 			<div class="form-group">
 				<div class="col-sm-8 col-sm-offset-4">
 					<p>
-						<button type="submit" class="btn btn-primary btn-lg">
+						<button type="submit" class="btn btn-primary btn-lg" id="uploadButton">
 							<i class="fa fa-cloud-upload"></i>
 							Mete Videyo a
 						</button>

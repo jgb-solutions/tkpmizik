@@ -7,7 +7,7 @@
 			<td>
 				<strong>
 					<i class="fa fa-@{{ item.icon }}"></i>
-					<a href="@{{ item.url }}" ng-bind="item.name"></a>
+					<a href="@{{ item.url }}" ng-bind="item.title"></a>
 				</strong>
 			</td>
 			<td>

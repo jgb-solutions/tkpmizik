@@ -58,14 +58,14 @@
 		<div class="form-group">
 			<label for="name" class="control-label col-sm-4">Non Mizik la</label>
 			<div class="col-sm-8">
-				<input name="name" type="name" class="form-control" id="name" placeholder="Antre non mizik la" value="{{ $music->name }}">
+				<input name="name" type="name" class="form-control" id="name" placeholder="Mete non mizik la" value="{{ $music->name }}">
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label for="artist" class="control-label col-sm-4">Mete Non Atis la</label>
+			<label for="artist" class="control-label col-sm-4">Non Atis/Gwoup la</label>
 			<div class="col-sm-8">
-				<input name="artist" type="artist" class="form-control" id="artist" placeholder="Bay non atis ki f&egrave; mizik la" value="{{ $music->artist }}">
+				<input name="artist" type="artist" class="form-control" id="artist" placeholder="Bay non atis oubyen gwoup ki f&egrave; mizik la" value="{{ $music->artist }}">
 			</div>
 		</div>
 

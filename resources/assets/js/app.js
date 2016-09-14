@@ -26,17 +26,15 @@ function views_play_download_count() {
 	$spanView = $('span.views_count');
 	$spanPlay = $('span.play_count');
 	$spanDownload = $('span.download_count');
-	$token = $('#get_token').data('token');
 
 	param = {
 		id: $spanView.data('id'),
 		obj: $spanView.data('obj'),
 		fn: 'vpd_count',
-		_token: $token
 	};
 
 	if ( param.id !== undefined ) {
-		$.post('/ajax', param, function( data )
+		$.post('/api/ajax', param, function( data )
 		{
 			$spanView.text( data.views );
 			if ( data.play !== '' ) $spanPlay.text( data.play );
@@ -102,7 +100,7 @@ function voteUp() {
 		obj: $spanView.data('obj')
 	};
 
-	$.post('/ajax', param, function( data ) {
+	$.post('/api/ajax', param, function( data ) {
 		// console.log( data );
 
 		if ( data.vote_down !== 0 ) {
@@ -131,7 +129,7 @@ function voteDown() {
 		obj: $spanView.data('obj')
 	};
 
-	$.post('/ajax', param, function( data ) {
+	$.post('/api/ajax', param, function( data ) {
 		console.log( data );
 
 		if ( data.vote_up !== 0 ) {
@@ -161,7 +159,7 @@ function voteNull( ud ) {
 		action: ud
 	};
 
-	$.post('/ajax', param, function( data ) {
+	$.post('/api/ajax', param, function( data ) {
 		// console.log( data );
 
 		$voteUpNum.empty();
@@ -185,9 +183,11 @@ function slideAlert() {
 }
 
 $(function() {
-	// form_category_check();
-	//new app.views.SearchViews();
-	// tmSearch.init();
+	$.ajaxSetup({
+		headers: {
+         'X-CSRF-TOKEN': $('meta#token').data('token')
+      }
+	});
 
 	/********** Views Count, Play Count & Download Count ********/
 	views_play_download_count();
@@ -196,17 +196,24 @@ $(function() {
 
 	// AJAX Upload
 	var options = {
-	    beforeSend: function()
-	    {
-	        //clear everything
-	        $('#progress').show();
-	        $('.progress-bar').html('0%');
-	        $('.progress-bar').width('0%');
-	        $('#upMessage').empty();
-	        submitButton = $('#submitButton');
-	        buttonText = submitButton.html();
-	        $ajaxLoaderImg	= '<img src="/images/ajax-loader.gif">';
-	        submitButton.html( $ajaxLoaderImg );
+	   beforeSend: function() {
+			//clear everything
+			$('#progress').show();
+			$('.progress-bar').html('0%');
+			$('.progress-bar').width('0%');
+			$('#upMessage').empty();
+			submitButton = $('#submitButton');
+
+			if (submitButton.attr('disabled') == 'disabled') {
+				e.preventDefault();
+			} else {
+				submitButton.attr('disabled', 'disabled');
+			}
+
+			submitButton.attr('disabled', 'disabled');
+			buttonText = submitButton.html();
+			$ajaxLoaderImg	= '<img src="/images/ajax-loader.gif">';
+			submitButton.html( $ajaxLoaderImg );
 	    },
 	    uploadProgress: function(event, position, total, percentComplete) {
 	        $('.progress-bar').width(percentComplete + '%');
@@ -220,54 +227,30 @@ $(function() {
 
 	    },
 	    complete: function(response) {
-	        console.log( response.responseText );
-
 	        var res = $.parseJSON( response.responseText );
-	        var messages = '';
-
 
 	        if ( res.success === true ) {
-	        	console.log( res.url );
-	        	window.location = res.url;
-	        } else if ( res.errors !== undefined ) {
-	        	$('#progress').slideUp();
-	        	$('#upMessage').parent().removeClass('hide-panel');
-
-	        	if ( res.errors.name ) {
-	        		$.each( res.errors.name, function(index, val) {
-		    			// console.log( val );
-	    				messages += '<li class="list-group-item transparent">' + val + '</li>';
-	        		});
-	        	}
-
-	        	if ( res.errors.mp3 ) {
-	        		$.each( res.errors.mp3, function(index, val) {
-	        			 // console.log( val );
-	        			 messages += '<li class="list-group-item transparent">' + val + '</li>';
-	        		});
-	        	}
-
-    			if ( res.errors.image ) {
-    				$.each( res.errors.image, function(index, val) {
-		    			// console.log( val );
-	    				messages += '<li class="list-group-item transparent">' + val + '</li>';
-	        		});
-    			}
-
-				if ( res.errors.size ) {
-    				$.each( res.errors.size, function(index, val) {
-		    			// console.log( val );
-	    				messages += '<li class="list-group-item transparent">' + val + '</li>';
-	        		});
-    			}
-
-        		$('#upMessage').html( messages );
+	        	// console.log( res.url );
+	        	window.location.href = res.url;
 	        }
 	    },
-	    error: function() {
-	        $("#message").html("<font color='red'> Nou pa rive mete mizik la. Eseye ank&ograve;</font>");
-	    }
+	    error: function(response) {
+	    	var errors = $.parseJSON(response.responseText);
+	      var messages = '';
 
+	    	console.log(errors);
+
+	    	$('#progress').slideUp();
+	        	$('#upMessage').parent().removeClass('hide-panel');
+
+        		$.each(errors, function(index, val) {
+        			$.each(val, function(index, val) {
+    					messages += '<li class="list-group-item transparent">' + val + '</li>';
+        			});
+        		});
+
+        		$('#upMessage').html( messages );
+	    }
 	};
 
 	$("#upForm").ajaxForm(options);
@@ -289,12 +272,12 @@ $(function() {
 		} else {
 			$this.attr('disabled', 'disabled');
 		}
-
 	});
+
 });
 
 /* AngularJS code */
-angular.module('app', [])
+angular.module('app', ['ngFileUpload'])
 
 .config(['$httpProvider',function($httpProvider) {
 	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';

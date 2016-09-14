@@ -4,7 +4,7 @@ $via = config('site.twitter');
 $name = $obj->name;
 ?>
 
-<i class="fa fa-share"></i> Pataje sou:
+<i class="fa fa-share"></i> Pataje sou:<br>
 <a
 	class="btn btn-primary"
 	target="_blank"

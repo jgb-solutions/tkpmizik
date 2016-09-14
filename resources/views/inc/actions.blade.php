@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-sm-6">
+	<div class="col-xs-8">
 		@if(Auth::check())
 		  	@if(Auth::user()->ownerOrAdmin($obj))
 				<form action="{{ TKPM::route($route.'.delete', $obj->id) }}" method="POST" role="form">
@@ -21,7 +21,7 @@
 			@endif
 		@endif
 	</div>
-	<div class="col-sm-6 text-right">
+	<div class="col-xs-4 text-right">
 		@if($route !== 'playlist')
 			@if (Auth::check())
 				<div class="btn-group btn-group-lg" id="vote-btn">
