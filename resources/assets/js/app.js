@@ -253,8 +253,6 @@ $(function() {
 	    }
 	};
 
-	$("#upForm").ajaxForm(options);
-
 	/********* Confirmation on file deletion **********/
 	$('input[name=del]').on('click', function() {
 		$(this).siblings('small').toggleClass('hide');
