@@ -291,27 +291,27 @@ class UsersController extends Controller
 			}
 		}
 
-		if ( !empty($name)) {
+		if (!empty($name)) {
 			$user->name = $name;
 		}
 
-		if ( !empty($email)) {
+		if (!empty($email)) {
 			$user->email = $email;
 		}
 
-		if ( !empty($password)) {
+		if (!empty($password)) {
 			$user->password = Hash::make($password);
 		}
 
-		if ( !empty($image)) {
+		if (!empty($image)) {
 			$user->image = $img_name;
 		}
 
-		if ( !empty($telephone)) {
+		if (!empty($telephone)) {
 			$user->telephone = $telephone;
 		}
 
-		if ( !empty($username)) {
+		if (!empty($username)) {
 			$user->username = $username;
 		}
 
@@ -327,7 +327,6 @@ class UsersController extends Controller
 		return redirect( route('user.index'))
 			->withMessage('Ou mete pwofil ou ajou avèk siskè!')
 			->withStatus('success');
-
 	}
 
 	public function getUserPublic($id)

@@ -16,7 +16,8 @@ class UpdateUserRequest extends Request
     {
         return [
             'name'      => 'required',
-            'username'  => "alpha_num|unique:users,username,{$user->username}",
+            // 'username'  => "alpha_num|unique:users,username,{$user->username}",
+            'username'  => "alpha_num",
             'email'     => 'required|email|different:name',
             'password'  => 'min:6|same:password_confirm',
             'image'     => 'image',
