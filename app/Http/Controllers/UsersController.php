@@ -47,9 +47,9 @@ class UsersController extends Controller
 
 	public function getLogin()
 	{
-		if (Auth::guest())
-			return view('auth.login')
-				->withTitle('Koneksyon');
+		if (Auth::guest()) {
+			return view('auth.login', ['title' => 'Koneksyon']);
+		}
 
 		return redirect(route('user.index'));
 	}
@@ -332,60 +332,49 @@ class UsersController extends Controller
 
 	public function getUserPublic($id)
 	{
-		$user = User::remember(60)->findOrFail($id);
-		// $user = User::find($id);
+		$userRoute = $this->getUserFrom($id);
+		$user = $userRoute['user'];
+		$route = $userRoute['route'];
 
-		if ($user)
-		{
-			return $this->getUserData($user);
-		}
-
-		return redirect('/404');
-
+		return $this->getUserData($user, $route);
 	}
 
 	public function getUserName($username)
 	{
-		$user = User::remember(60)->whereUsername($username)->first();
-		// $user = User::whereUsername($username)->first();
+		$userRoute = $this->getUserFrom($username);
+		$user = $userRoute['user'];
+		$route = $userRoute['route'];
 
-		if ($user)
-		{
-			return $this->getUserData($user);
-		}
-
-		return redirect('/404');
+		return $this->getUserData($user, $route);
 	}
 
-	private function getUserData($user)
+	private function getUserData($user, $route)
 	{
 		$key = 'user_public_' . $user->id;
 
-		if (Cache::has($key)) {
-			$data = Cache::get($key);
-		} else {
+		$data = Cache::rememberForever($key, function() use ($user, $route) {
 			$data = [
 				'musics' 				=> $user->musics()->published()->latest()->take(10)->get(),
-				'videos'				=> $user->videos()->latest()->take(10)->get(),
+				'videos'					=> $user->videos()->latest()->take(10)->get(),
 				'musiccount' 			=> $user->musics()->count(),
 				'videocount' 			=> $user->videos()->count(),
 				'musicViewsCount' 	=> $user->musics()->sum('views'),
 				'videoViewsCount'		=> $user->videos()->sum('views'),
 				'musicplaycount' 		=> $user->musics()->sum('play'),
-				'musicdownloadcount' 	=> $user->musics()->sum('download'),
-				'videodownloadcount' 	=> $user->videos()->sum('download'),
-				'first_name' 		=> ucwords( TKPM::firstName($user->name)),
+				'musicdownloadcount' => $user->musics()->sum('download'),
+				'videodownloadcount' => $user->videos()->sum('download'),
+				'first_name' 			=> ucwords( TKPM::firstName($user->name)),
 				'bought_count' 		=> $user->bought()->count(),
-				'title'				=> "Pwofil $user->name",
-				'user'				=> $user,
-				'author'			=> $user->username ? '@' . $user->username . ' &mdash;' : $user->name . ' &mdash; '
+				'title'					=> "Pwofil $user->name",
+				'user'					=> $user,
+				'author'					=> $user->username ? '@' . $user->username . ' &mdash;' : $user->name . ' &mdash; ',
+				'route' 					=> $route
 			];
 
-			Cache::put($key, $data, 30);
+			return $data;
+		});
 
-		}
-
-		return view('user.profile-public')->with($data);
+		return view('user.profile-public', $data);
 	}
 
 	public function destroy(Request $request, User $user)
