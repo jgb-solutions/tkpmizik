@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use TKPM;
 use Illuminate\Support\Collection;
 
 class Playlist extends Model
