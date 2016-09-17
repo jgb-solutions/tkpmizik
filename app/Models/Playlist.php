@@ -38,6 +38,6 @@ class Playlist extends Model
 
 	public function getUrlAttribute()
 	{
-		return route('playlist.show', ['id' => $this->id,'name' => $this->slug ]);
+		return TKPM::route('playlist.show', ['id' => $this->id,'name' => $this->slug ]);
 	}
 }
