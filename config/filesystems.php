@@ -41,29 +41,29 @@ return [
     |
     */
 
-    'disks' => [
+   'disks' => [
 
-        'local' => [
-            'driver' => 'local',
-            'root' => storage_path('app'),
-        ],
+     	'local' => [
+         'driver' => 'local',
+         'root' => storage_path('app'),
+     	],
 
-        'public' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'visibility' => 'public',
-        ],
+     	'public' => [
+         'driver' => 'local',
+         'root' => storage_path('app/public'),
+         'visibility' => 'public',
+     	],
 
-        'images' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public/images'),
-            'visibility' => 'public',
-        ],
+     	'images' => [
+         'driver' => 'local',
+         'root' => storage_path('app/public/tkpmizik-data/images'),
+         'visibility' => 'public',
+     	],
 
-	'musics' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public/musics'),
-            'visibility' => 'public',
+		'musics' => [
+         'driver' => 'local',
+         'root' => storage_path('app/public/tkpmizik-data/musics'),
+         'visibility' => 'public',
 	],
 
         's3' => [

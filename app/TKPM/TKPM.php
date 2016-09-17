@@ -70,11 +70,11 @@ class TKPM
 
 	public static function image($in, $width = null, $height = null, $out)
 	{
-		Image::make(storage_path('app/public/images/' . $in))
+		Image::make(storage_path('app/public/tkpmizik-data/images/' . $in))
 			->resize($width, $height, function($constraint) {
 				$constraint->aspectratio();
 			})
-			->save(storage_path("app/public/images/$out/" . $in));
+			->save(storage_path("app/public/tkpmizik-data/images/$out/" . $in));
 	}
 
 	public static function size($size, $round = 2)
@@ -97,7 +97,7 @@ class TKPM
 
     	$mp3_writter = new getid3_writetags;
 
-    	$mp3_writter->filename          = storage_path('app/public/musics/' . $music->mp3name);
+    	$mp3_writter->filename          = storage_path('app/public/tkpmizik-data/musics/' . $music->mp3name);
 	  	$mp3_writter->tagformats        = ['id3v2.3'];
 	  	$mp3_writter->overwrite_tags    = true;
 	  	$mp3_writter->tag_encoding      = 'UTF-8';
@@ -133,7 +133,7 @@ class TKPM
 		$music->download += 1;
 		$music->save();
 
-		$mp3name = storage_path('app/public/musics/' . $music->mp3name);
+		$mp3name = storage_path('app/public/tkpmizik-data/musics/' . $music->mp3name);
 		header('Content-Description: File Transfer');
 	    	header('Content-Type: application/octet-stream');
 	    	header('Content-Disposition: attachment; filename=' . $music->name . '.mp3' );
@@ -150,7 +150,7 @@ class TKPM
 		$music->play += 1;
 		$music->save();
 
-		$mp3name = storage_path('app/public/musics/' . $music->mp3name);
+		$mp3name = storage_path('app/public/tkpmizik-data/musics/' . $music->mp3name);
 
 		header("Content-Type: audio/mpeg");
 	    	header("Content-Length: " . filesize($mp3name) );

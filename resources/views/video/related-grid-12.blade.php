@@ -1,6 +1,6 @@
 <div class="col-sm-12">
 	<a href="{{ $rel->url }}">
-		<div class="row box-shadow btlr btrr bbrr bblr">
+		<div class="row box-shadow btlr btrr bbrr bblr bg-white">
 			<div class="col-sm-4 col-xs-4">
 				<div class="row">
 					<img

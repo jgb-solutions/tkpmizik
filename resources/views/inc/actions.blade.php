@@ -24,7 +24,7 @@
 	</div>
 	<div class="col-xs-5 text-right">
 		@if($route !== 'playlist')
-			@if (Auth::check())
+			@if (Auth::check() && $route == 'music')
 				<div class="btn-group btn-group-lg" id="vote-btn">
 					{{-- {!! TKPM::vote($class, $obj->id, $obj->vote_up, $obj->vote_down) !!} --}}
 
@@ -39,6 +39,8 @@
 						@include('inc.playlist-modal')
 					@endif
 				</div>
+			@else
+				<div><br><br></div>
 			@endif
 			<br>
 		@endif
