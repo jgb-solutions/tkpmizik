@@ -64,11 +64,6 @@ class User extends Authenticatable
 		return $this->hasMany(Playlist::class);
 	}
 
-	public function setPasswordAttribute($password)
-	{
-		$this->attributes['password'] = bcrypt($password);
-	}
-
 	public function getUrlAttribute()
 	{
 		return TKPM::profileLink($this->username, $this->id);

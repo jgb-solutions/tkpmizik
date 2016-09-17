@@ -19,7 +19,7 @@
 					  	<img
 							class="img-reponsive full-width lazy"
 							alt="{{ $video->name }}"
-							data-original="{{ $video->image }}">
+							data-original="{{ $video->imageUrl }}">
 					</a>
 				  	<div class="text-center">
 					   <h5>

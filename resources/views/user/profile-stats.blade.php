@@ -1,18 +1,8 @@
 <div class="col-sm-4">
-	<div class="row">
-		<div class="col-xs-6">
 			<img class="img-responsive img-circle img-centered"
 				style="min-width: 60px"
 				src="{{ TKPM::profileImage($user) }}">
-		</div>
-		<div class="col-xs-6">
-			<h3 class="text-center">
-				<small>
-					{{ $user->name }}
-				</small>
-			</h3>
-		</div>
-	</div>
+			<h3 class="text-center">{{ $user->name }}</h3>
 	@if ( $user->telephone )
 		<br>
 		<p>

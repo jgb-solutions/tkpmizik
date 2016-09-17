@@ -10,14 +10,14 @@ Route::get('/cheche', ['as' => 'search','uses' => 'SearchController@getIndex']);
 // Playlists
 Route::get('lis', ['as'=>'playlists','uses' => 'PlaylistsController@index']);
 Route::get('lis/kreye', ['as'=>'playlists.create','uses' => 'PlaylistsController@getCreate']);
-Route::post('lis/kreye', ['as'=>'playlist.create','uses' => 'PlaylistsController@postCreate']);
 Route::get('lis/{playlist}/modifye', ['as'=>'playlist.edit','uses' => 'PlaylistsController@edit']);
-Route::put('lis/{playlist}/modifye', ['as'=>'playlist.update','uses' => 'PlaylistsController@update']);
 Route::get('lis/{playlist}/mizik', ['as'=>'playlist.musics','uses' => 'PlaylistsController@listMusics']);
+Route::get('lis/{id}/{slug}', ['as'=>'playlist.show','uses' => 'PlaylistsController@show']);
+Route::post('lis/kreye', ['as'=>'playlist.create','uses' => 'PlaylistsController@postCreate']);
 Route::post('lis/{playlist}/ajoute/{music}', ['as'=>'playlist.add','uses' => 'PlaylistsController@postAddMusic']);
+Route::put('lis/{playlist}/modifye', ['as'=>'playlist.update','uses' => 'PlaylistsController@update']);
 Route::delete('lis/{playlist}', ['as'=>'playlist.delete','uses' => 'PlaylistsController@destroy']);
 Route::delete('lis/{playlist}/{music}', ['as'=>'playlist.removeMusic','uses' => 'PlaylistsController@removeMusic']);
-Route::get('lis/{id}/{slug}', ['as'=>'playlist.show','uses' => 'PlaylistsController@show']);
 
 // Registration / Login
 Route::get('koneksyon', ['as' => 'login','uses' => 'UsersController@getLogin']);
@@ -72,19 +72,15 @@ Route::group(['prefix' => 'kategori'], function() {
 Route::get('mizik', ['as' => 'music','uses' => 'MusicController@index']);
 Route::get('mizik/{music}/modifye',['as' => 'music.edit','uses' => 'MusicController@edit']);
 Route::put('mizik/{music}/modifye',['as' => 'music.update','uses' => 'MusicController@update']);
-Route::get('mizik/{id}/{slug?}',['as' => 'music.show','uses' => 'MusicController@show'])
-->where('music', '[0-9]+');
-Route::get('telechaje/mizik/{music}', ['as' => 'music.get','uses' => 'MusicController@getMusic'])
-->where('music', '[0-9]+');
+Route::post('mizik/{id}/imel-twit',['as' => 'music.emailAndTweet','uses' => 'MusicController@emailAndTweet']);
+Route::get('mizik/{id}/{slug?}',['as' => 'music.show','uses' => 'MusicController@show']);
+Route::get('telechaje/mizik/{music}', ['as' => 'music.get','uses' => 'MusicController@getMusic']);
 Route::delete('efase/mizik/{music}', ['as' => 'music.delete','uses' => 'MusicController@destroy']);
 Route::get('mete/mizik', ['as' => 'music.upload','uses' => 'MusicController@upload']);
-Route::get('jwe/mizik/{music}', ['as' => 'music.play','uses' => 'MusicController@play'])
-->where('music', '[0-9]+');
+Route::get('jwe/mizik/{music}', ['as' => 'music.play','uses' => 'MusicController@play']);
 Route::get('achte/mizik', ['as' => 'buy.list', 'uses' => 'MusicController@listBuy']);
-Route::get('achte/mizik/{music}', ['as' => 'buy.show', 'uses' => 'MusicController@getBuy'])
-->where('music', '[0-9]+');
-Route::post('achte/mizik/{music}', ['as' => 'buy.post','uses' => 'MusicController@postBuy'])
-->where('music', '[0-9]+');
+Route::get('achte/mizik/{music}', ['as' => 'buy.show', 'uses' => 'MusicController@getBuy']);
+Route::post('achte/mizik/{music}', ['as' => 'buy.post','uses' => 'MusicController@postBuy']);
 Route::post('mete/mizik', ['as' => 'music.store', 'uses' => 'MusicController@store']);
 
 // Video routes
@@ -112,8 +108,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
 	Route::get('itilizate', ['as' => 'users','uses' => 'AdminController@users']);
 });
 
-// Route::get('test', function() {
-// 	return view('test.ng-upload', [
-// 		'cats' => Cache::get('allCategories', App\Models\Category::byName()->get())
-// 	]);
-// });
+Route::get('test', function() {
+	$music = App\Models\Music::find(198);
+	return $music->load('user');
+});

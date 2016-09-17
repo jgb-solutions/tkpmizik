@@ -275,7 +275,7 @@ $(function() {
 });
 
 /* AngularJS code */
-angular.module('app', ['ngFileUpload'])
+angular.module('app', ['ngFileUpload', 'ngAnimate'])
 
 .config(['$httpProvider',function($httpProvider) {
 	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';

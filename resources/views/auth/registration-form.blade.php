@@ -1,4 +1,5 @@
-<form action="{{ TKPM::route('post.register')}}" method='post' role="form">
+<form action="{{ TKPM::route('post.register')}}"
+	method='POST' role="form" novalidate>
 	{{ csrf_field() }}
 	<div class="input-group">
 		<span class="input-group-addon"><i class="fa fa-user"></i></span>

@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Category;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder {
 
@@ -27,7 +27,7 @@ class UserTableSeeder extends Seeder {
         	'name'	    => 'Jean Gérard Bousiquot',
             'username'  => 'jgbneatdesign',
         	'email'     => 'jgbneatdesign@gmail.com',
-        	'password'  => bcrypt('password'),
+        	'password'  => 'password',
             'telephone' => '+50936478199',
         	'admin'	    => 1
         ]);

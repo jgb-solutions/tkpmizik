@@ -8,23 +8,23 @@
 
 	<ul>
 		<li>Tande/Telechaje:
-			<a href="{{ route('music.show', ['id'=>$music['id'], 'slug'=>$music['slug']]) }}">
-				{{ route('music.show', ['id'=>$music['id'], 'slug'=>$music['slug']]) }}
+			<a href="{{ TKPM::route('music.show', ['id'=>$music['id'], 'slug'=>$music['slug']]) }}">
+				{{ TKPM::route('music.show', ['id'=>$music['id'], 'slug'=>$music['slug']]) }}
 			</a>
 		</li>
 		<li>Telechaje dirèk:
-			<a href="{{ route('music.get', ['id'=>$music['id']]) }}">
-				{{ route('music.get', ['id'=>$music['id']]) }}
+			<a href="{{ TKPM::route('music.get', ['id'=>$music['id']]) }}">
+				{{ TKPM::route('music.get', ['id'=>$music['id']]) }}
 			</a>
 		</li>
 		<li>Modifye:
-			<a href="{{ route('music.edit', ['id'=>$music['id']]) }}">
-				{{ route('music.edit', ['id'=>$music['id']]) }}
+			<a href="{{ TKPM::route('music.edit', ['id'=>$music['id']]) }}">
+				{{ TKPM::route('music.edit', ['id'=>$music['id']]) }}
 			</a>
 		</li>
 		<li>Efase:
-			<a href="{{ route('music.delete', ['id'=>$music['id']]) }}">
-				{{ route('music.delete', ['id'=>$music['id']]) }}
+			<a href="{{ TKPM::route('music.delete', ['id'=>$music['id']]) }}">
+				{{ TKPM::route('music.delete', ['id'=>$music['id']]) }}
 			</a>
 		</li>
 	</ul>

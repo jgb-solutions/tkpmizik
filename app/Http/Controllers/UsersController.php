@@ -56,7 +56,7 @@ class UsersController extends Controller
 
 	public function postLogin(Request $request)
 	{
-		if (Auth::attempt($request->only('email', 'password'), true)) {
+		if (Auth::attempt($request->only('email', 'password'))) {
 			$user = Auth::user();
 
 			if ($user->admin) {
@@ -87,7 +87,7 @@ class UsersController extends Controller
 	{
 		$user = User::create([
 			'name' 		=> $request->get('name'),
-			'password' 	=> $request->get('password'),
+			'password' 	=> bcrypt($request->get('password')),
 			'email' 		=> $request->get('email'),
 			'telephone' => $request->get('telephone')
 		]);
@@ -300,7 +300,7 @@ class UsersController extends Controller
 		}
 
 		if (!empty($password)) {
-			$user->password = Hash::make($password);
+			$user->password = bcrypt($password);
 		}
 
 		if (!empty($image)) {

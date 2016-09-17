@@ -136,7 +136,7 @@ class TKPM
 		$mp3name = storage_path('app/public/musics/' . $music->mp3name);
 		header('Content-Description: File Transfer');
 	    	header('Content-Type: application/octet-stream');
-	    	header('Content-Disposition: attachment; filename=' . $music->name . '.music' );
+	    	header('Content-Disposition: attachment; filename=' . $music->name . '.mp3' );
 	    	header('Expires: 0');
 	    	header('Cache-Control: must-revalidate');
 	    	header('Pragma: public');
@@ -163,11 +163,10 @@ class TKPM
 
 	public static function sendMail($view, $data, $type)
 	{
-		Mail::queue($view, $data, function($m) use ($data, $type) {
+		Mail::send($view, $data, function($m) use ($data, $type) {
 			extract($data);
 
-			switch ($type)
-			{
+			switch ($type) {
 				case 'user':
 					$email = $user->email;
 					$name = $user->name;
@@ -186,11 +185,6 @@ class TKPM
 				case 'buy':
 					$email = $music->user->email;
 					$name = $music->name;
-				break;
-
-				case 'guest3':
-					$email = $music->userEmail;
-					$name = 'Envite';
 				break;
 
 				case 'guest4':

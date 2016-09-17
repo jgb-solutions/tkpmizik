@@ -14,17 +14,17 @@ class PagesController extends Controller
 			$data = [
 				'featuredMusics' => Music::featured()
 										->published()
-										->take(12)
+										->take(8)
 										->get(),
-				'featuredVideos' => Video::featured()->take(12)->get(),
+				'featuredVideos' => Video::featured()->take(8)->get(),
 				'lastMonthTopMusics'  => Music::lastMonth()
 											->popular()
 											->byPlay()
-											->take(12)
+											->take(8)
 											->get(),
 				'lastMonthTopVideos'  => Video::lastMonth()
 											->popular()
-											->take(12)
+											->take(8)
 											->get(),
 			];
 

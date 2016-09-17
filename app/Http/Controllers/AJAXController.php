@@ -48,8 +48,7 @@ class AJAXController extends Controller
 
 	private function search($id, $obj, $query)
 	{
-		if ( ! empty( $obj ) )
-		{
+		if (! empty($obj) ) {
 			$fn = 'search' . $obj;
 			return $this->$fn($query);
 		}

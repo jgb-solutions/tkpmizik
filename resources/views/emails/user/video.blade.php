@@ -8,23 +8,23 @@
 
 	<ul>
 		<li>Gade/Telechaje:
-			<a href="{{ route('video.show', ['id'=>$video['id']]) }}">
-				{{ route('video.show', ['id'=>$video['id']]) }}
+			<a href="{{ TKPM::route('video.show', ['id'=>$video['id']]) }}">
+				{{ TKPM::route('video.show', ['id'=>$video['id']]) }}
 			</a>
 		</li>
 		<li>Telechaje:
-			<a href="{{ route('video.get', ['id'=>$video['id']]) }}">
-				{{ route('video.get', ['id'=>$video['id']]) }}
+			<a href="{{ TKPM::route('video.get', ['id'=>$video['id']]) }}">
+				{{ TKPM::route('video.get', ['id'=>$video['id']]) }}
 			</a>
 		</li>
 		<li>Modifye:
-			<a href="{{ route('video.edit', ['id'=>$video['id']]) }}">
-				{{ route('video.edit', ['id'=>$video['id']]) }}
+			<a href="{{ TKPM::route('video.edit', ['id'=>$video['id']]) }}">
+				{{ TKPM::route('video.edit', ['id'=>$video['id']]) }}
 			</a>
 		</li>
 		<li>Efase:
-			<a href="{{ route('video.delete', ['id'=>$video['id']]) }}">
-				{{ route('video.delete', ['id'=>$video['id']]) }}
+			<a href="{{ TKPM::route('video.delete', ['id'=>$video['id']]) }}">
+				{{ TKPM::route('video.delete', ['id'=>$video['id']]) }}
 			</a>
 		</li>
 	</ul>

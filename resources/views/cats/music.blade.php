@@ -6,7 +6,7 @@
 		<div class="row bg-black btrr bbrr">
 			<h2 class="text-center">
 				<i class="fa fa-music"></i>
-				Navige tout mizik {{ $cat->name }} yo
+				Navige Tout Mizik {{ $cat->name }} yo
 			</h2>
 		</div>
 

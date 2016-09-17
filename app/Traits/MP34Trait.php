@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use TKPM;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Music;
@@ -17,7 +18,7 @@ trait MP34Trait
 
  	public function category()
  	{
-   		return $this->belongsTo(Category::class);
+   	return $this->belongsTo(Category::class);
  	}
 
    public function scopeSearch($query, $ids, $term)
@@ -71,5 +72,10 @@ trait MP34Trait
 	public function scopeFeatured($query)
 	{
 		$query->whereFeatured(1);
+	}
+
+	public function getEmailAndTweetUrlAttribute()
+	{
+		return TKPM::route('music.emailAndTweet', ['id'=>$this->id]);
 	}
 }

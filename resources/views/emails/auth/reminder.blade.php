@@ -4,6 +4,6 @@
 	<div>
 		Pou Reyinisyalize modpas ou a klike sou lyen sa a:
 		{{ URL::to('password/reset', array($token)) }}.<br/>
-		Lyen sa a ap ekpire nan {{ Config::get('auth.reminder.expire', 120) }} minit.
+		Lyen sa a ap ekpire nan {{ config('auth.reminder.expire', 120) }} minit.
 	</div>
 @include('emails.user.footer')

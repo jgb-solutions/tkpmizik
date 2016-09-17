@@ -7,7 +7,7 @@
 		<div class="row bg-black btrr bbrr">
 			<h2 class="text-center">
 				<i class="fa fa-video-camera"></i>
-				Navige tout videyo {{ $cat->name }} yo
+				Navige Tout Videyo {{ $cat->name }} yo
 			</h2>
 		</div>
 
@@ -23,7 +23,7 @@
 
 		@else
 		<div class="row bg-black btrr bbrr">
-			<h3 class="text-center">Poko gen videyo {{ $cat->name }}</h3>
+			<h3 class="text-center">Poko Gen Videyo {{ $cat->name }}</h3>
 		</div>
 
 		@endif

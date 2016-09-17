@@ -12,10 +12,25 @@ class Music extends Model
 	use MP34Trait;
 
 	protected $table = 'mp3s';
-	protected $appends = ['url', 'title', 'mp3', 'poster', 'download_url'];
+
+	protected $appends = [
+		'url',
+		'title',
+		'mp3',
+		'poster',
+		'download_url',
+		'emailAndTweetUrl'
+	];
 
 	protected $fillable = [
-		'name', 'mp3name', 'image', 'user_id', 'description', 'category_id', 'size', 'slug'
+		'name',
+		'mp3name',
+		'image',
+		'user_id',
+		'description',
+		'category_id',
+		'size',
+		'slug'
 	];
 
 	public function scopePublished($query)

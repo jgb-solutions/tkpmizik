@@ -18,7 +18,9 @@
 						</form>
 					@endforeach
 				@else
-					Ou poko gen lis mizik. <a href="{{route('playlists.create')}}">Kreye youn</a>
+					<p>
+						Ou poko gen lis mizik. <a href="{{route('playlists.create')}}">Kreye youn</a>
+					</p>
 				@endif
 			</div>
 			<div class="modal-footer bg-black bbrr bblr hidden">
