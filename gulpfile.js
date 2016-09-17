@@ -11,13 +11,15 @@ elixir(function(mix) {
      		'vendor/360player.css',
 			'vendor/360player-visualization.css',
          'vendor/jplayer/jplayer.blue.monday.min.css',
-			'vendor/nga.min.css'
+			'vendor/nga.min.css',
+			'vendor/loading-bar.css'
      	], 'public/css/vendor.css')
 
      	.scripts([
          'vendor/jquery.js',
          'vendor/angular.js',
          'vendor/angular-animate.min.js',
+         'vendor/loading-bar.js',
         	// 'vendor/form.min.js',
          'vendor/bootstrap.min.js',
 			'vendor/lazyload.min.js',

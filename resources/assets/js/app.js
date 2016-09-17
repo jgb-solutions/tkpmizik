@@ -275,8 +275,16 @@ $(function() {
 });
 
 /* AngularJS code */
-angular.module('app', ['ngFileUpload', 'ngAnimate'])
+angular.module('app', [
+	'ngFileUpload',
+	'ngAnimate',
+	'chieffancypants.loadingBar'
+])
 
-.config(['$httpProvider',function($httpProvider) {
+.config(['$httpProvider', 'cfpLoadingBarProvider',
+	function($httpProvider, cfpLoadingBarProvider) {
+	// configuring the loading bar
+	cfpLoadingBarProvider.includeSpinner = true;
+
 	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 }]);

@@ -12,7 +12,7 @@ class Video extends Model
 	use MP34Trait;
 
 	protected $table = 'mp4s';
-	protected $appends = ['url'];
+	protected $appends = ['url', 'title'];
 
 	protected $fillable = [
 		'name', 'youtube_id', 'image', 'user_id', 'description', 'category_id', 'slug'
