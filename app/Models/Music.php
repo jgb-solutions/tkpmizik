@@ -50,12 +50,12 @@ class Music extends Model
 
 	public function getUrlAttribute()
 	{
-		return route('music.show', ['id' => $this->id,'name' => $this->slug ]);
+		return TKPM::route('music.show', ['id' => $this->id,'name' => $this->slug ]);
 	}
 
 	public function getMp3Attribute()
 	{
-		return route('music.play', ['id' => $this->id]);
+		return TKPM::route('music.play', ['id' => $this->id]);
 	}
 
 	public function getPosterAttribute()
@@ -70,12 +70,12 @@ class Music extends Model
 
 	public function scopeUrl()
 	{
-		return route('music.show', ['id' => $this->id, 'slug' => $this->slug]);
+		return TKPM::route('music.show', ['id' => $this->id, 'slug' => $this->slug]);
 	}
 
 	public function getDownloadUrlAttribute()
 	{
-		return route('music.get', ['music' => $this->id]);
+		return TKPM::route('music.get', ['music' => $this->id]);
 	}
 
 	// // TNTSearch

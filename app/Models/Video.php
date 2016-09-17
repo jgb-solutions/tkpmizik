@@ -4,6 +4,7 @@ namespace App\Models;
 // use Illuminate\Database\Eloquent\Model;
 
 // use TNTSearch;
+use TKPM;
 use App\Traits\MP34Trait;
 
 class Video extends Model
@@ -19,7 +20,7 @@ class Video extends Model
 
 	public function getUrlAttribute()
 	{
-		return route('video.show', ['id' => $this->id,'name' => $this->slug]);
+		return TKPM::route('video.show', ['id' => $this->id,'name' => $this->slug]);
 	}
 
 	public function getImageUrlAttribute()
