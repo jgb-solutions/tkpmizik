@@ -238,7 +238,7 @@ class TKPM
 		<meta name='description' content='{$object->description}'/>
 
 		<!-- Open Graph -->
-		<meta property='og:title' content='$author {$object->name}' />
+		<meta property='og:title' content='$author {$object->title}' />
 		<meta property='og:description' content='{$object->description}' />
 		<meta property='og:url' content='$url' />
 		<meta property='og:image' content='$image' />
@@ -273,7 +273,7 @@ class TKPM
 			$status = '#NouvoVideyo ';
 		}
 
-		$status .= "$obj->name " . $obj->url .
+		$status .= "$obj->title " . $obj->url .
 					" via @TKPMizik @TiKwenPam #" . $obj->category->slug;
 
         	Twitter::postTweet([
