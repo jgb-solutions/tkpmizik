@@ -8,7 +8,7 @@
 			<div class="modal-body">
 				@if (count($playlists))
 					@foreach($playlists as $playlist)
-						<form action="{{route('playlist.add', ['id'=>$playlist, 'music'=>$music->id])}}" method="POST" class="form-inline" role="form">
+						<form action="{{TKPM::route('playlist.add', ['id'=>$playlist, 'music'=>$music->id])}}" method="POST" class="form-inline" role="form">
 							<p>
 								<button type="submit" class="btn btn-primary btn-block">
 									({{$playlist->mList->count()}}) {{$playlist->name}} <i class="fa fa-plus pull-right"></i>
@@ -19,7 +19,7 @@
 					@endforeach
 				@else
 					<p>
-						Ou poko gen lis mizik. <a href="{{route('playlists.create')}}">Kreye youn</a>
+						Ou poko gen lis mizik. <a href="{{TKPM::route('playlists.create')}}">Kreye youn</a>
 					</p>
 				@endif
 			</div>
