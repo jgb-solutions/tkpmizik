@@ -86,20 +86,27 @@ class ViewComposer
 				$user->totalcount 	= $user->musics_count + $user->videos_count;
 			});
 
-			$users->sort(function($a, $b) {
-				$a = (int) $a->totalcount;
-				$b = (int) $b->totalcount;
+			// $users->sort(function($a, $b) {
+			// 	$a = (int) $a->totalcount;
+			// 	$b = (int) $b->totalcount;
 
-				if ($a == $b) {
-					return 0;
-				}
+			// 	if ($a == $b) {
+			// 		return 0;
+			// 	}
 
-				return ($a > $b) ? 1 : -1;
-			});
+			// 	return ($a > $b) ? 1 : -1;
+			// });
 
 			// $reverse_users = $users->reverse();
 
 			// $users = $reverse_users->slice(0, 5);
+
+			$sortedUsers = $users->sortBy(function($user) {
+				return $user->totalcount;
+			});
+
+			return $sortedUsers;
+
 			$slicedUsers = $users->slice(0, 10);
 
 			return $slicedUsers;
