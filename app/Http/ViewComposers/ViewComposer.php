@@ -79,7 +79,7 @@ class ViewComposer
 
 	public function topUsersModule(View $view)
 	{
-		$users = Cache::get('top.users', function() {
+		$users = Cache::rememberForever('top.users', function() {
 			$users = User::withCount('musics', 'videos')->get();
 
 			$users->each(function($user) {
@@ -101,11 +101,9 @@ class ViewComposer
 			// $reverse_users = $users->reverse();
 
 			// $users = $reverse_users->slice(0, 5);
-			$users = $users->slice(0, 10);
+			$slicedUsers = $users->slice(0, 10);
 
-			Cache::put('top.users', $users, 120);
-
-			return $users;
+			return $slicedUsers;
 		});
 
 		$view->with(compact('users'));
