@@ -123,14 +123,14 @@ class VideoController extends Controller
 	{
 		$key = '_video_show_' . $id;
 
-		$data = Cache::get($key, function() use ($id, $key) {
+		$data = Cache::rememberForever($key, function() use ($id, $key) {
 			$video = Video::with('user', 'category')->findOrFail($id);
 
 			// $video->views += 1;
 			// $video->save();
 
 			$related = Video::related($video)
-				->get(['id', 'name', 'image', 'download', 'views', 'slug']);
+				->get(['id', 'name', 'image', 'download', 'views', 'slug', 'youtube_id']);
 			// return $related;
 
 			$author = $video->user->username ? '@' . $video->user->username . ' &mdash;' : $video->user->name . ' &mdash; ';
@@ -140,8 +140,6 @@ class VideoController extends Controller
 				'related' => $related,
 				'author' => $author
 			];
-
-			Cache::put($key, $data, 120);
 
 			return $data;
 		});
