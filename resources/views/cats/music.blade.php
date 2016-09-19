@@ -16,7 +16,10 @@
 		<br>
 
 		@if (count( $musics ))
-			@include('music.grid-12')
+			@foreach ($musics as $type)
+				@include('inc.cat-search.grid-3')
+			@endforeach
+
 			<div class="text-center">
 				{{ $musics->links() }}
 			</div>
