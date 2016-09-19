@@ -83,7 +83,7 @@ class ViewComposer
 			$users = User::withCount('musics', 'videos')->get();
 
 			$users->each(function($user) {
-				$user->totalcount 	= $user->musicsCount + $user->videosCount;
+				$user->totalcount 	= $user->musics_count + $user->videos_count;
 				print_r($user->totalcount);
 			});
 
