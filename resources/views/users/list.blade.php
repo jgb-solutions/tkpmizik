@@ -9,9 +9,8 @@
 	 			@if ($user->image)
 
 	 			<img
-	 				data-original="{{ TKPM::asset($user->image, 'thumbs') }}"
-	 				class="pull-left img-thumbnail img-responsive lazy"
-	 			>
+	 				src="{{ TKPM::asset($user->image, 'thumbs') }}"
+	 				class="pull-left img-thumbnail img-responsive">
 	 			@else
 
 	 				<h3 class="list-group-item-heading text-center">
