@@ -80,12 +80,11 @@ class ViewComposer
 	public function topUsersModule(View $view)
 	{
 		$users = Cache::get('top.users', function() {
-			$users = User::with('musics', 'videos')->get();
+			$users = User::withCount('musics', 'videos')->get();
 
 			$users->each(function($user) {
-				$user->musicCount  = $user->musics->count();
-				$user->videoCount 	= $user->videos->count();
-				$user->totalcount 	= $user->musicCount + $user->videoCount;
+				$user->totalcount 	= $user->musicsCount + $user->videosCount;
+				print_r($user->totalcount);
 			});
 
 			$users->sort(function($a, $b) {
