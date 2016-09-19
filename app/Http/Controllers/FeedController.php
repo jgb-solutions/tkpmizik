@@ -94,7 +94,8 @@ class FeedController extends Controller
 		}
 
 		$feed = (string) $feed;
-		Replace a couple items to make the feed more compliant
+
+		// Replace a couple items to make the feed more compliant
 		$feed = str_replace(
 			'<rss version="2.0">',
 			'<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">',
