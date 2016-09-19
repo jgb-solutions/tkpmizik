@@ -21,7 +21,9 @@
 	<br>
 
 	@if( $musiccount > 0 )
-		@include('music.grid-12')
+		@foreach ( $musics as $music )
+			@include('inc.music.grid-3')
+		@endforeach
 
 		<div class="text-center">
 			{{ $musics->links() }}

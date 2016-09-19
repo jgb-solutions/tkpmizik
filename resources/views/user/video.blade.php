@@ -22,7 +22,9 @@
 
 	@if( $videocount > 0 )
 
-	@include('video.grid-12')
+		@foreach ( $videos as $video )
+			@include('inc.video.grid-3')
+		@endforeach
 
 	<div class="text-center">
 		{{ $videos->links() }}
