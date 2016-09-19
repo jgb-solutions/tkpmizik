@@ -24,7 +24,7 @@
 
 	@if ($musiccount)
 
-		@include('music.grid-12')
+		@include('inc.cat-search.grid-3')
 
 		<div class="text-center">
 			<a href="{{ route('user.musics') }}" class="btn btn-primary btn-lg">
@@ -52,7 +52,7 @@
 
 		<hr>
 
-		@include('video.grid-12')
+		@include('inc.video.grid-3')
 
 		<div class="text-center">
 			<p>
