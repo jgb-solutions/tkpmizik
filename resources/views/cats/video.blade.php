@@ -19,7 +19,7 @@
 
 		@if(count($videos))
 
-		@include('video.grid-12')
+		@include('inc.cat-search.grid-3')
 
 		<div class="text-center">
 			{{ $videos->links() }}

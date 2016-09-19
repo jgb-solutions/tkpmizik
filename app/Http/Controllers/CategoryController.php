@@ -127,7 +127,7 @@ class CategoryController extends Controller
 
 			return [
 				'cat' 	=> $cat,
-				'musics' 	=> $cat->musics()->paginate(10),
+				'musics' 	=> $cat->musics()->paginate(24),
 				// 'musics' 	=> $cat->musics()->published()->latest()->paginate(10),
 				'title' => $cat->name
 			];
@@ -156,7 +156,7 @@ class CategoryController extends Controller
 
 			return [
 				'cat' 	=> $cat,
-				'videos' 	=> $cat->videos()->paginate(10),
+				'videos' 	=> $cat->videos()->paginate(24),
 				'title' => $cat->name
 			];
 		});
