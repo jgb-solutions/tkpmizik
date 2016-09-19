@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => config('site.email'), 'name' => config('site.name')],
 
     /*
     |--------------------------------------------------------------------------
