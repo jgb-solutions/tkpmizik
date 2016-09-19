@@ -131,7 +131,7 @@
 					enctype="multipart/form-data"
 					class="form-horizontal"
 					ng-submit="uploadMusic()"
-					novalidate>
+					novalidate action="{{TKPM::route('music.store')}}">
 
 					<div class="form-group"
 						ng-class="{
