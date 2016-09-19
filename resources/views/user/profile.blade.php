@@ -23,8 +23,9 @@
 	<br>
 
 	@if ($musiccount)
-
-		@include('inc.music.grid-3')
+		@foreach ( $musics as $music )
+			@include('inc.music.grid-3')
+		@endforeach
 
 		<div class="text-center">
 			<a href="{{ route('user.musics') }}" class="btn btn-primary btn-lg">
@@ -51,8 +52,9 @@
 		@if ( $videocount > 0 )
 
 		<hr>
-
-		@include('inc.video.grid-3')
+		@foreach ( $videos as $video )
+			@include('inc.video.grid-3')
+		@endforeach
 
 		<div class="text-center">
 			<p>
