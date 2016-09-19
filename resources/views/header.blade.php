@@ -16,13 +16,13 @@
 	<link
 		rel="alternate"
 		type="application/rss+xml"
-		href="{{ route('feed.music')}}"
+		href="{{ TKPM::route('feed.music')}}"
 		title="Music RSS Feed {{ config('site.name') }}">
 
 	<link
 		rel="alternate"
 		type="application/rss+xml"
-		href="{{ route('feed.video')}}"
+		href="{{ TKPM::route('feed.video')}}"
 		title="Video RSS Feed {{ config('site.name') }}">
 
 	@include('inc.seo')
