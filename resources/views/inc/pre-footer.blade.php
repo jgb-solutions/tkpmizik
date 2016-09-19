@@ -21,8 +21,8 @@
 			@include('modules.top-videos')
 		</div>
 
-		<div class="col-sm-4">
+		{{-- <div class="col-sm-4">
 			@include('modules.top-users')
-		</div>
+		</div> --}}
 	</div>
 </div>

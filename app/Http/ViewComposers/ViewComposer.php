@@ -79,39 +79,39 @@ class ViewComposer
 
 	public function topUsersModule(View $view)
 	{
-		$users = Cache::rememberForever('top.users', function() {
-			$users = User::withCount('musics', 'videos')->has('musics', 'videos')->get();
+		// $users = Cache::rememberForever('top.users', function() {
+		// 	$users = User::withCount('musics', 'videos')->has('musics', 'videos')->get();
 
-			$users->each(function($user) {
-				$user->totalcount 	= $user->musics_count + $user->videos_count;
-			});
+		// 	$users->each(function($user) {
+		// 		$user->totalcount 	= $user->musics_count + $user->videos_count;
+		// 	});
 
-			// $users->sort(function($a, $b) {
-			// 	$a = (int) $a->totalcount;
-			// 	$b = (int) $b->totalcount;
+		// 	// $users->sort(function($a, $b) {
+		// 	// 	$a = (int) $a->totalcount;
+		// 	// 	$b = (int) $b->totalcount;
 
-			// 	if ($a == $b) {
-			// 		return 0;
-			// 	}
+		// 	// 	if ($a == $b) {
+		// 	// 		return 0;
+		// 	// 	}
 
-			// 	return ($a > $b) ? 1 : -1;
-			// });
+		// 	// 	return ($a > $b) ? 1 : -1;
+		// 	// });
 
-			// $reverse_users = $users->reverse();
+		// 	// $reverse_users = $users->reverse();
 
-			// $users = $reverse_users->slice(0, 5);
+		// 	// $users = $reverse_users->slice(0, 5);
 
-			$sortedUsers = $users->sortBy(function($user) {
-				return $user->totalcount;
-			});
+		// 	$sortedUsers = $users->sortBy(function($user) {
+		// 		return $user->totalcount;
+		// 	});
 
-			dd($sortedUsers);
+		// 	dd($sortedUsers);
 
-			$slicedUsers = $users->slice(0, 10);
+		// 	$slicedUsers = $users->slice(0, 10);
 
-			return $slicedUsers;
-		});
+		// 	return $slicedUsers;
+		// });
 
-		$view->with(compact('users'));
+		// $view->with(compact('users'));
 	}
 }
