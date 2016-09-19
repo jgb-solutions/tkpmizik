@@ -140,6 +140,6 @@ class FeedController extends Controller
 			    ->appendTo($channel);
 			}
 
-		return $feed->render(); // or echo $feed->render();
+		return (string) $feed; // or echo $feed->render();
 	}
 }
