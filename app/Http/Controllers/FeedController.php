@@ -105,7 +105,7 @@ class FeedController extends Controller
 		$feed = str_replace(
 			'<channel>',
 			'<channel>
-			<atom:link href="'. url(config('site.url') . "/feed/$type") . '" rel="self" type="application/rss+xml" />',
+			<atom:link href="'. secure_url(config('site.url') . "/feed/$type") . '" rel="self" type="application/rss+xml" />',
 			$feed
 		);
 
