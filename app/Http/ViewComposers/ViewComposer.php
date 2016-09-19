@@ -105,7 +105,7 @@ class ViewComposer
 				return $user->totalcount;
 			});
 
-			print_r($sortedUsers);
+			dd($sortedUsers);
 
 			$slicedUsers = $users->slice(0, 10);
 
