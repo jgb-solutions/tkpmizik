@@ -68,47 +68,78 @@ class FeedController extends Controller
 	protected function buildRssData($objs, $type, $hash)
 	{
 		$now 		= Carbon::now();
-		$feed 		= new Feed();
-		$channel 	= new Channel();
+		// $feed 		= new Feed();
+		// $channel 	= new Channel();
 
-		$channel->title(config('site.name'))
-				->description(config('site.description'))
-				->url(config('site.url'))
-				->language('ht')
-				->copyright('2012 - ' . date('Y') . ' ' . config('site.name') . ', Tout Dwa Rezève.')
-				->lastBuildDate($now->timestamp)
-				->appendTo($feed);
+		// $channel->title(config('site.name'))
+		// 		->description(config('site.description'))
+		// 		->url(config('site.url'))
+		// 		->language('ht')
+		// 		->copyright('2012 - ' . date('Y') . ' ' . config('site.name') . ', Tout Dwa Rezève.')
+		// 		->lastBuildDate($now->timestamp)
+		// 		->appendTo($feed);
 
-		foreach ($objs as $obj)
-		{
+		// foreach ($objs as $obj)
+		// {
+		// 	$item = new Item();
+
+		// 	$title = "#Nouvo$hash $obj->name #{$obj->category->slug} via @TKPMizik @TiKwenPam";
+
+		// 	$item->title($title)
+		// 		->description($obj->description)
+		// 		->url($obj->url)
+		// 		->pubDate($obj->created_at->timestamp)
+		// 		->guid($obj->url, true)
+		// 		->appendTo($channel);
+		// }
+
+		// $feed = (string) $feed;
+
+		// // Replace a couple items to make the feed more compliant
+		// $feed = str_replace(
+		// 	'<rss version="2.0">',
+		// 	'<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">',
+		// 	$feed
+		// );
+
+		// $feed = str_replace(
+		// 	'<channel>',
+		// 	'<channel>
+		// 	<atom:link href="'. secure_url(config('site.url') . "/feed/$type") . '" rel="self" type="application/rss+xml" />',
+		// 	$feed
+		// );
+
+		// return $feed;
+
+		$feed = new Feed();
+
+		$channel = new Channel();
+		$channel
+		    ->title(config('site.name'))
+		    ->description(config('site.description'))
+		    ->url(config('site.url'))
+		    ->language('ht-HT')
+		    ->copyright('2012 - ' . date('Y') . ' ' . config('site.name') . ', Tout Dwa Rezève.')
+		    ->pubDate(Carbon::now())
+		    ->lastBuildDate(Carbon::now())
+		    ->ttl(60)
+		    // ->pubsubhubbub('http://example.com/feed.xml', 'http://pubsubhubbub.appspot.com') // This is optional. Specify PubSubHubbub discovery if you want.
+		    ->appendTo($feed);
+
+		foreach ($objs as $obj) {
 			$item = new Item();
+			$item
+			    ->title($obj->title)
+			    ->description($obj->description)
+			    // ->contentEncoded('<div>Blog body</div>')
+			    ->url($obj->url)
+			    ->author($obj->user->name)
+			    ->pubDate($obj->create_at)
+			    ->guid($obj->url, true)
+			    ->preferCdata(true) // By this, title and description become CDATA wrapped HTML.
+			    ->appendTo($channel);
+			}
 
-			$title = "#Nouvo$hash $obj->name #{$obj->category->slug} via @TKPMizik @TiKwenPam";
-
-			$item->title($title)
-				->description($obj->description)
-				->url($obj->url)
-				->pubDate($obj->created_at->timestamp)
-				->guid($obj->url, true)
-				->appendTo($channel);
-		}
-
-		$feed = (string) $feed;
-
-		// Replace a couple items to make the feed more compliant
-		$feed = str_replace(
-			'<rss version="2.0">',
-			'<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">',
-			$feed
-		);
-
-		$feed = str_replace(
-			'<channel>',
-			'<channel>
-			<atom:link href="'. secure_url(config('site.url') . "/feed/$type") . '" rel="self" type="application/rss+xml" />',
-			$feed
-		);
-
-		return $feed;
+		return $feed; // or echo $feed->render();
 	}
 }
