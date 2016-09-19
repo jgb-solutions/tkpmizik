@@ -151,7 +151,7 @@
 								ngf-max-size="64MB"
 								ng-required="true"
 								id="music">
-								Chwazi Mizik La <i class="fa fa-cloud-upload pull-right"></i>
+								Chwazi Mizik La <i class="fa fa-cloud-upload"></i>
 							</button>
 							<div class="panel panel-danger marginTop1em nga-default nga-stagger nga-fade"
 								ng-show="uploadForm.music.$invalid && uploadForm.music.$touched">
@@ -190,7 +190,7 @@
 								{{-- ngf-resize="{width: 100, height: 100}" --}}
 								ng-required="true"
 								id="imagefile">
-									Chwazi Yon Imaj <i class="fa fa-cloud-upload pull-right"></i>
+									Chwazi Yon Imaj <i class="fa fa-cloud-upload"></i>
 							</button>
 							<div class="panel panel-danger marginTop1em nga-default nga-stagger nga-fade"
 								ng-show="uploadForm.image.$invalid && uploadForm.image.$touched">
