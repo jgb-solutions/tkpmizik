@@ -1,7 +1,7 @@
 <div class="list-group">
   	<a class="list-group-item bg-black">
     	<h4 class="white">
-    		<i class="fa fa-video-camera"></i> Videyo Ki  Plis Telechaje
+    		<i class="fa fa-video-camera"></i> Videyo Plis Telechaje
     	</h4>
   	</a>
 

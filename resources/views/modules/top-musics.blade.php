@@ -1,7 +1,7 @@
 <div class="list-group">
   	<a class="list-group-item bg-black">
     	<h4 class="white">
-    		<i class="fa fa-music"></i> Mizik Ki Plis Telechaje
+    		<i class="fa fa-music"></i> Mizik Plis Telechaje
     	</h4>
   	</a>
 
