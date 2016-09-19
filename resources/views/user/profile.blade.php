@@ -24,7 +24,7 @@
 
 	@if ($musiccount)
 
-		@include('inc.cat-search.grid-3')
+		@include('inc.music.grid-3')
 
 		<div class="text-center">
 			<a href="{{ route('user.musics') }}" class="btn btn-primary btn-lg">
