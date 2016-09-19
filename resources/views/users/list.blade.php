@@ -22,12 +22,12 @@
 	 		<div class="col-xs-8">
   			<h4 class="list-group-item-heading">{{ $user->firstname }}</h4>
   			<p class="list-group-item-text">
-  				gen {{ $user->musicCount }}
+  				gen {{ $user->musics_count }}
   				<span class="visible-xs-inline">
   					Mizik
   				</span>
   				<i class="fa fa-music"></i>
-  				ak {{ $user->videoCount }}
+  				ak {{ $user->videos_count }}
   				<span class="visible-xs-inline">
   					Videyo
   				</span>
