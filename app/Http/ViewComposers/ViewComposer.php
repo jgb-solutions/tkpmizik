@@ -84,7 +84,6 @@ class ViewComposer
 
 			$users->each(function($user) {
 				$user->totalcount 	= $user->musics_count + $user->videos_count;
-				print_r($user->totalcount);
 			});
 
 			$users->sort(function($a, $b) {
