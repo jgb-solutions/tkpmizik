@@ -108,7 +108,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
 	Route::get('itilizate', ['as' => 'users','uses' => 'AdminController@users']);
 });
 
-Route::get('test', function() {
-	$music = App\Models\Music::find(198);
-	return $music->load('user');
-});
+// Route::get('test', function() {
+// 	$music = App\Models\Music::find(198);
+// 	return $music->load('user');
+// });
