@@ -5,7 +5,7 @@
 			  	<img
 					class="img-reponsive full-width"
 					alt="{{ $type->name }}"
-					src="{{ TKPM::asset($type->image, 'thumbs') }}">
+					src="{{ $type == 'music' ? TKPM::asset($type->image, 'thumbs') : $type->imageUrl }}">
 		</a>
 		<div class="text-center">
 		  	<h5 class="oneLiner">
