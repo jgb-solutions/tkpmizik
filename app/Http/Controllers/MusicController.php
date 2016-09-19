@@ -26,8 +26,6 @@ class MusicController extends Controller
 
 	public function __construct()
 	{
-		$this->user = Auth::user();
-
 		$this->middleware('auth')->except([
 			'index',
 			'listBuy',

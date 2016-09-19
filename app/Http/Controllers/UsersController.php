@@ -122,10 +122,10 @@ class UsersController extends Controller
 		$user = Auth::user();
 		$key = '_profile_user_data_' . $user->id;
 
-		$data = Cache::get($key, function() use ($key, $user) {
+		$data = Cache::rememberForever($key, function() use ($key, $user) {
 			$data = [
-				'musics' 				=> $user->musics()->latest()->take(5)->get(),
-				'videos'				=> $user->videos()->latest()->take(5)->get(),
+				'musics' 				=> $user->musics()->latest()->take(6)->get(),
+				'videos'				=> $user->videos()->latest()->take(6)->get(),
 				'musiccount' 			=> $user->musics()->count(),
 				'videocount' 			=> $user->videos()->count(),
 				'musicViewsCount' 		=> $user->musics()->sum('views'),
@@ -138,8 +138,6 @@ class UsersController extends Controller
 				'user'				=> $user,
 				'author'				=> $user->username ? '@' . $user->username . ' &mdash;' : $user->name . ' &mdash; '
 			];
-
-			Cache::put($key, $data, 120);
 
 			return $data;
 		});
@@ -162,7 +160,7 @@ class UsersController extends Controller
 		$title .= ' Yo';
 
 		$data = [
-			'musics' 				=> $user->musics()->remember(5)->latest()->paginate(10),
+			'musics' 				=> $user->musics()->remember(5)->latest()->paginate(12),
 			// 'musics' 				=> $user->musics()->latest()->paginate(10),
 			'musiccount' 			=> $user_musics->count(),
 			'videocount' 			=> $user_videos->count(),
@@ -196,7 +194,7 @@ class UsersController extends Controller
 		$title .= ' Yo';
 
 		$data = [
-			'videos' 				=> $user->videos()->remember(5)->latest()->paginate(10),
+			'videos' 				=> $user->videos()->remember(5)->latest()->paginate(12),
 			// 'videos' 				=> $user->videos()->latest()->paginate(10),
 			'musiccount' 			=> $user_musics->count(),
 			'videocount' 			=> $user_videos->count(),
