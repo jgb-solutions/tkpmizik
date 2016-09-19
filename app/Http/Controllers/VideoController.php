@@ -34,7 +34,7 @@ class VideoController extends Controller
 	public function index()
 	{
 		$data = [
-			'videos' => Video::remember(120)->latest()->paginate(10),
+			'videos' => Video::remember(120)->latest()->paginate(12),
 			// 'videos' => Video::latest()->paginate(10),
 		];
 
