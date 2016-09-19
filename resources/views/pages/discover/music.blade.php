@@ -1,5 +1,9 @@
 @extends('layout.pages')
 
+@section('title')
+	{{ $title = "Dekouvri Mizik"}}
+@stop
+
 @section('content')
 
 	<div class="col-sm-12">

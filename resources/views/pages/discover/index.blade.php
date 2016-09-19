@@ -1,5 +1,9 @@
 @extends('layout.pages')
 
+@section('title')
+	{{ $title = "Dekouvri Mizik ak Videyo"}}
+@stop
+
 @section('content')
 
 	@if($musics->count())

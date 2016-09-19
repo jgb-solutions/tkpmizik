@@ -1,12 +1,15 @@
 @extends('layout.main')
 
+@section('title')
+	{{ $title = "Navige Tout Mizik $cat->name yo"}}
+@stop
 @section('content')
 
 	<div class="col-sm-8">
 		<div class="row bg-black btrr bbrr">
 			<h2 class="text-center">
 				<i class="fa fa-music"></i>
-				Navige Tout Mizik {{ $cat->name }} yo
+				{{ $title }}
 			</h2>
 		</div>
 

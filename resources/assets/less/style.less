@@ -10,7 +10,7 @@ body {
 	max-width: 810px;
 	box-shadow: 0px 0px 5px #000;
 	border-radius: 6px;
-	background-color: #F7F7F7;
+	background-color: #F1F2F1; //#F7F7F7;
 }
 
 #footer {
@@ -137,6 +137,7 @@ a.navbar-brand {
 .box-shadow {
 	box-shadow: 0px 0px 5px rgb(0, 0, 0);
 	margin-bottom: 15px;
+	overflow: hidden;
 }
 
 ul.navbar-nav,
@@ -153,10 +154,10 @@ a:focus {
 		min-height: 104.167px;
 	}
 
-	.box-shadow {
-		height: 104.167px;
-		overflow: hidden;
-	}
+	// .box-shadow {
+	// 	height: 104.167px;
+	// 	overflow: hidden;
+	// }overflow: hidden
 
 	.logo-mizik {
 		display: none !important;
@@ -293,3 +294,16 @@ body, html {
 .jp-controls-holder {
    left: -40px !important;
 }
+
+// Setting the title to be one line
+.oneLiner {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+// make thumbnails square
+// .square-thumb {
+// 	width: 150px;
+// 	height: 150px;
+// }

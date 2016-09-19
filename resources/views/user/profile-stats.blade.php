@@ -5,7 +5,7 @@
 			<h3 class="text-center">{{ $user->name }}</h3>
 	@if ( $user->telephone )
 		<br>
-		<p>
+		<p class="text-center">
 			<small>
 				<a
 					class="btn btn-success"

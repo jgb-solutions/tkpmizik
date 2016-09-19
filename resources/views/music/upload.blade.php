@@ -142,7 +142,7 @@
 							<i class="fa fa-music fa-2x"></i>
 						</label>
 						<div class="col-sm-8 col-xs-10">
-							<button class="btn btn-warning btn-lg"
+							<button class="btn btn-warning btn-lg btn-block"
 								ngf-select
 								ng-model="data.music"
 								name="music"
@@ -151,7 +151,7 @@
 								ngf-max-size="64MB"
 								ng-required="true"
 								id="music">
-								Chwazi Mizik La <i class="fa fa-cloud-upload"></i>
+								Chwazi Mizik La <i class="fa fa-cloud-upload pull-right"></i>
 							</button>
 							<div class="panel panel-danger marginTop1em nga-default nga-stagger nga-fade"
 								ng-show="uploadForm.music.$invalid && uploadForm.music.$touched">
@@ -175,12 +175,12 @@
 					</div>
 
 					<div class="form-group"
-						ng-class="{'has-error':uploadForm.image.$invalid &&
-						uploadForm.image.$touched,
-						'has-success':uploadForm.image.$valid}">
+						ng-class="{
+							'has-error':uploadForm.image.$invalid && uploadForm.image.$touched,
+							'has-success':uploadForm.image.$valid}">
 						<label for="imagefile" class="col-sm-4 col-xs-2 control-label"><i class="fa fa-image fa-2x"></i></label>
 						<div class="col-sm-8 col-xs-10">
-							<button class="btn btn-info btn-lg"
+							<button class="btn btn-info btn-lg btn-block"
 								ngf-select ng-model="data.image"
 								name="image"
 								ngf-pattern="'image/*'"
@@ -190,7 +190,7 @@
 								{{-- ngf-resize="{width: 100, height: 100}" --}}
 								ng-required="true"
 								id="imagefile">
-									Chwazi Yon Imaj <i class="fa fa-cloud-upload"></i>
+									Chwazi Yon Imaj <i class="fa fa-cloud-upload pull-right"></i>
 							</button>
 							<div class="panel panel-danger marginTop1em nga-default nga-stagger nga-fade"
 								ng-show="uploadForm.image.$invalid && uploadForm.image.$touched">

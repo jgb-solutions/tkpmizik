@@ -194,71 +194,71 @@ $(function() {
 
 	vote();
 
-	// AJAX Upload
-	var options = {
-	   beforeSend: function() {
-			//clear everything
-			$('#progress').show();
-			$('.progress-bar').html('0%');
-			$('.progress-bar').width('0%');
-			$('#upMessage').empty();
-			submitButton = $('#submitButton');
+	// // AJAX Upload
+	// var options = {
+	//    beforeSend: function() {
+	// 		//clear everything
+	// 		$('#progress').show();
+	// 		$('.progress-bar').html('0%');
+	// 		$('.progress-bar').width('0%');
+	// 		$('#upMessage').empty();
+	// 		submitButton = $('#submitButton');
 
-			if (submitButton.attr('disabled') == 'disabled') {
-				e.preventDefault();
-			} else {
-				submitButton.attr('disabled', 'disabled');
-			}
+	// 		if (submitButton.attr('disabled') == 'disabled') {
+	// 			e.preventDefault();
+	// 		} else {
+	// 			submitButton.attr('disabled', 'disabled');
+	// 		}
 
-			submitButton.attr('disabled', 'disabled');
-			buttonText = submitButton.html();
-			$ajaxLoaderImg	= '<img src="/images/ajax-loader.gif">';
-			submitButton.html( $ajaxLoaderImg );
-	    },
-	    uploadProgress: function(event, position, total, percentComplete) {
-	        $('.progress-bar').width(percentComplete + '%');
-	        $('.progress-bar').html(percentComplete + '%');
-	    },
-	    success: function() {
-	        $('.progress-bar').width('100%');
-	        $('.progress-bar').html('100%');
+	// 		submitButton.attr('disabled', 'disabled');
+	// 		buttonText = submitButton.html();
+	// 		$ajaxLoaderImg	= '<img src="/images/ajax-loader.gif">';
+	// 		submitButton.html( $ajaxLoaderImg );
+	//     },
+	//     uploadProgress: function(event, position, total, percentComplete) {
+	//         $('.progress-bar').width(percentComplete + '%');
+	//         $('.progress-bar').html(percentComplete + '%');
+	//     },
+	//     success: function() {
+	//         $('.progress-bar').width('100%');
+	//         $('.progress-bar').html('100%');
 
-	        submitButton.html( buttonText );
+	//         submitButton.html( buttonText );
 
-	    },
-	    complete: function(response) {
-	        var res = $.parseJSON( response.responseText );
+	//     },
+	//     complete: function(response) {
+	//         var res = $.parseJSON( response.responseText );
 
-	        if ( res.success === true ) {
-	        	// console.log( res.url );
-	        	window.location.href = res.url;
-	        }
-	    },
-	    error: function(response) {
-	    	var errors = $.parseJSON(response.responseText);
-	      var messages = '';
+	//         if ( res.success === true ) {
+	//         	// console.log( res.url );
+	//         	window.location.href = res.url;
+	//         }
+	//     },
+	//     error: function(response) {
+	//     	var errors = $.parseJSON(response.responseText);
+	//       var messages = '';
 
-	    	console.log(errors);
+	//     	console.log(errors);
 
-	    	$('#progress').slideUp();
-	        	$('#upMessage').parent().removeClass('hide-panel');
+	//     	$('#progress').slideUp();
+	//         	$('#upMessage').parent().removeClass('hide-panel');
 
-        		$.each(errors, function(index, val) {
-        			$.each(val, function(index, val) {
-    					messages += '<li class="list-group-item transparent">' + val + '</li>';
-        			});
-        		});
+ //        		$.each(errors, function(index, val) {
+ //        			$.each(val, function(index, val) {
+ //    					messages += '<li class="list-group-item transparent">' + val + '</li>';
+ //        			});
+ //        		});
 
-        		$('#upMessage').html( messages );
-	    }
-	};
+ //        		$('#upMessage').html( messages );
+	//     }
+	// };
 
 	/********* Confirmation on file deletion **********/
 	$('input[name=del]').on('click', function() {
 		$(this).siblings('small').toggleClass('hide');
 	});
 
-	$("img.lazy").lazyload();
+	// $("img.lazy").lazyload();
 
 	slideAlert();
 
@@ -271,6 +271,9 @@ $(function() {
 			$this.attr('disabled', 'disabled');
 		}
 	});
+
+	$fakecropped = $('.fakecrop-fill img');
+	$fakecropped.height($fakecropped.width());
 
 });
 

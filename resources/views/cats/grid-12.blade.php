@@ -1,5 +1,5 @@
 @foreach ($results as $type)
-<div class="col-sm-12">
+{{-- <div class="col-sm-12">
 	<a href="{{ $type->url }}">
 		<div class="row box-shadow btlr btrr bbrr bblr">
 			<div class="col-sm-4 col-xs-4">
@@ -31,5 +31,6 @@
 			</div>
 		</div>
 	</a>
-</div>
+</div> --}}
+@include('inc.cat-search.grid-3')
 @endforeach

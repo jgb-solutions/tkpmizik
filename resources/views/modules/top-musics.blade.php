@@ -12,12 +12,12 @@
 				<span class="badge">
 					{{ $music->play }}
 					<i class="fa fa-play"></i>
-					-
+					&nbsp;
 					{{ $music->download }}
 					<i class="fa fa-download"></i>
-					-
+					{{-- -
 					{{ $music->vote_up }}
-					<i class="fa fa-thumbs-up"></i>
+					<i class="fa fa-thumbs-up"></i> --}}
 
 				</span>
 				{{ $music->name }}

@@ -1,5 +1,9 @@
 @extends('layout.pages')
 
+@section('title')
+	{{ $title = "Dekouvri Videyo"}}
+@stop
+
 @section('content')
 		<div class="col-sm-12">
 		@if($videos->count())

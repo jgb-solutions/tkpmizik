@@ -43,7 +43,7 @@ class MusicController extends Controller
 	public function index()
 	{
 		$data = [
-			'musics'	=> Music::remember(120)->latest()->published()->paginate(10),
+			'musics'	=> Music::remember(120)->latest()->published()->paginate(12),
 			// 'musics'	=> Music::latest()->published()->paginate(10),
 		];
 
@@ -53,7 +53,7 @@ class MusicController extends Controller
 	public function listBuy()
 	{
 		$data = [
-			'musics'	=> Music::remember(120)->latest()->published()->paid()->paginate(10),
+			'musics'	=> Music::remember(120)->latest()->published()->paid()->paginate(12),
 			// 'musics'	=> Music::latest()->published()->paid()->paginate(10),
 			'title'	=> 'Mizik Pou Vann'
 		];
@@ -81,6 +81,7 @@ class MusicController extends Controller
 	        		} else {
 	        		 	$response = [
 	        				'success' => true,
+	        				'emailedAndTweeted' => true,
 	        				'id' => $storedmusic->id,
         		 			'url' => $storedmusic->url,
 	        		 		'emailAndTweetUrl' => $storedmusic->emailAndTweetUrl

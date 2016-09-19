@@ -12,7 +12,8 @@ elixir(function(mix) {
 			'vendor/360player-visualization.css',
          'vendor/jplayer/jplayer.blue.monday.min.css',
 			'vendor/nga.min.css',
-			'vendor/loading-bar.css'
+			'vendor/loading-bar.css',
+			// 'vendor/jquery.nailthumb.1.1.min.css'
      	], 'public/css/vendor.css')
 
      	.scripts([
@@ -22,7 +23,7 @@ elixir(function(mix) {
          'vendor/loading-bar.js',
         	// 'vendor/form.min.js',
          'vendor/bootstrap.min.js',
-			'vendor/lazyload.min.js',
+			// 'vendor/lazyload.min.js',
 			'vendor/soundmanager2.js',
 			'vendor/berniecode-animator.js',
 			'vendor/360player.js',
@@ -30,6 +31,8 @@ elixir(function(mix) {
 			'vendor/ng-file-upload.min.js',
 			'vendor/jplayer/jquery.jplayer.min.js',
 			'vendor/jplayer/jplayer.playlist.min.js',
+			// 'vendor/jquery.nailthumb.1.1.min.js',
+			// 'vendor/jquery.fakecrop.js',
 			'app.js',
          'ng-search.js',
 			'ng-upload.js',

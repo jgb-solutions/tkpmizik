@@ -56,7 +56,12 @@ angular.module('app')
 				$scope.tryAgain = false;
 				$scope.uploadSuccess = true;
 				$scope.uploadedMusic = response.data;
-				$scope.emailAndTweet(response.data);
+				if (! response.data.emailedAndTweeted) {
+					$scope.emailAndTweet(response.data);
+				} else {
+					$scope.emailedAndTweeted = true;
+					console.log('Already posted fam.');
+				}
 			}, function (response) {
 				console.log(response.data);
 				$scope.errors = response.data;

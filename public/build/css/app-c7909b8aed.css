@@ -4901,7 +4901,7 @@ body {
   max-width: 810px;
   box-shadow: 0px 0px 5px #000;
   border-radius: 6px;
-  background-color: #F7F7F7;
+  background-color: #F1F2F1;
 }
 #footer {
   padding-top: 1.2em;
@@ -5001,6 +5001,7 @@ a.navbar-brand {
 .box-shadow {
   box-shadow: 0px 0px 5px #000000;
   margin-bottom: 15px;
+  overflow: hidden;
 }
 ul.navbar-nav,
 ul.navbar-nav li a {
@@ -5012,10 +5013,6 @@ a:focus {
 @media screen and (min-width: 767px) {
   img.small-square {
     min-height: 104.167px;
-  }
-  .box-shadow {
-    height: 104.167px;
-    overflow: hidden;
   }
   .logo-mizik {
     display: none !important;
@@ -5128,6 +5125,11 @@ html {
 }
 .jp-controls-holder {
   left: -40px !important;
+}
+.oneLiner {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /*# sourceMappingURL=app.css.map */

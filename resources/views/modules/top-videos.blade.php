@@ -12,12 +12,12 @@
 				<span class="badge">
 						{{ $video->views }}
 						<i class="fa fa-eye"></i>
-						-
+						&nbsp;
 						{{ $video->download }}
 						<i class="fa fa-download"></i>
-						-
+						{{-- -
 						{{ $video->vote_up }}
-						<i class="fa fa-thumbs-up"></i>
+						<i class="fa fa-thumbs-up"></i> --}}
 					</span>
 				{{ $video->name }}
 			</a>

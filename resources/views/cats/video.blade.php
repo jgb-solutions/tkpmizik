@@ -1,5 +1,9 @@
 @extends('layout.main')
 
+@section('title')
+	{{ $title = "Navige Tout Videyo $cat->name yo"}}
+@stop
+
 @section('content')
 
 	<div class="col-sm-8">
@@ -7,7 +11,7 @@
 		<div class="row bg-black btrr bbrr">
 			<h2 class="text-center">
 				<i class="fa fa-video-camera"></i>
-				Navige Tout Videyo {{ $cat->name }} yo
+				{{ $title }}
 			</h2>
 		</div>
 

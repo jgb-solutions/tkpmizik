@@ -56,7 +56,7 @@ class UsersController extends Controller
 
 	public function postLogin(Request $request)
 	{
-		if (Auth::attempt($request->only('email', 'password'))) {
+		if (Auth::attempt($request->only('email', 'password'), true)) {
 			$user = Auth::user();
 
 			if ($user->admin) {
