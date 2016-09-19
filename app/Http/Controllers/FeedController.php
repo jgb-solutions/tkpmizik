@@ -73,7 +73,7 @@ class FeedController extends Controller
 
 		$channel->title(config('site.name'))
 				->description(config('site.description'))
-				->url(env('SITE_URL'))
+				->url(config('site.url'))
 				->language('ht')
 				->copyright('2012 - ' . date('Y') . ' ' . config('site.name') . ', Tout Dwa Rezève.')
 				->lastBuildDate($now->timestamp)
@@ -94,19 +94,19 @@ class FeedController extends Controller
 		}
 
 		$feed = (string) $feed;
-		// Replace a couple items to make the feed more compliant
-		// $feed = str_replace(
-		// 	'<rss version="2.0">',
-		// 	'<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">',
-		// 	$feed
-		// );
+		Replace a couple items to make the feed more compliant
+		$feed = str_replace(
+			'<rss version="2.0">',
+			'<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">',
+			$feed
+		);
 
-		// $feed = str_replace(
-		// 	'<channel>',
-		// 	'<channel>
-		// 	<atom:link href="'. url(config('site.url') . "/feed/$type") . '" rel="self" type="application/rss+xml" />',
-		// 	$feed
-		// );
+		$feed = str_replace(
+			'<channel>',
+			'<channel>
+			<atom:link href="'. url(config('site.url') . "/feed/$type") . '" rel="self" type="application/rss+xml" />',
+			$feed
+		);
 
 		return $feed;
 	}

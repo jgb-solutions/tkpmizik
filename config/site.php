@@ -3,7 +3,7 @@
 return [
 	'name' 				=> 'Ti Kwen Pam Mizik',
 	'company' 			=> 'Ti Kwen Pam',
-	'url'				=> env('SITE_URL'),
+	'url'				=> env('APP_URL'),
 	'description' 		=> 'Mete, Tande, Telechaje, Vann ak Achte Mizik. Mete, Gade ak Telechaje videyo YouTube.',
 	'slug' 				=> 'Rezo Sosyal Mizik Ayisyen',
 	'mp3_upload_path' 	=> 'storage/musics',
