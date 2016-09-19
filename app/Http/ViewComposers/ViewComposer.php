@@ -80,7 +80,7 @@ class ViewComposer
 	public function topUsersModule(View $view)
 	{
 		$users = Cache::rememberForever('top.users', function() {
-			$users = User::withCount('musics', 'videos')->get();
+			$users = User::withCount('musics', 'videos')->has('musics', 'videos')->get();
 
 			$users->each(function($user) {
 				$user->totalcount 	= $user->musics_count + $user->videos_count;
