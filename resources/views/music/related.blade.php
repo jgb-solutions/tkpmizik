@@ -7,7 +7,7 @@
 		</h3>
 	</div>
 	<br>
-	@foreach ( $related as $type )
+	@foreach ($related as $music)
 		@include('inc.music.grid-3')
 	@endforeach
 @endif

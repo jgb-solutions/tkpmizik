@@ -268,7 +268,7 @@ class MusicController extends Controller
 	{
 		$key = '_music_show_' . $id;
 
-		$data = Cache::remember($key, 120, function() use ($id, $key) {
+		$data = Cache::rememberForever($key, function() use ($id, $key) {
 			$music = Music::with('user', 'category')->findOrFail($id);
 
 			if ($music->price == 'paid' && $music->publish) {

@@ -7,7 +7,7 @@
 		</h3>
 	</div>
 	<br>
-	@foreach ( $related as $type )
+	@foreach ( $related as $video )
 		@include('inc.video.grid-3')
 	@endforeach
 @endif
