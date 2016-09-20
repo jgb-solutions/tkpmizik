@@ -338,13 +338,24 @@
 
 		<div ng-show="showPB" class="nga-default nga-stagger nga-fade">
 			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
 			<div class="progress" ng-hide="pbWidth==100">
 				<div class="progress-bar progress-bar-success"
 					role="progressbar" aria-valuenow="@{{pbWidth}}" aria-valuemin="@{{pbWidth}}"
-					aria-valuemax="100" style="width: @{{pbWidth}}%;">
+					aria-valuemax="100" style="width: @{{pbWidth}}%;"
+					style="height:50px;">
 					@{{pbWidth}}%
 				</div>
 			</div>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
 			<div ng-show="processingEmailAndTweet">
 				<i class="fa fa-spinner fa-spin fa-2x"></i>
 			</div>
