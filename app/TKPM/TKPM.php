@@ -68,13 +68,11 @@ class TKPM
 		return $html;
 	}
 
-	public static function image($in, $width = null, $height = null, $out, $setAspectRation = false)
+	public static function image($in, $width = null, $height = null, $out)
 	{
 		Image::make(storage_path('app/public/tkpmizik-data/images/' . $in))
-			->resize($width, $height, function($constraint) use ($setAspectRation) {
-				if ($setAspectRation) {
-					$constraint->aspectratio();
-				}
+			->resize($width, $height, function($constraint) {
+				$constraint->aspectratio();
 			})->save(storage_path("app/public/tkpmizik-data/images/$out/" . $in));
 	}
 
