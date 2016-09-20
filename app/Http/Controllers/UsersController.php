@@ -155,9 +155,7 @@ class UsersController extends Controller
 		$user_videos = $user->videos();
 
 		$first_name = ucwords( TKPM::firstName($user->name));
-		$title = 'Navige Tout Mizik ';
-		$title .= Auth::check() ? 'Ou ' :  $first_name;
-		$title .= ' Yo';
+		$title = "Navige Tout Mizik $first_name Yo";
 
 		$data = [
 			'musics' 				=> $user->musics()->remember(5)->latest()->paginate(24),
@@ -189,9 +187,7 @@ class UsersController extends Controller
 		$user_videos = $user->videos();
 
 		$first_name = ucwords(TKPM::firstName($user->name));
-		$title = 'Navige Tout Videyo ';
-		$title .= Auth::check() ? 'Ou ' :  $first_name;
-		$title .= ' Yo';
+		$title = "Navige Tout Videyo $first_name Yo";
 
 		$data = [
 			'videos' 				=> $user->videos()->remember(5)->latest()->paginate(24),
