@@ -14,13 +14,9 @@
 			   </a>
 			</h5>
 			<p class="text-muted">
-		    		<i class="fa fa-eye"></i> Afichaj:
+		    		<i class="fa fa-eye oneLiner"></i> Afichaj:
 		    		{{ $music->views }} <br>
-		    		@if( $music->price == 'free')
-		    		<i class="fa fa-headphones"></i> Ekout:
-		    		{{ $music->play }} <br>
-		    		@endif
-		    		<i class="fa fa-download"></i> Telechajman:
+		    		<i class="fa fa-download oneLiner"></i> Telechajman:
 		    		{{ $music->download }}
 		    	</p>
 		</div>

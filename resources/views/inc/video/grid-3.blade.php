@@ -13,9 +13,9 @@
 		    	</a>
 		   </h5>
 		   <p class="text-muted">
-	    		<i class="fa fa-eye"></i> Afichaj:
+	    		<i class="fa fa-eye oneLiner"></i> Afichaj:
 	    		{{ $video->views }} <br>
-	    		<i class="fa fa-download"></i> Telechajman:
+	    		<i class="fa fa-download oneLiner"></i> Telechajman:
 	    		{{ $video->download }}
 	    	</p>
 	  	</div>
