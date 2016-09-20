@@ -13,10 +13,10 @@
 					{{ $type->name }}
 			   </a>
 			</h5>
-			<p class="text-muted">
-		    		<i class="fa fa-eye"></i> Afichaj:
+			<p class="text-muted oneLiner">
+		    		<i class="fa fa-eye oneLiner"></i> Afichaj:
 		    		{{ $type->views }} <br>
-		    		<i class="fa fa-download"></i> Telechajman:
+		    		<i class="fa fa-download oneLiner"></i> Telechajman:
 		    		{{ $type->download }}
 		    	</p>
 		</div>

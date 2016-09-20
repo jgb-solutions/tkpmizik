@@ -22,6 +22,7 @@
 		<div class="text-center">
 			{{ $playlists->links() }}
 		</div>
+		<div class="col-xs-12">&nbsp;</div>
 	@else
 		<div class="row bg-black btrr bbrr">
 			<h2 class="text-center">Poko gen lis mizik (-_-)</h2>

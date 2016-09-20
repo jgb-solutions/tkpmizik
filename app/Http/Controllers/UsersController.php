@@ -155,12 +155,10 @@ class UsersController extends Controller
 		$user_videos = $user->videos();
 
 		$first_name = ucwords( TKPM::firstName($user->name));
-		$title = 'Navige Tout Mizik ';
-		$title .= Auth::check() ? 'Ou ' :  $first_name;
-		$title .= ' Yo';
+		$title = "Navige Tout Mizik $first_name Yo";
 
 		$data = [
-			'musics' 				=> $user->musics()->remember(5)->latest()->paginate(12),
+			'musics' 				=> $user->musics()->remember(5)->latest()->paginate(24),
 			// 'musics' 				=> $user->musics()->latest()->paginate(10),
 			'musiccount' 			=> $user_musics->count(),
 			'videocount' 			=> $user_videos->count(),
@@ -189,12 +187,10 @@ class UsersController extends Controller
 		$user_videos = $user->videos();
 
 		$first_name = ucwords(TKPM::firstName($user->name));
-		$title = 'Navige Tout Videyo ';
-		$title .= Auth::check() ? 'Ou ' :  $first_name;
-		$title .= ' Yo';
+		$title = "Navige Tout Videyo $first_name Yo";
 
 		$data = [
-			'videos' 				=> $user->videos()->remember(5)->latest()->paginate(12),
+			'videos' 				=> $user->videos()->remember(5)->latest()->paginate(24),
 			// 'videos' 				=> $user->videos()->latest()->paginate(10),
 			'musiccount' 			=> $user_musics->count(),
 			'videocount' 			=> $user_videos->count(),
@@ -351,8 +347,8 @@ class UsersController extends Controller
 
 		$data = Cache::rememberForever($key, function() use ($user, $route) {
 			$data = [
-				'musics' 				=> $user->musics()->published()->latest()->take(10)->get(),
-				'videos'					=> $user->videos()->latest()->take(10)->get(),
+				'musics' 				=> $user->musics()->published()->latest()->take(12)->get(),
+				'videos'					=> $user->videos()->latest()->take(12)->get(),
 				'musiccount' 			=> $user->musics()->count(),
 				'videocount' 			=> $user->videos()->count(),
 				'musicViewsCount' 	=> $user->musics()->sum('views'),

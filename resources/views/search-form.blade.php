@@ -1,4 +1,4 @@
-<form role="searach" action="{{ TKPM::route('search') }}" id="mainSearchForm" class="mainSearchForm">
+<form role="search" action="{{ TKPM::route('search') }}" id="mainSearchForm" class="mainSearchForm">
 	<div class="input-group">
 		<input
 			id="q"

@@ -6,7 +6,7 @@
 	@include('inc.fb-script')
 
 	{{-- Google Analytics --}}
-	@include('inc.ga')
+	{{-- @include('inc.ga') --}}
 
 @endunless
 
