@@ -13,7 +13,7 @@
 					{{ $type->name }}
 			   </a>
 			</h5>
-			<p class="text-muted">
+			<p class="text-muted oneLiner">
 		    		<i class="fa fa-eye oneLiner"></i> Afichaj:
 		    		{{ $type->views }} <br>
 		    		<i class="fa fa-download oneLiner"></i> Telechajman:
