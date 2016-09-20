@@ -343,7 +343,7 @@
 			<br>
 			<br>
 			<br>
-			<div class="progress" ng-hide="pbWidth==100" style="height:50px;">
+			<div class="progress bg-white" ng-hide="pbWidth==100" style="height:50px;">
 				<div class="progress-bar progress-bar-success"
 					role="progressbar" aria-valuenow="@{{pbWidth}}" aria-valuemin="@{{pbWidth}}"
 					aria-valuemax="100" style="width: @{{pbWidth}}%;">
