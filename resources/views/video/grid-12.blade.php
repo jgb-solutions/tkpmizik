@@ -6,7 +6,7 @@
 			  	<img
 					class="img-reponsive full-width"
 					alt="{{ $video->name }}"
-					src="{{ TKPM::asset($video->image, 'thumbs') }}">
+					src="{{ $video->imageUrl }}">
 		</a>
 		<div class="text-center">
 		  	<h5 class="oneLiner">

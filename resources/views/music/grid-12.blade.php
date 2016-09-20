@@ -15,7 +15,7 @@
 					{{ $music->name }}
 			   </a>
 			</h5>
-			<p class="text-muted">
+			<p class="text-muted oneliner">
 		    		<i class="fa fa-eye"></i> Afichaj:
 		    		{{ $music->views }} <br>
 		    		@if( $music->price == 'free')

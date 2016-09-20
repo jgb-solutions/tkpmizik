@@ -32,7 +32,7 @@
 				Mizik {{ $first_name }} Yo
 			</h3>
 		</div>
-		
+
 		<hr>
 
 		@include('music.grid-12')
