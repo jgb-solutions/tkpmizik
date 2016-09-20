@@ -160,7 +160,7 @@ class UsersController extends Controller
 		$title .= ' Yo';
 
 		$data = [
-			'musics' 				=> $user->musics()->remember(5)->latest()->paginate(12),
+			'musics' 				=> $user->musics()->remember(5)->latest()->paginate(24),
 			// 'musics' 				=> $user->musics()->latest()->paginate(10),
 			'musiccount' 			=> $user_musics->count(),
 			'videocount' 			=> $user_videos->count(),
@@ -194,7 +194,7 @@ class UsersController extends Controller
 		$title .= ' Yo';
 
 		$data = [
-			'videos' 				=> $user->videos()->remember(5)->latest()->paginate(12),
+			'videos' 				=> $user->videos()->remember(5)->latest()->paginate(24),
 			// 'videos' 				=> $user->videos()->latest()->paginate(10),
 			'musiccount' 			=> $user_musics->count(),
 			'videocount' 			=> $user_videos->count(),
