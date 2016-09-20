@@ -351,8 +351,8 @@ class UsersController extends Controller
 
 		$data = Cache::rememberForever($key, function() use ($user, $route) {
 			$data = [
-				'musics' 				=> $user->musics()->published()->latest()->take(10)->get(),
-				'videos'					=> $user->videos()->latest()->take(10)->get(),
+				'musics' 				=> $user->musics()->published()->latest()->take(12)->get(),
+				'videos'					=> $user->videos()->latest()->take(12)->get(),
 				'musiccount' 			=> $user->musics()->count(),
 				'videocount' 			=> $user->videos()->count(),
 				'musicViewsCount' 	=> $user->musics()->sum('views'),
