@@ -18,10 +18,11 @@
 		<br>
 
 		@if(count($videos))
-		
-		@foreach($videos as $type)
-			@include('inc.cat-search.grid-3')
-		@endforeach
+		<div class="row">
+			@foreach($videos as $type)
+				@include('inc.cat-search.grid-3')
+			@endforeach
+		</div>
 
 		<div class="text-center">
 			{{ $videos->links() }}

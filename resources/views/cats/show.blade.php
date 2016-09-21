@@ -17,7 +17,9 @@
 		<br>
 
 		@if( $results->count())
-			@include('cats.grid-12')
+			<div class="row">
+				@include('cats.grid-12')
+			</div>
 
 			<div class="col-sm-12 text-center">
 				@if ($musiccount)

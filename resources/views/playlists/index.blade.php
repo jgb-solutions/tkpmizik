@@ -16,8 +16,9 @@
 		</div>
 
 		<br>
-
-		@include('playlists.grid-12')
+		<div class="row">
+			@include('playlists.grid-12')
+		</div>
 
 		<div class="text-center">
 			{{ $playlists->links() }}

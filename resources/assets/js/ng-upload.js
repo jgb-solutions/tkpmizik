@@ -1,6 +1,7 @@
 angular.module('app')
 
-.controller('UploadController', ['$scope', 'Upload', '$http', function ($scope, Upload, $http) {
+.controller('UploadController', ['$scope', 'Upload', '$http',
+function ($scope, Upload, $http) {
 	$scope.data = {
 		description: ''
 	};

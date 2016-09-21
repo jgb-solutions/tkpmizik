@@ -16,9 +16,11 @@
 				</h2>
 			</div>
 			<br>
-			@foreach ($videos as $video)
-				@include('inc.video.grid-3')
-			@endforeach
+			<div class="row">
+				@foreach ($videos as $video)
+					@include('inc.video.grid-3')
+				@endforeach
+			</div>
 
 		<div class="text-center">
 			{{ $videos->links() }}

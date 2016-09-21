@@ -1,5 +1,5 @@
 <div class="col-sm-4 col-xs-6">
-	<div class="thumbnail noPadding4 maxHeight228 box-shadow btlr btrr bbrr bblr"
+	<div class="thumbnail noPadding4 maxHeight228 btlr btrr bbrr bblr"
 		title="{{$music->title}}">
 		<a href="{{ $music->url }}" class="fakecrop-fill">
 			  	<img

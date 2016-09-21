@@ -16,7 +16,9 @@
 		</div>
 		<br>
 		@include('inc.alert')
-		@include('music.grid-12')
+		<div class="row">
+			@include('music.grid-12')
+		</div>
 
 		<div class="text-center">
 			{{ $musics->links() }}

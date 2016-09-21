@@ -16,8 +16,9 @@
 			</h2>
 		</div>
 		<br>
-
-		@include('search.grid-12')
+		<div class="row">
+			@include('search.grid-12')
+		</div>
 
 		@else
 
@@ -26,11 +27,6 @@
 		</div>
 
 		@endif
-
-		<div class="text-center">
-			{{-- {{ $results->links() }} --}}
-		</div>
-
 
 	</div>
 

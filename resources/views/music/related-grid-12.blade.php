@@ -1,12 +1,14 @@
 <div class="col-sm-12">
 	<a href="{{ $rel->url }}">
-		<div class="row box-shadow btlr btrr bbrr bblr bg-white">
+		<div class="row btlr btrr bbrr bblr bg-white">
 			<div class="col-sm-4 col-xs-4">
 				<div class="row">
-					<img
-						data-original="{{ TKPM::asset($rel->image, 'thumbs') }}"
-				  		alt="{{ $rel->name }}"
-						class="img-responsive small-square lazy">
+					<a href="{{ $rel->url }}">
+						<img
+							src="{{ TKPM::asset($rel->image, 'thumbs') }}"
+					  		alt="{{ $rel->name }}"
+							class="img-responsive small-square lazy">
+					</a>
 				</div>
 			</div>
 			<div class="col-sm-8 col-xs-8 right">

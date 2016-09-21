@@ -17,8 +17,10 @@
 
 			<br>
 
-	    		<div class="row">
-		    		@include('inc.discover-music')
+	    	<div class="row">
+		    	@include('inc.discover-music')
+		   </div>
+
 				<div class="col-sm-12">
 					<p class="text-center">
 						<a
@@ -29,7 +31,6 @@
 						</a>
 					</p>
 				</div>
-			</div>
 		</div>
 	@endif
 
@@ -43,18 +44,18 @@
 
 			<br>
 
-	    		<div class="row">
-    				@include('inc.discover-video')
-				<div class="col-sm-12">
-					<p class="text-center">
-						<a
-							href="{{ route('discover.video') }}"
-							class="btn btn-lg btn-danger">
-							<i class="fa fa-video-camera"></i>
-							Dekouvri Plis Videyo
-						</a>
-					</p>
-				</div>
+    		<div class="row">
+ 				@include('inc.discover-video')
+ 			</div>
+			<div class="col-sm-12">
+				<p class="text-center">
+					<a
+						href="{{ route('discover.video') }}"
+						class="btn btn-lg btn-danger">
+						<i class="fa fa-video-camera"></i>
+						Dekouvri Plis Videyo
+					</a>
+				</p>
 			</div>
 		</div>
 	@endif

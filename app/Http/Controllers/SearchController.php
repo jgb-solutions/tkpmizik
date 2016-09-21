@@ -29,7 +29,7 @@ class SearchController extends Controller
 		// $music_res = $this->search('musics', $query);
 		$music_res = null;
 		$music_results = Music::search($music_res['ids'], $term)
-			->get(['id', 'play', 'download', 'views', 'artist', 'name']);
+			->get(['id', 'play', 'download', 'views', 'artist', 'name', 'image']);
 
 		$music_results = $this->prepare('music', $music_results);
 
@@ -37,7 +37,7 @@ class SearchController extends Controller
 		$video_res = null;
 
 		$video_results = Video::search($video_res['ids'], $term)
-			->get(['id', 'download', 'views', 'artist', 'name']);
+			->get(['id', 'download', 'views', 'artist', 'name', 'image', 'youtube_id']);
 
 		$video_results = $this->prepare('video', $video_results);
 

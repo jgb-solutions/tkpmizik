@@ -274,7 +274,6 @@ $(function() {
 
 	$fakecropped = $('.fakecrop-fill img');
 	$fakecropped.height($fakecropped.width());
-
 });
 
 /* AngularJS code */

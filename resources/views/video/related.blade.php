@@ -7,7 +7,9 @@
 		</h3>
 	</div>
 	<br>
-	@foreach ( $related as $video )
-		@include('inc.video.grid-3')
-	@endforeach
+	<div class="row">
+		@foreach ( $related as $video )
+			@include('inc.video.grid-3')
+		@endforeach
+	</div>
 @endif

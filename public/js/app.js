@@ -8843,7 +8843,6 @@ $(function() {
 
 	$fakecropped = $('.fakecrop-fill img');
 	$fakecropped.height($fakecropped.width());
-
 });
 
 /* AngularJS code */
@@ -8910,7 +8909,8 @@ angular.module('app')
 }]);
 angular.module('app')
 
-.controller('UploadController', ['$scope', 'Upload', '$http', function ($scope, Upload, $http) {
+.controller('UploadController', ['$scope', 'Upload', '$http',
+function ($scope, Upload, $http) {
 	$scope.data = {
 		description: ''
 	};

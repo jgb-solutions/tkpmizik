@@ -1,5 +1,5 @@
 <div class="col-sm-4 col-xs-6">
-	<div class="thumbnail noPadding4 maxHeight228">
+	<div class="thumbnail noPadding4 maxHeight228 box-shadow">
 		<a href="{{ $video->url }}">
 		  	<img
 				class="img-reponsive full-width"
