@@ -6,6 +6,8 @@ Route::get('dekouvri', ['as'=>'discover','uses'=>'PagesController@discover']);
 Route::get('dekouvri/mizik', ['as'=>'discover.music','uses'=>'PagesController@discoverMusic']);
 Route::get('dekouvri/videyo', ['as'=>'discover.video','uses'=>'PagesController@discoverVideo']);
 Route::get('/cheche', ['as' => 'search','uses' => 'SearchController@getIndex']);
+Route::get('/kondisyon-itilizasyon', 'PagesController@index');
+Route::get('/tem', 'PagesController@index');
 
 // Playlists
 Route::get('lis', ['as'=>'playlists','uses' => 'PlaylistsController@index']);
