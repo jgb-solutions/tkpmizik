@@ -15,7 +15,7 @@ return [
 	'logo_small'			=> 'images/logo.png',
 	'separator'			=> '--|--',
 	'email'				=> 'mizik@tikwenpam.net',
-	'fb_admin'			=> 'jeveuxblogger',
+	'fb_admin'			=> 'jgbneatdesign',
 	'fb_id'				=> '794106764051904',
 
 	'message'			=> [
