@@ -160,7 +160,7 @@ return [
 		Intervention\Image\ImageServiceProvider::class,
 		Thujohn\Twitter\TwitterServiceProvider::class,
 		App\Providers\TKPMServiceProvider::class,
-		Collective\Html\HtmlServiceProvider::class,
+		// Collective\Html\HtmlServiceProvider::class,
 		// TeamTNT\TNTSearch\TNTSearchServiceProvider::class,
 		Laravel\Socialite\SocialiteServiceProvider::class,
 
@@ -210,8 +210,8 @@ return [
 		'View' => Illuminate\Support\Facades\View::class,
 		'Str' => Illuminate\Support\Str::class,
 
-		'Form' => Collective\Html\FormFacade::class,
-		'Html' => Collective\Html\HtmlFacade::class,
+		// 'Form' => Collective\Html\FormFacade::class,
+		// 'Html' => Collective\Html\HtmlFacade::class,
 		'Image'	=> Intervention\Image\Facades\Image::class,
 		'Twitter' =>  Thujohn\Twitter\Facades\Twitter::class,
 		// 'TNTSearch'	=> TeamTNT\TNTSearch\Facades\TNTSearch::class,
