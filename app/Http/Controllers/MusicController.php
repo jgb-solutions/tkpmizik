@@ -160,35 +160,6 @@ class MusicController extends Controller
 			/******* Flush the cache ********/
 			Cache::flush();
 
-			// if ($music->paid) {
-			// 	// Send an email to the new user letting them know their music has been uploaded
-			// 	$data = [
-			// 		'music' => $music,
-			// 		'subject' => 'Felisitasyon!!! Ou fèk mete yon nouvo mizik pou vann.'
-			// 	];
-
-			// 	TKPM::sendMail('emails.user.buy', $data, 'music');
-			// } elseif (Auth::guest() && $request->has('email')) {
-			// 	$music->userEmail = $request->get('email');
-
-			// 	$data = [
-			// 		'music' 		=> $music,
-			// 		'subject' 	=> 'Felisitasyon!!! Ou fèk mete yon nouvo mizik'
-			// 	];
-
-			// 	TKPM::sendMail('emails.user.guest3', $data, 'guest3');
-			// } else {
-			// 	// Send an email to the new user letting them know their music has been uploaded
-			// 	$data = [
-			// 		'music' 		=> $music,
-			// 		'subject' 	=> 'Felisitasyon!!! Ou fèk mete yon nouvo mizik'
-			// 	];
-
-			// 	TKPM::sendMail('emails.user.music', $data, 'music');
-			// }
-
-			// if (! App::isLocal()) TKPM::tweet($music, 'music');
-
         	if ($request->ajax()) {
         		$response = [];
 

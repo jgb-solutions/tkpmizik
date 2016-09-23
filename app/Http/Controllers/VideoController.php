@@ -116,7 +116,7 @@ class VideoController extends Controller
 
 		Cache::flush();
 
-		return redirect(route('video.show', ['id'=>$video->id, 'slug'=>$video->slug]));
+		return redirect($video->url);
 	}
 
 	public function show($id)

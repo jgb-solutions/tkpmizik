@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Cache;
 use App\Models\Music;
 use App\Models\Video;
 use App\Models\Category;
@@ -11,50 +12,48 @@ use App\Http\Controllers\Controller;
 
 class SearchController extends Controller
 {
-	protected $request = '';
-
-	public function __construct(Request $request) {
-		$this->request = $request;
-	}
-
-	public function getIndex() {
-		$term = $this->request->get('q');
-		$type = $this->request->get('type');
+	public function getIndex(Request $request) {
+		$term = $request->get('q');
+		$type = $request->get('type');
 
 		if (isset($type) && ! empty($type)) {
 			$fn = 'search' . $type;
 			return $this->$fn($term);
 		}
 
-		// $music_res = $this->search('musics', $query);
-		$music_res = null;
-		$music_results = Music::search($music_res['ids'], $term)
-			->get(['id', 'play', 'download', 'views', 'artist', 'name', 'image']);
+		$key = 'search_' . $term;
 
-		$music_results = $this->prepare('music', $music_results);
+		$results = Cache::rememberForever($key, function() use ($term, $request) {
+			// $music_res = $this->search('musics', $query);
+			$music_res = null;
+			$music_results = Music::search($music_res['ids'], $term)
+				->get(['id', 'play', 'download', 'views', 'artist', 'name', 'image']);
 
-		// $video_res = $this->search('videos', $query);
-		$video_res = null;
+			$music_results = $this->prepare('music', $music_results);
 
-		$video_results = Video::search($video_res['ids'], $term)
-			->get(['id', 'download', 'views', 'artist', 'name', 'image', 'youtube_id']);
+			// $video_res = $this->search('videos', $query);
+			$video_res = null;
 
-		$video_results = $this->prepare('video', $video_results);
+			$video_results = Video::search($video_res['ids'], $term)
+				->get(['id', 'download', 'views', 'artist', 'name', 'image', 'youtube_id']);
+
+			$video_results = $this->prepare('video', $video_results);
 
 
-		$results = $music_results->merge($video_results)->shuffle();
+			$results = $music_results->merge($video_results)->shuffle();
 
-		if ($this->request->ajax()) {
+			return $results;
+		});
+
+		if ($request->ajax()) {
 			return $results;
 		}
 
-		$data = [
+		return view('search.index', [
 			'results' => $results,
 			'query' => $term,
 			'title'	=> 'Rezilta pou: ' . $term
-		];
-
-		return view('search.index', $data);
+		]);
 	}
 
 
