@@ -21,7 +21,7 @@
 		      		onclick="return this.select()"
 		      		type="text"
 		      		class="form-control strong"
-		      		value="{{ route($type.'.get', $obj->id) }}">
+		      		value="{{ TKPM::route($type.'.get', $obj->id) }}">
 		      		<span class="input-group-addon">
 				<i class="fa fa-download"></i>
 			</span>
