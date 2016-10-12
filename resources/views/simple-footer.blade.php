@@ -6,5 +6,6 @@
 		</div>
 	</div>
 </div>
+	@include('scripts')
 </body>
 </html>
