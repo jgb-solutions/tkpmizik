@@ -298,8 +298,8 @@ class TKPM
 			return asset($relativeUrl);
 		}
 
-		// $cdnUrl = 'https://cdn.tkpmizik.com/';
-		$cdnUrl = 'https://tkpmizik.com/';
+		$cdnUrl = 'https://cdn.tkpmizik.com/';
+		// $cdnUrl = 'https://tkpmizik.com/';
 
 		return url($cdnUrl . $relativeUrl);
 	}
