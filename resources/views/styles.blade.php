@@ -4,9 +4,9 @@
 @else
 	<link rel="stylesheet" type="text/css" href="{{ TKPM::asset('css/font-awesome.min.css') }}">
 @endif
-<link rel="stylesheet" type="text/css" href="{{ TKPM::asset(elixir('css/app.css')) }}">
 <style type="text/css">
 	.must-hide {
 		display: none;
 	}
 </style>
+<link rel="stylesheet" type="text/css" href="{{ TKPM::asset(elixir('css/app.css')) }}">
