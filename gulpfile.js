@@ -1,9 +1,9 @@
 var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
-     mix
-     // .copy('vendor/bower/angular/angular.min.js', 'resources/assets/js/vendor/angular.js')
-     // .copy('vendor/bower/jquery/dist/jquery.min.js', 'resources/assets/js/vendor/jquery.js')
+    mix
+    // .copy('vendor/bower/angular/angular.min.js', 'resources/assets/js/vendor/angular.js')
+    // .copy('vendor/bower/jquery/dist/jquery.min.js', 'resources/assets/js/vendor/jquery.js')
 
      .less('style.less', 'public/css/app.css')
 
