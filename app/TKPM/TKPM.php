@@ -294,7 +294,12 @@ class TKPM
 
 		$relativeUrl = $imgSize[$size] . $asset;
 
-		if ( App::isLocal() ) {
+		// if ( App::isLocal() ) {
+		// 	return asset($relativeUrl);
+		// } elseif (App::environment() == 'staging') {
+		// 	return asset($relativeUrl);
+		// }
+		if (App::environment('local', 'staging')) {
 			return asset($relativeUrl);
 		}
 
