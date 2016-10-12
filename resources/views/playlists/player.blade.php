@@ -5,9 +5,8 @@
 	// 	mp3:"http://tkpmizik.dev/jwe/mizik/140",
 	// 	poster: "http://tkpmizik.dev/images/logo.png"
 	// }
-
-	$(function(){
-		$.get('{{$playlist->url}}', function(musics) {
+	jQuery(document).ready(function() {
+		jQuery.get('{{$playlist->url}}', function(musics) {
 			console.log(musics);
 			var myPlaylist = new jPlayerPlaylist({
 				jPlayer: "#jquery_jplayer_N",
