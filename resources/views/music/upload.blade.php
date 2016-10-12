@@ -126,10 +126,7 @@
 			</div>
 			{{ csrf_field() }}
 		</form>
-			<div ng-hide="uploading" class="nga-default nga-stagger nga-slide-up"
-				ng-class="{
-							'hide':'true'
-						}">
+			<div ng-hide="uploading" class="nga-default nga-stagger nga-slide-up must-hide ng-show">
 				<form name="uploadForm"  method="POST"
 					enctype="multipart/form-data"
 					class="form-horizontal"
