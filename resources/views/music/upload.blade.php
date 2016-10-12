@@ -20,13 +20,13 @@
 
 		@include('inc.errors')
 
-		<form action="{{TKPM::route('music.store')}}" method="POST"
-			enctype="multipart/form-data" class="form-horizontal ng-hide" id='upForm'>
+{{-- 		<form action="{{TKPM::route('music.store')}}" method="POST"
+			enctype="multipart/form-data" class="form-horizontal" id='upForm'> --}}
 			{{--@if ( Auth::user() )
 				@include('inc.free-paid')
 			@endif --}}
 
-			<div class="form-group">
+{{-- 			<div class="form-group">
 				<label
 					for="name"
 					class="col-sm-4 col-xs-2 control-label">Mete Non Mizik la
@@ -125,8 +125,8 @@
 				<ul class="list-group bg-danger" id="upMessage"></ul>
 			</div>
 			{{ csrf_field() }}
-		</form>
-			<div ng-hide="uploading" class="nga-default nga-stagger nga-slide-up must-hide ng-show">
+		</form> --}}
+			<div ng-hide="uploading" class="nga-default nga-stagger nga-slide-up">
 				<form name="uploadForm"  method="POST"
 					enctype="multipart/form-data"
 					class="form-horizontal"
@@ -346,26 +346,26 @@
 			<br>
 			<br>
 			</div>
-			<div class="progress bg-white box-shadow must-hide ng-show" ng-hide="pbWidth==100" style="height:50px;">
+			<div class="progress bg-white box-shadow" ng-hide="pbWidth==100" style="height:50px;">
 				<div class="progress-bar progress-bar-success"
 					role="progressbar" aria-valuenow="@{{pbWidth}}" aria-valuemin="@{{pbWidth}}"
 					aria-valuemax="100" style="width: @{{pbWidth}}%;">
 					@{{pbWidth}}%
 				</div>
 			</div>
-			<div ng-hide="pbWidth==100" class="must-hide ng-show">
+			<div ng-hide="pbWidth==100">
 				<br>
 				<br>
 				<br>
 				<br>
 				<br>
 			</div>
-			<div ng-show="processingEmailAndTweet" class="must-hide ng-show">
+			<div ng-show="processingEmailAndTweet">
 				<i class="fa fa-spinner fa-spin fa-2x"></i>
 			</div>
 		</div>
 
-		<div ng-show="showErrors" class="nga-default nga-stagger nga-slide-down must-hide ng-show">
+		<div ng-show="showErrors" class="nga-default nga-stagger nga-slide-down">
 			<div class="panel panel-danger">
 			 	<div class="panel-heading">
 			  		Tanpri korije er&egrave; sa yo epi eseye ank&ograve;:
@@ -385,7 +385,7 @@
 			</div>
 		</div>
 
-		<div ng-show="uploadSuccess" class="nga-default nga-stagger nga-slide-down must-hide ng-show">
+		<div ng-show="uploadSuccess" class="nga-default nga-stagger nga-slide-down">
 			<div class="panel panel-success">
 				<div class="panel-heading">
 				    <h3 class="panel-title text-center">
