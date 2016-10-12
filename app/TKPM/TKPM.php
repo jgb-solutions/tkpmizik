@@ -311,11 +311,11 @@ class TKPM
 
 	public static function route($path, $params = [])
 	{
-		if (!App::isLocal()) {
-			return secure_url(route($path, $params, false));
+		if (App::environment('local', 'staging')) {
+			return url(route($path, $params));
 		}
 
-		return url(route($path, $params));
+		return secure_url(route($path, $params, false));
 	}
 
 	public static function profileImage($user)
