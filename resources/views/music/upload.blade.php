@@ -365,7 +365,7 @@
 			</div>
 		</div>
 
-		<div ng-show="showErrors" class="nga-default nga-stagger nga-slide-down">
+		<div ng-show="showErrors" class="nga-default nga-stagger nga-slide-down must-hide ng-show">
 			<div class="panel panel-danger">
 			 	<div class="panel-heading">
 			  		Tanpri korije er&egrave; sa yo epi eseye ank&ograve;:
@@ -385,7 +385,7 @@
 			</div>
 		</div>
 
-		<div ng-show="uploadSuccess" class="nga-default nga-stagger nga-slide-down">
+		<div ng-show="uploadSuccess" class="nga-default nga-stagger nga-slide-down must-hide ng-show">
 			<div class="panel panel-success">
 				<div class="panel-heading">
 				    <h3 class="panel-title text-center">
