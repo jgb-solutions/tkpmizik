@@ -20,13 +20,13 @@
 
 		@include('inc.errors')
 
-{{-- 		<form action="{{TKPM::route('music.store')}}" method="POST"
-			enctype="multipart/form-data" class="form-horizontal" id='upForm'> --}}
+		<form action="{{TKPM::route('music.store')}}" method="POST"
+			enctype="multipart/form-data" class="form-horizontal ng-hide" id='upForm'>
 			{{--@if ( Auth::user() )
 				@include('inc.free-paid')
 			@endif --}}
 
-{{-- 			<div class="form-group">
+			<div class="form-group">
 				<label
 					for="name"
 					class="col-sm-4 col-xs-2 control-label">Mete Non Mizik la
@@ -125,8 +125,8 @@
 				<ul class="list-group bg-danger" id="upMessage"></ul>
 			</div>
 			{{ csrf_field() }}
-		</form> --}}
-			<div ng-hide="uploading" class="nga-default nga-stagger nga-slide-up">
+		</form>
+			<div ng-hide="uploading" class="nga-default nga-stagger nga-slide-up ng-show hide">
 				<form name="uploadForm"  method="POST"
 					enctype="multipart/form-data"
 					class="form-horizontal"
