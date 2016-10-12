@@ -346,21 +346,21 @@
 			<br>
 			<br>
 			</div>
-			<div class="progress bg-white box-shadow" ng-hide="pbWidth==100" style="height:50px;">
+			<div class="progress bg-white box-shadow must-hide ng-show" ng-hide="pbWidth==100" style="height:50px;">
 				<div class="progress-bar progress-bar-success"
 					role="progressbar" aria-valuenow="@{{pbWidth}}" aria-valuemin="@{{pbWidth}}"
 					aria-valuemax="100" style="width: @{{pbWidth}}%;">
 					@{{pbWidth}}%
 				</div>
 			</div>
-			<div ng-hide="pbWidth==100">
+			<div ng-hide="pbWidth==100" class="must-hide ng-show">
 				<br>
 				<br>
 				<br>
 				<br>
 				<br>
 			</div>
-			<div ng-show="processingEmailAndTweet">
+			<div ng-show="processingEmailAndTweet" class="must-hide ng-show">
 				<i class="fa fa-spinner fa-spin fa-2x"></i>
 			</div>
 		</div>
