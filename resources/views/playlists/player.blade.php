@@ -1,34 +1,36 @@
-<script type="text/javascript">
-	// {
-	// 	title:"Cro Magnon Man",
-	// 	artist:"The Stark Palace",
-	// 	mp3:"http://tkpmizik.dev/jwe/mizik/140",
-	// 	poster: "http://tkpmizik.dev/images/logo.png"
-	// }
-	jQuery(document).ready(function() {
-		jQuery.get('{{$playlist->url}}', function(musics) {
-			console.log(musics);
-			var myPlaylist = new jPlayerPlaylist({
-				jPlayer: "#jquery_jplayer_N",
-				cssSelectorAncestor: "#jp_container_N"
-			},
-			musics,
-			{
-				playlistOptions: {
-					// enableRemoveControls: true,
-					// autoPlay: true
+@section('scripts')
+	<script type="text/javascript">
+		// {
+		// 	title:"Cro Magnon Man",
+		// 	artist:"The Stark Palace",
+		// 	mp3:"http://tkpmizik.dev/jwe/mizik/140",
+		// 	poster: "http://tkpmizik.dev/images/logo.png"
+		// }
+		jQuery(document).ready(function() {
+			jQuery.get('{{$playlist->url}}', function(musics) {
+				console.log(musics);
+				var myPlaylist = new jPlayerPlaylist({
+					jPlayer: "#jquery_jplayer_N",
+					cssSelectorAncestor: "#jp_container_N"
 				},
-				// swfPath: "../../dist/jplayer",
-				supplied: "webmv, ogv, m4v, oga, mp3",
-				useStateClassSkin: true,
-				autoBlur: false,
-				smoothPlayBar: true,
-				keyEnabled: true,
-				audioFullScreen: true
+				musics,
+				{
+					playlistOptions: {
+						// enableRemoveControls: true,
+						// autoPlay: true
+					},
+					// swfPath: "../../dist/jplayer",
+					supplied: "webmv, ogv, m4v, oga, mp3",
+					useStateClassSkin: true,
+					autoBlur: false,
+					smoothPlayBar: true,
+					keyEnabled: true,
+					audioFullScreen: true
+				});
 			});
 		});
-	});
-</script>
+	</script>
+@stop
 <div id="jp_container_N" class="jp-video jp-video-270p" role="application" aria-label="media player">
 	<div class="jp-type-playlist">
 		<div id="jquery_jplayer_N" class="jp-jplayer"></div>
