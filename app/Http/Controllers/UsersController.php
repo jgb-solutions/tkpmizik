@@ -598,10 +598,12 @@ class UsersController extends Controller
         if ($authUser) {
             return $authUser;
         }
+		
+		Cache::flush();
 
         return User::create([
             'name' => $user->name,
-            'username' => $user->nickname ?: $user->id,
+            'username' => $user->nickname ?: str_slug($user->name) . '-' . $user->id,
             'email' => $user->email,
             'avatar' => $user->avatar
         ]);
