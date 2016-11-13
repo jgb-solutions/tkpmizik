@@ -24,7 +24,7 @@ function ($scope, Upload, $http) {
 		$scope.tryAgain = false;
 		$scope.showPB = false;
 		$scope.showErrors = false;
-	}
+	};
 
 	$scope.uploadMusic = function() {
 		console.log($scope.data);
@@ -35,12 +35,12 @@ function ($scope, Upload, $http) {
 	$scope.emailAndTweet = function(data) {
 		$http.post(data.emailAndTweetUrl, {id: data.id})
 			.then(function(response) {
-				console.log(response)
+				console.log(response);
 				$scope.emailedAndTweeted = true;
 			}, function(error) {
 				console.log(error);
 			});
-	}
+	};
 
 	$scope.upload = function (image, music) {
 		$scope.uploading = true;

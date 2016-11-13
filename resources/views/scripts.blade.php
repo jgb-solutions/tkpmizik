@@ -24,5 +24,10 @@
 
 <script src="{{ TKPM::asset(elixir('js/app.js')) }}"></script>
 
+@if (! Request::hasCookie('facebook-modal'))
+    @include('inc.facebook-modal');
+    <script>$('#facebook-modal').modal()</script>
+@endif
+
 @section('scripts')
 @show

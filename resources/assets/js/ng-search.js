@@ -7,7 +7,7 @@ angular.module('app')
 
 	$scope.noResultsText = function() {
 		return 'Pa gen rezilta pou "' + $scope.searchTerm + '"';
-	}
+	};
 
 	$scope.search = function( withType ) {
 		if ( $scope.searchTerm.length > 2 ) {
@@ -16,7 +16,7 @@ angular.module('app')
 
 			$http.get('/cheche?q=' + $scope.searchTerm + '&type=' + $scope.type)
 				.then(function( response ) {
-					let data = [];
+					var data = [];
 
 					// console.log( response );
 
@@ -39,10 +39,10 @@ angular.module('app')
 		}
 
 		$scope.setType = function( type ) {
-			let withType = type.length ? true : false;
+			var withType = type.length ? true : false;
 
 			$scope.type = type;
 			$scope.search( withType );
-		}
-	}
+		};
+	};
 }]);
