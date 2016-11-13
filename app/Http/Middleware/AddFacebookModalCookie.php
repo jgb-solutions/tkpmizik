@@ -12,7 +12,7 @@ class AddFacebookModalCookie
             return $next($request);
         }   else {
             $response = $next($request);
-            return $response->withCookie('facebook-modal', 'show', 1);
+            return $response->withCookie('facebook-modal', 'show', 7 * 24 * 60);
         }
     }
 }
