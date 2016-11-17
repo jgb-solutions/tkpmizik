@@ -1,5 +1,8 @@
 <div class="col-sm-12">
+
 	@include('inc.ads.bottom')
+
+	<br>
 
 	@if(count($featuredVideos))
 		<div class="row bg-black">
