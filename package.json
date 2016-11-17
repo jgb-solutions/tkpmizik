@@ -3,8 +3,5 @@
   "scripts": {
     "prod": "gulp --production",
     "dev": "gulp watch"
-  },
-  "dependencies": {
-    "elixir-jshint": "^1.2.3"
   }
 }
