@@ -1,0 +1,329 @@
+@import url('bootstrap/bootstrap.less');
+
+@body-bg-color: #03a9f4; //#337ab7
+
+body {
+	background: @body-bg-color;
+}
+
+#wrapper {
+	max-width: 810px;
+	box-shadow: 0px 0px 5px #000;
+	border-radius: 6px;
+	background-color: #F1F2F1; //#F7F7F7;
+}
+
+#footer {
+	padding-top: 1.2em;
+}
+
+.padding1 {
+	padding-top: 1.3em;
+	padding-bottom: 1.3em;
+}
+
+.margin05em {
+	margin-top: .5em;
+	margin-bottom: .5em;
+}
+
+.marginTop1em {
+	margin-top: .5em;
+}
+
+.padding1em {
+	padding: 1em;
+}
+
+.bg-black {
+	background-color: #000;
+	color: #fff;
+	hr {
+		border-top: 1px solid #2b2b2b;
+	};
+}
+
+.bg-white {
+	background-color: #fff;
+}
+
+.navbar {
+	margin-bottom: 0;
+	border-radius: 0;
+}
+
+.img-bordered {
+	box-shadow: 0px 0px 10px #000;
+}
+
+.img-centered {
+	margin: auto;
+}
+
+a.navbar-brand {
+	padding-top: 0;
+	padding-bottom: 0
+}
+
+.table>thead>tr>th,
+.table>tfoot>tr>th {
+	text-align: center;
+	vertical-align: middle;
+}
+
+.table>tbody>tr>td {
+	vertical-align: middle;
+	text-align: center;
+}
+
+.noTextCenter.table>tbody>tr>td {
+	text-align: left;
+}
+
+.strong {
+	font-weight: bold;
+}
+
+.noMarginTopBottom {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.ui360,
+.sm2-360ui {
+  	margin: auto;
+}
+
+#sidebar>h3,
+#sidebar>h4 {
+	text-decoration: underline;
+}
+
+.noPadding4 {
+	padding: 0;
+}
+
+#vote-btn > button:focus {
+	outline: none;
+}
+
+.vote-num {
+	font-size: .75em
+}
+
+.mainSearchForm input,
+.mainSearchForm button {
+	height: 50px;
+	font-weight: bold;
+}
+
+.mainSearchForm input {
+	font-size: 1.5em;
+}
+
+.btn {
+	text-shadow: 1px 1px 2px #000;
+}
+
+.mTop6 {
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.box-shadow {
+	box-shadow: 0px 0px 5px rgb(0, 0, 0);
+	margin-bottom: 15px;
+	overflow: hidden;
+}
+
+ul.navbar-nav,
+ul.navbar-nav li a {
+	font-weight: bold;
+}
+
+a:focus {
+	outline: none;
+}
+
+@media screen and (min-width: 767px) {
+	img.small-square {
+		min-height: 104.167px;
+	}
+
+	// .box-shadow {
+	// 	height: 104.167px;
+	// 	overflow: hidden;
+	// }overflow: hidden
+
+	.logo-mizik {
+		display: none !important;
+	}
+}
+
+.transparent {
+	background-color: transparent;
+}
+
+img.logo-mizik {
+	height: 50px;
+}
+
+#page-content {
+	font-size: 16px;
+}
+
+.hide {
+	display: none;
+}
+
+#progress,
+.hide-panel {
+	display: none;
+}
+.progress {
+	height: 35px;
+}
+
+.progress-bar {
+	font-size: 18px;
+    font-weight: bold;
+    line-height: 35px;
+}
+
+.color-black,
+.black {
+	color: #000;
+	a {
+		color: #000;
+	}
+}
+
+.white {
+	color: #fff;
+	a {
+		color:#fff;
+	}
+}
+.audio-image {
+	background-size: cover;
+
+	left: 0;
+	right: 0;
+	z-index: 1;
+}
+
+.audio-content {
+	opacity: 1;
+	filter: blur(0);
+	-webkit-filter: blur(0);
+}
+
+.pagination {
+	font-weight: bold;
+}
+
+@media screen and (min-width: 768px) {
+	.btlr {
+	border-top-left-radius: 6px;
+	}
+
+	.btrr {
+		border-top-right-radius: 6px;
+	}
+
+	.bblr {
+		border-bottom-left-radius: 6px;
+	}
+
+	.bbrr {
+		border-bottom-right-radius: 6px;
+	}
+}
+
+// Registration page
+body, html {
+    height: 100%;
+    background-repeat: no-repeat;
+}
+
+.card-container.card {
+    max-width: 350px;
+    padding: 40px 40px;
+}
+/*
+ * Card component
+ */
+.card {
+    background-color: #F7F7F7;
+    /* just in case there no content*/
+    padding: 20px 25px 30px;
+    margin: 0 auto 25px;
+    margin-top: 20px;
+    /* shadows and rounded borders */
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.profile-img-card {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+// make jplayer responsive
+.jp-video-270p {
+	width: 100% !important;
+	img {
+		width: 100% !important;
+		height: auto !important;
+	}
+}
+
+#jquery_jplayer_N {
+	width: 100% !important;
+	height: auto !important;
+}
+
+.jp-controls-holder {
+   left: -40px !important;
+}
+
+// Setting the title to be one line
+.oneLiner {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+// make thumbnails square
+// .square-thumb {
+// 	width: 150px;
+// 	height: 150px;
+// }
+
+// center bootstrap modal
+@media screen and (min-width: 768px) {
+	.modal {
+	  text-align: center;
+	}
+
+	  .modal:before {
+	    display: inline-block;
+	    vertical-align: middle;
+	    content: " ";
+	    height: 100%;
+	  }
+
+	.modal-dialog {
+	  display: inline-block;
+	  text-align: left;
+	  vertical-align: middle;
+	}
+}
