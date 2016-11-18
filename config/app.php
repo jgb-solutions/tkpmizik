@@ -160,9 +160,8 @@ return [
 		Intervention\Image\ImageServiceProvider::class,
 		Thujohn\Twitter\TwitterServiceProvider::class,
 		App\Providers\TKPMServiceProvider::class,
-		// Collective\Html\HtmlServiceProvider::class,
-		// TeamTNT\TNTSearch\TNTSearchServiceProvider::class,
 		Laravel\Socialite\SocialiteServiceProvider::class,
+		BackupManager\Laravel\Laravel5ServiceProvider::class,
 
 	],
 
