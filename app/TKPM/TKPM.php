@@ -114,7 +114,7 @@ class TKPM
 	    		$mp3_data['attached_picture'][0]['picturetypeid'] = $type;
 	  		$mp3_data['attached_picture'][0]['mime'] = $type;
 	  	} else {
-	    		$mp3_data['attached_picture'][0]['data']		 	= file_get_contents(config('site.logo'));
+	    		$mp3_data['attached_picture'][0]['data']		 	= file_get_contents(config('site.christmasLogo'));
 	    		$mp3_data['attached_picture'][0]['picturetypeid'] 	= "image/jpg";
 	    		$mp3_data['attached_picture'][0]['mime'] 			= "image/jpg";
 	  	}
