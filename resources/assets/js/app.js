@@ -212,3 +212,4 @@ snowStorm.useTwinkleEffect = true;
 // snowStorm.showCharacter = '&#x266B'; //"♫";
 snowStorm.snowStick = true;
 snowStorm.useMeltEffect = true;
+snowStorm.excludeMobile = false;
