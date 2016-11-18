@@ -33,9 +33,7 @@ elixir(function(mix) {
         jsVendor + 'angular.js',
         jsVendor + 'angular-animate.min.js',
         jsVendor + 'loading-bar.js',
-        // jsVendor + 'form.min.js',
         jsVendor + 'bootstrap.min.js',
-        // jsVendor + 'lazyload.min.js',
         jsVendor + 'soundmanager2.js',
         jsVendor + 'berniecode-animator.js',
         jsVendor + '360player.js',
@@ -43,8 +41,7 @@ elixir(function(mix) {
         jsVendor + 'ng-file-upload.min.js',
         jsVendor + 'jplayer/jquery.jplayer.min.js',
         jsVendor + 'jplayer/jplayer.playlist.min.js',
-        // jsVendor + 'jquery.nailthumb.1.1.min.js',
-        // jsVendor + 'jquery.fakecrop.js',
+        jsVendor + 'snow/snowstorm.js',
      ], 'public/js/vendor.js')
 
     .scripts([
