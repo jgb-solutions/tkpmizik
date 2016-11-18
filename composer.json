@@ -13,7 +13,8 @@
         	"suin/php-rss-writer": "^1.5",
         	"watson/rememberable": "^1.0",
     	   "laravel/socialite": "2.0.18",
-         "artesaos/seotools": "^0.9.2"
+         "artesaos/seotools": "^0.9.2",
+    	    	"backup-manager/laravel": "^1.1"
     	},
     	"require-dev": {
         	"fzaninotto/faker": "~1.4",
