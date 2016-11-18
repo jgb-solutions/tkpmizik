@@ -162,6 +162,7 @@ return [
 		App\Providers\TKPMServiceProvider::class,
 		Laravel\Socialite\SocialiteServiceProvider::class,
 		BackupManager\Laravel\Laravel5ServiceProvider::class,
+		Collective\Html\HtmlServiceProvider::class
 
 	],
 
@@ -213,5 +214,8 @@ return [
 		'Twitter' =>  Thujohn\Twitter\Facades\Twitter::class,
 		'TKPM'	=> App\TKPM\TKPM::class,
 		'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+
+		'Form' => Collective\Html\FormFacade::class,
+      	'Html' => Collective\Html\HtmlFacade::class,
 	]
 ];
