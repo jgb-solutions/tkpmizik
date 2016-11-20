@@ -133,10 +133,12 @@ class VideoController extends Controller
 				->get(['id', 'name', 'image', 'download', 'views', 'slug', 'youtube_id']);
 			// return $related;
 
+			$author = $video->user->username ? '@' . $video->user->username . ' &mdash;' : $video->user->name . ' &mdash; ';
+
 			$data = [
 				'video' => $video,
 				'related' => $related,
-				'author' => '@' . $video->user->username . ' &mdash;'
+				'author' => $author
 			];
 
 			return $data;

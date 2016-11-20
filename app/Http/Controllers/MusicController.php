@@ -267,10 +267,12 @@ class MusicController extends Controller
 							->get(['id', 'name', 'image', 'play', 'download', 'views', 'slug']);
 			// return $related;
 
+			$author = $music->user->username ? '@' . $music->user->username . ' &mdash;' : $music->user->name . ' &mdash; ';
+
 			$data = [
 				'music' 	=> $music,
 				'related' => $related,
-				'author'	=> '@' . $music->user->username . ' &mdash;',
+				'author'	=> $author,
 				'playlists' => []
 			];
 

@@ -272,7 +272,9 @@ class TKPM
 			$status = '#NouvoVideyo ';
 		}
 
-		$status .= "@{$obj->user->username} &mdash; $obj->title " . $obj->url .
+		$author = $obj->user->username ? '@' . $obj->user->username . ' &mdash;' : $obj->user->name . ' -- ';
+
+		$status .= "$author $obj->title " . $obj->url .
 					" via @TKPMizik @TiKwenPam #" . $obj->category->slug;
 
         	Twitter::postTweet([
