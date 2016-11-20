@@ -162,7 +162,7 @@ return [
 		App\Providers\TKPMServiceProvider::class,
 		Laravel\Socialite\SocialiteServiceProvider::class,
 		BackupManager\Laravel\Laravel5ServiceProvider::class,
-		Collective\Html\HtmlServiceProvider::class
+		Collective\Html\HtmlServiceProvider::class,
 
 	],
 

@@ -16,6 +16,12 @@
 	<br>
 </div>
 
+{{-- ads --}}
+<div class="col-sm-12">
+	@include('inc.ads.top')
+	<br>
+</div>
+
 <div class="col-sm-10 col-sm-offset-1">
 
 	@include('inc.errors')
