@@ -1,7 +1,7 @@
 <?php
 $urle = urlencode($url);
 $via = config('site.twitter');
-$name = $obj->name;
+$name = $obj->title;
 ?>
 
 <i class="fa fa-share"></i> Pataje sou:<br>
