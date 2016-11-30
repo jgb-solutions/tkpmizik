@@ -89,8 +89,14 @@
 					}
 				}
 
+				var downloaded = false;
+
 				function download(file) {
-					window.location = file;
+					if ( ! downloaded ) {
+						window.location = file;
+					}
+
+					downloaded = true;
 				}
 			</script>
 		</div>
