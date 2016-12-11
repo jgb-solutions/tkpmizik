@@ -64,10 +64,10 @@
 		<p>
 			Devlope pa
 			<a
-				href="http://jgbnd.com"
-				title="JGB! Neat Design"
+				href="{{ config('site.developer.website')}}"
+				title="{{ config('site.developer.name')}}"
 				class="text-warning"
-				target="_blank">JGB! Neat Design
+				target="_blank">{{ config('site.developer.name')}}
 			</a>
 		</p>
 	</div>

@@ -49,5 +49,10 @@ return [
 		'mustBeAdmin' => 'Ou pa gen dwa pou w wè paj sa a paske ou pa yon administratè.',
 		'mustBeMusicOwner' => 'Ou pa gen dwa pou w modifye mizik la paske ou pa m&egrave;t li.',
 		'mustBeVideoOwner' => 'Ou pa gen dwa pou w modifye videyo a paske ou pa m&egrave;t li.'
-	]
+	],
+
+	'developer' => [
+		'name' => 'JGB! Neat Design',
+		'website' => 'https://jgbneatdesign.com'
+	],
 ];
